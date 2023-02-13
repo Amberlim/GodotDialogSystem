@@ -1,0 +1,82 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://ConditionalsStack.gd" type="Script" id=1]
+
+[node name="ConditionalsStack" type="VBoxContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = -731.0
+margin_bottom = -406.0
+custom_constants/separation = 10
+script = ExtResource( 1 )
+skill = NodePath("ConditionalsSkill")
+stack_index = NodePath("HBoxContainer/Label")
+
+[node name="Label" type="Label" parent="."]
+margin_right = 1189.0
+margin_bottom = 14.0
+text = "_________________________________________________"
+clip_text = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+margin_top = 24.0
+margin_right = 1189.0
+margin_bottom = 44.0
+custom_constants/separation = 10
+
+[node name="Label" type="Label" parent="HBoxContainer"]
+margin_top = 3.0
+margin_right = 12.0
+margin_bottom = 17.0
+custom_colors/font_color = Color( 1, 0.290196, 0.290196, 1 )
+text = "IF"
+
+[node name="Conditionals" type="OptionButton" parent="HBoxContainer"]
+margin_left = 22.0
+margin_right = 51.0
+margin_bottom = 20.0
+toggle_mode = false
+align = 1
+items = [ "Skills", null, false, 0, null, "Global Variables", null, false, 1, null, "Visited", null, false, 2, null, "NPC Brownie Points", null, false, 5, null ]
+selected = 0
+
+[node name="Button" type="Button" parent="HBoxContainer"]
+margin_left = 61.0
+margin_right = 81.0
+margin_bottom = 20.0
+text = "+"
+
+[node name="ConditionalsSkill" type="HBoxContainer" parent="."]
+visible = false
+margin_top = 54.0
+margin_right = 1189.0
+margin_bottom = 78.0
+custom_constants/separation = 13
+
+[node name="Skills" type="Label" parent="ConditionalsSkill"]
+margin_top = 5.0
+margin_right = 49.0
+margin_bottom = 19.0
+text = "IF Skills"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ConditionalsSkill"]
+margin_left = 62.0
+margin_right = 259.0
+margin_bottom = 24.0
+
+[node name="SkillOption" type="OptionButton" parent="ConditionalsSkill/HBoxContainer"]
+margin_right = 83.0
+margin_bottom = 24.0
+text = "Intellect"
+items = [ "Intellect", null, false, 0, null, "Charisma", null, false, 1, null, "Endurance", null, false, 2, null, "Dexterity", null, false, 3, null ]
+selected = 0
+
+[node name="SkillPoints" type="LineEdit" parent="ConditionalsSkill/HBoxContainer"]
+margin_left = 87.0
+margin_right = 197.0
+margin_bottom = 24.0
+rect_min_size = Vector2( 110, 0 )
+placeholder_text = "<=> int"
+
+[connection signal="item_selected" from="HBoxContainer/Conditionals" to="." method="_on_Conditionals_item_selected"]
+[connection signal="pressed" from="HBoxContainer/Button" to="." method="_on_Button_pressed"]

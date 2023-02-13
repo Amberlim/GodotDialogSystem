@@ -1,0 +1,31 @@
+[gd_scene format=2]
+
+[node name="ConditionalsVar" type="HBoxContainer"]
+margin_top = 64.0
+margin_right = 293.0
+margin_bottom = 104.0
+custom_constants/separation = 13
+
+[node name="Var" type="Label" parent="."]
+margin_top = 13.0
+margin_right = 40.0
+margin_bottom = 27.0
+text = "IF Var "
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+margin_left = 53.0
+margin_right = 243.0
+margin_bottom = 40.0
+
+[node name="GlobalVar" type="LineEdit" parent="HBoxContainer"]
+margin_right = 110.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 110, 0 )
+placeholder_text = "Global Var"
+caret_blink = true
+caret_blink_speed = 0.5
+
+[node name="CheckButton" type="CheckButton" parent="HBoxContainer"]
+margin_left = 114.0
+margin_right = 190.0
+margin_bottom = 40.0

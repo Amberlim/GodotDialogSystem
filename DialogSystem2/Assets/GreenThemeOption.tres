@@ -1,0 +1,115 @@
+[gd_resource type="Theme" load_steps=11 format=2]
+
+[ext_resource path="res://Assets/AdobeClean-SemiCn.otf" type="DynamicFontData" id=1]
+[ext_resource path="res://Assets/Clean.tres" type="DynamicFont" id=2]
+
+[sub_resource type="StyleBoxFlat" id=2]
+content_margin_left = 7.0
+content_margin_right = 7.0
+content_margin_top = 3.0
+content_margin_bottom = 3.0
+bg_color = Color( 0, 0, 0, 1 )
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id=3]
+content_margin_left = 7.0
+content_margin_right = 7.0
+content_margin_top = 3.0
+content_margin_bottom = 3.0
+bg_color = Color( 0.113281, 0.113281, 0.113281, 1 )
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxEmpty" id=4]
+
+[sub_resource type="StyleBoxFlat" id=15]
+content_margin_top = 30.0
+bg_color = Color( 0.113725, 0.113725, 0.113725, 0.588235 )
+border_width_top = 1
+border_color = Color( 0.0313726, 1, 0, 1 )
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+expand_margin_left = 15.0
+expand_margin_right = 15.0
+expand_margin_top = 15.0
+expand_margin_bottom = 15.0
+
+[sub_resource type="StyleBoxFlat" id=14]
+content_margin_top = 30.0
+bg_color = Color( 0.0313726, 1, 0, 0.0666667 )
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color( 0.0313726, 1, 0, 1 )
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+expand_margin_left = 15.0
+expand_margin_right = 15.0
+expand_margin_top = 15.0
+expand_margin_bottom = 15.0
+
+[sub_resource type="DynamicFont" id=7]
+size = 24
+use_mipmaps = true
+use_filter = true
+extra_spacing_char = 2
+font_data = ExtResource( 1 )
+
+[sub_resource type="StyleBoxFlat" id=8]
+content_margin_left = 12.0
+content_margin_right = 12.0
+content_margin_top = 12.0
+content_margin_bottom = 12.0
+bg_color = Color( 0.117647, 0.117647, 0.117647, 1 )
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id=11]
+content_margin_left = 12.0
+content_margin_right = 12.0
+content_margin_top = 12.0
+content_margin_bottom = 12.0
+bg_color = Color( 0.113725, 0.113725, 0.113725, 1 )
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[resource]
+default_font = ExtResource( 2 )
+Button/colors/font_color = Color( 0.356863, 0.721569, 0.345098, 1 )
+Button/colors/font_color_disabled = Color( 1, 1, 1, 0.305882 )
+Button/colors/font_color_focus = Color( 0.0313726, 1, 0, 1 )
+Button/colors/font_color_hover = Color( 0.0313726, 1, 0, 1 )
+Button/colors/font_color_pressed = Color( 0.0313726, 1, 0, 1 )
+Button/constants/hseparation = 2
+Button/fonts/font = ExtResource( 2 )
+Button/styles/disabled = null
+Button/styles/focus = SubResource( 2 )
+Button/styles/hover = SubResource( 2 )
+Button/styles/normal = SubResource( 3 )
+Button/styles/pressed = SubResource( 2 )
+CheckBox/constants/hseparation = 20
+CheckBox/styles/normal = SubResource( 4 )
+GraphNode/constants/port_offset = -17
+GraphNode/styles/frame = SubResource( 15 )
+GraphNode/styles/selectedframe = SubResource( 14 )
+Label/colors/font_color = Color( 0.356863, 0.721569, 0.345098, 1 )
+Label/fonts/font = null
+LineEdit/fonts/font = SubResource( 7 )
+LineEdit/styles/normal = SubResource( 8 )
+TextEdit/colors/font_color = Color( 0.88, 0.88, 0.88, 1 )
+TextEdit/fonts/font = null
+TextEdit/styles/normal = SubResource( 11 )

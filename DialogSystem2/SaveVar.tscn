@@ -1,0 +1,24 @@
+[gd_scene format=2]
+
+[node name="SaveVar" type="HBoxContainer"]
+margin_top = 30.0
+margin_right = 345.0
+margin_bottom = 70.0
+custom_constants/separation = 5
+
+[node name="SaveVar" type="Label" parent="."]
+margin_top = 13.0
+margin_right = 84.0
+margin_bottom = 27.0
+text = "Save Variable"
+
+[node name="SaveVar2" type="LineEdit" parent="."]
+margin_left = 89.0
+margin_right = 239.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 150, 0 )
+
+[node name="CheckButton" type="CheckButton" parent="."]
+margin_left = 244.0
+margin_right = 320.0
+margin_bottom = 40.0

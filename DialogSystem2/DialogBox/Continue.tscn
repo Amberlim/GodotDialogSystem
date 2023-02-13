@@ -1,0 +1,7 @@
+[gd_scene format=2]
+
+[node name="Continue" type="Button"]
+margin_top = 843.0
+margin_right = 496.0
+margin_bottom = 863.0
+text = "CONTINUE"

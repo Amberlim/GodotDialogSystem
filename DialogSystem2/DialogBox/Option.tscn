@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://DialogBox/Option.gd" type="Script" id=1]
+
+[node name="Option" type="Button"]
+margin_right = 496.0
+margin_bottom = 47.0
+rect_min_size = Vector2( 496, 47 )
+mouse_default_cursor_shape = 2
+text = "1. Hello, this is me."
+align = 0
+script = ExtResource( 1 )
+
+[connection signal="pressed" from="." to="." method="_on_Option_pressed"]
