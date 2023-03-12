@@ -6,18 +6,28 @@ var dialog_for_localisation = []
 export(String) onready var file_path 
 
 var initial_pos = Vector2(40,40)
-var node_index = 0
 onready var graph_edit = $GraphEdit
 onready var timer = $Timer
+
+onready var node_count = $NodeCount
+onready var option_count = $OptionCount
+var option_index = 0
+var node_index = 0
+var all_nodes_index = 0
 
 func _ready():
 	if not file_path.empty():
 		load_save()
+		
+
 	
 # ADD NEW NODE
 func _on_Button_pressed():
 	
+	# update node count
+	all_nodes_index += 1
 	node_index += 1
+	node_count.text = "Node Count: " + str(node_index)
 	
 	# instance node
 	var node = load("res://GraphNode.tscn")
@@ -25,7 +35,8 @@ func _on_Button_pressed():
 	graph_edit.add_child(node)
 	
 	# graph offset
-	node.offset += initial_pos + (node_index * Vector2(5,5))
+#	node.offset += initial_pos + (node_index * Vector2(5,5))
+	node.offset = get_global_mouse_position()
 	initial_pos = node.offset
 	
 	# autosave everytime a new node is instanced
@@ -197,6 +208,11 @@ func _on_RunProgram_pressed():
 					
 		# append to dictionary
 		dialog[node.title] = dialog_template
+		
+	# save node and option count
+	dialog["all_nodes_index"] = all_nodes_index
+	dialog["option_index"] = option_index
+	dialog["node_index"] = node_index
 	
 	var time = OS.get_datetime()
 	var year = str(time["year"])
@@ -205,6 +221,7 @@ func _on_RunProgram_pressed():
 	var hour = str(time["hour"])
 	var minute = str(time["minute"])
 	var file_path = day + "." + month + "." + year + "_" + hour + minute
+	
 	save_dialog(file_path)
 	
 func save_dialog(file_path):	
@@ -235,225 +252,240 @@ func load_save():
 	data = parse_json(data)
 	file.close()
 
+	# load node and option count
+	all_nodes_index = data["all_nodes_index"] 
+	option_index = data["option_index"] 
+	node_index = data["node_index"] 
+	
+	option_count.text = "Option Count: " + str(option_index)
+	node_count.text = "Node Count: " + str(node_index)
+	
 	for graph_node in data:
 		
-		var node
-		
-		if "OPTION" in graph_node:
-			print("OPTION")
-			# instance node
-			node = load("res://OptionNode.tscn")
-			node = node.instance()
-			graph_edit.add_child(node)
+		# ignore index counts
+		if not "index" in graph_node:
 			
-			if "dice skill" in graph_node: 	node.dice.get_node("SkillOption").text = data[graph_node]["dice skill"]
+			var node
+			
+			if "OPTION" in graph_node:
+				print("OPTION")
+				# instance node
+				node = load("res://OptionNode.tscn")
+				node = node.instance()
+				graph_edit.add_child(node)
 				
-			if "text" in data[graph_node]:
-				node._on_Text_toggled(true)
-				node.text.get_node("TextEdit").text = data[graph_node]["text"]
+				if "dice skill" in graph_node: 	node.dice.get_node("SkillOption").text = data[graph_node]["dice skill"]
+					
+				if "text" in data[graph_node]:
+					node._on_Text_toggled(true)
+					node.text.get_node("TextEdit").text = data[graph_node]["text"]
 
-		elif "DICEROLL" in graph_node:
-			print("DICEROLL")
-			node = load("res://DiceRoll.tscn")
-			node = node.instance()
-			graph_edit.add_child(node)
-			
-			node.skill.text = data[graph_node]["dice skill"]
-			node.target_number.value = data[graph_node]["dice target"]
-			
-		elif "FEATURE" in graph_node:
-			print("FEATURE")
-			# instance node
-			node = load("res://Feature.tscn")
-			node = node.instance()
-			graph_edit.add_child(node)
-			
-			if "save var" in data[graph_node]:
-				node._on_SaveVar_toggled(true)
-				var save_var_count = data[node_index]["save var"].size()
-				var var_count = 0
-				for variable in data[node_index]["save var"]:
-					if var_count == 0:
+			elif "DICEROLL" in graph_node:
+				print("DICEROLL")
+				node = load("res://DiceRoll.tscn")
+				node = node.instance()
+				graph_edit.add_child(node)
+				
+				node.skill.text = data[graph_node]["dice skill"]
+				node.target_number.value = data[graph_node]["dice target"]
+				
+			elif "FEATURE" in graph_node:
+				print("FEATURE")
+				# instance node
+				node = load("res://Feature.tscn")
+				node = node.instance()
+				graph_edit.add_child(node)
+				
+				if "save var" in data[graph_node]:
+					node._on_SaveVar_toggled(true)
+					var save_var_count = data[node_index]["save var"].size()
+					var var_count = 0
+					for variable in data[node_index]["save var"]:
+						if var_count == 0:
 
-						node.emit_signal("toggled", true)
-						# get key as string
-						var key_name = data[node_index]["save var"].keys()
-						key_name = key_name[var_count]
+							node.emit_signal("toggled", true)
+							# get key as string
+							var key_name = data[node_index]["save var"].keys()
+							key_name = key_name[var_count]
 
-						node.save_var.get_node("LineEdit").text = key_name
+							node.save_var.get_node("LineEdit").text = key_name
 
-						node.save_var.get_node("CheckButton").pressed = data[node_index]["save var"][key_name]
+							node.save_var.get_node("CheckButton").pressed = data[node_index]["save var"][key_name]
 
+						else:
+							node._on_new_save_var_button_pressed()
+							var new_var = node.main.get_node("SaveVar" + str(var_count))
+
+							# get key as string
+							var key_name = data[node_index]["save var"].keys()
+							key_name = key_name[var_count]
+
+							new_var.get_node("LineEdit").text = key_name
+							new_var.get_node("CheckButton").pressed = data[node_index]["save var"][key_name]
+
+						var_count += 1
+
+				if "money" in data[graph_node]:
+					node._on_Money_toggled(true)
+					node.money.get_node("Spinbox").value = data[graph_node]["money"]
+					
+				if "task" in data[graph_node]:
+					node._on_Task_toggled(true)
+					node.task.get_node("LineEdit").text = data[graph_node]["task"]
+				
+				if "emit signal" in data[graph_node]:
+					if data[graph_node]["emit signal"] == "dialog_end":
+						node._on_End_toggled(true)
 					else:
-						node._on_new_save_var_button_pressed()
-						var new_var = node.main.get_node("SaveVar" + str(var_count))
-
-						# get key as string
-						var key_name = data[node_index]["save var"].keys()
-						key_name = key_name[var_count]
-
-						new_var.get_node("LineEdit").text = key_name
-						new_var.get_node("CheckButton").pressed = data[node_index]["save var"][key_name]
-
-					var_count += 1
-
-			if "money" in data[graph_node]:
-				node._on_Money_toggled(true)
-				node.money.get_node("Spinbox").value = data[graph_node]["money"]
+						node._on_EmitSignal_toggled(true)
+						node.signal_emit.get_node("LineEdit").text = data[graph_node]["emit signal"]		
 				
-			if "task" in data[graph_node]:
-				node._on_Task_toggled(true)
-				node.task.get_node("LineEdit").text = data[graph_node]["task"]
-			
-			if "emit signal" in data[graph_node]:
-				if data[graph_node]["emit signal"] == "dialog_end":
-					node._on_End_toggled(true)
-				else:
-					node._on_EmitSignal_toggled(true)
-					node.signal_emit.get_node("LineEdit").text = data[graph_node]["emit signal"]		
-			
-			if "skill lvl up" in data[graph_node]:
-				node._on_Skills_toggled(true)
-				var skill_option = node.skills.get_node("HBoxContainer").get_node("SkillOption")
-				var skill_upgrade = node.skills.get_node("HBoxContainer").get_node("SkillUpgrade")
+				if "skill lvl up" in data[graph_node]:
+					node._on_Skills_toggled(true)
+					var skill_option = node.skills.get_node("HBoxContainer").get_node("SkillOption")
+					var skill_upgrade = node.skills.get_node("HBoxContainer").get_node("SkillUpgrade")
 
-				var skill_key = data[graph_node]["skill lvl up"].keys()
-				skill_option.text = skill_key[0]
-				skill_upgrade.value = int(data[graph_node]["skill lvl up"][skill_key[0]])
-		
-		elif "NODE" in graph_node:
-			print("NODE" + graph_node)
-			# instance node
-			node = load("res://GraphNode.tscn")
-			node = node.instance()
-			graph_edit.add_child(node)
+					var skill_key = data[graph_node]["skill lvl up"].keys()
+					skill_option.text = skill_key[0]
+					skill_upgrade.value = int(data[graph_node]["skill lvl up"][skill_key[0]])
+			
+			elif "NODE" in graph_node:
+				print("NODE" + graph_node)
+				# instance node
+				node = load("res://GraphNode.tscn")
+				node = node.instance()
+				graph_edit.add_child(node)
 
 
-			node.character.get_node("CharacterDrop").text = data[graph_node]["character"]
-			
-			if "display name" in data[graph_node]:
-				node._on_DisplayName_toggled(true)
-				node.display_name.get_node("LineEdit").text = data[graph_node]["display name"]
+				node.character.get_node("CharacterDrop").text = data[graph_node]["character"]
 				
+				if "display name" in data[graph_node]:
+					node._on_DisplayName_toggled(true)
+					node.display_name.get_node("LineEdit").text = data[graph_node]["display name"]
+					
 
-			if "line asset" in data[graph_node]:
-				node._on_LineAsset_toggled(true)
-				node.line_asset.get_node("LineEdit").text = data[graph_node]["line asset"]	
+				if "line asset" in data[graph_node]:
+					node._on_LineAsset_toggled(true)
+					node.line_asset.get_node("LineEdit").text = data[graph_node]["line asset"]	
 
-			if "text" in data[graph_node]:
-				node._on_Text_toggled(true)
-				node.text.get_node("TextEdit").text = data[graph_node]["text"]
+				if "text" in data[graph_node]:
+					node._on_Text_toggled(true)
+					node.text.get_node("TextEdit").text = data[graph_node]["text"]
 
-			# conditionals
-			if "conditionals" in data[graph_node]:
-				
-				for stack in data[graph_node]["conditionals"]: #get each stack
-					# create a new if stack
-					node._on_Conditional_pressed()
+				# conditionals
+				if "conditionals" in data[graph_node]:
+					
+					for stack in data[graph_node]["conditionals"]: #get each stack
+						# create a new if stack
+						node._on_Conditional_pressed()
 
-					if "if var" in stack:
-						var if_var_count = 0
+						if "if var" in stack:
+							var if_var_count = 0
+							
+							for each_var in stack["if var"]: #get each var (from file)
+								# create a new var
+								node.if_stack.selected_conditional = 1 
+								node.if_stack._on_Button_pressed()
+
+								# get new var node 
+								var new_var_node = node.if_stack.get_node("NewVar"+str(if_var_count))
+								
+								# reassign values
+								new_var_node.get_node("HBoxContainer/GlobalVar").text = each_var
+								
+								new_var_node.get_node("HBoxContainer/CheckButton").pressed = stack["if var"][each_var]
+
+								# keep count
+								if_var_count += 1
 						
-						for each_var in stack["if var"]: #get each var (from file)
-							# create a new var
-							node.if_stack.selected_conditional = 1 
-							node.if_stack._on_Button_pressed()
+						if "if visited" in stack:
+							var if_visited_count = 0
+							
+							for each_visited in stack["if visited"]: #get each visited (from file)
+								# create a new visited 
+								node.if_stack.selected_conditional = 2
+								node.if_stack._on_Button_pressed()
 
-							# get new var node 
-							var new_var_node = node.if_stack.get_node("NewVar"+str(if_var_count))
+								# get new var visited 
+								var new_visited_node = node.if_stack.get_node("NewVisited"+str(if_visited_count))
+								
+								# reassign values
+								new_visited_node.get_node("HBoxContainer/VisitedNode").value = int(each_visited)
+								
+								new_visited_node.get_node("HBoxContainer/VisitedIndex").value = stack["if visited"][each_visited]
+
+								# keep count
+								if_visited_count += 1
+
+						if "if brownie" in stack:
+							var if_brownie_count = 0
+							
+							for each_brownie in stack["if brownie"]: #get each brownie (from file)
+								# create a new brownie
+								node.if_stack.selected_conditional = 3
+								node.if_stack._on_Button_pressed()
+
+								# get new var node 
+								var new_brownie_node = node.if_stack.get_node("NewBrownie"+str(if_brownie_count))
+								
+								# reassign values
+								new_brownie_node.get_node("HBoxContainer/NPC").text = each_brownie
+								
+								new_brownie_node.get_node("HBoxContainer/BrowniePoints").value = stack["if brownie"][each_brownie]
+
+								# keep count
+								if_brownie_count += 1
+
+						if "if skill" in stack:
+							# create a new skill
+							node.if_stack.selected_conditional = 0
+							node.if_stack._on_Button_pressed()
+						
+							# get skill node
+							var skill_node = node.if_stack.get_node("ConditionalsSkill/HBoxContainer")
+							var skill_key = stack["if skill"].keys()
 							
 							# reassign values
-							new_var_node.get_node("HBoxContainer/GlobalVar").text = each_var
-							
-							new_var_node.get_node("HBoxContainer/CheckButton").pressed = stack["if var"][each_var]
+							skill_node.get_node("SkillOption").text = skill_key[0]
+							skill_node.get_node("SkillPoints").text = stack["if skill"][skill_key[0]]
 
-							# keep count
-							if_var_count += 1
-					
-					if "if visited" in stack:
-						var if_visited_count = 0
-						
-						for each_visited in stack["if visited"]: #get each visited (from file)
-							# create a new visited 
-							node.if_stack.selected_conditional = 2
-							node.if_stack._on_Button_pressed()
+			# node name
+			node.name = data[graph_node]["id"]
+			node.title = data[graph_node]["id"]
+			node.node_title.text = node.name
 
-							# get new var visited 
-							var new_visited_node = node.if_stack.get_node("NewVisited"+str(if_visited_count))
-							
-							# reassign values
-							new_visited_node.get_node("HBoxContainer/VisitedNode").value = int(each_visited)
-							
-							new_visited_node.get_node("HBoxContainer/VisitedIndex").value = stack["if visited"][each_visited]
-
-							# keep count
-							if_visited_count += 1
-
-					if "if brownie" in stack:
-						var if_brownie_count = 0
-						
-						for each_brownie in stack["if brownie"]: #get each brownie (from file)
-							# create a new brownie
-							node.if_stack.selected_conditional = 3
-							node.if_stack._on_Button_pressed()
-
-							# get new var node 
-							var new_brownie_node = node.if_stack.get_node("NewBrownie"+str(if_brownie_count))
-							
-							# reassign values
-							new_brownie_node.get_node("HBoxContainer/NPC").text = each_brownie
-							
-							new_brownie_node.get_node("HBoxContainer/BrowniePoints").value = stack["if brownie"][each_brownie]
-
-							# keep count
-							if_brownie_count += 1
-
-					if "if skill" in stack:
-						# create a new skill
-						node.if_stack.selected_conditional = 0
-						node.if_stack._on_Button_pressed()
-					
-						# get skill node
-						var skill_node = node.if_stack.get_node("ConditionalsSkill/HBoxContainer")
-						var skill_key = stack["if skill"].keys()
-						
-						# reassign values
-						skill_node.get_node("SkillOption").text = skill_key[0]
-						skill_node.get_node("SkillPoints").text = stack["if skill"][skill_key[0]]
-
-		# node name
-		node.name = data[graph_node]["id"]
-		node.title = data[graph_node]["id"]
-		node.node_title.text = node.name
-
-		if "go to" in data[graph_node]:
-			
-			if "DICEROLL" in graph_node:
-
-				var go_to_count = 0
+			if "go to" in data[graph_node]:
 				
-				for go_to in data[graph_node]["go to"]: # get each in array
-					graph_edit.connect_node(node.name, go_to_count, data[graph_node]["go to"][go_to_count], 0)
+				if "DICEROLL" in graph_node:
+
+					var go_to_count = 0
 					
-					go_to_count += 1
-			else:		
-				var go_to_count = 0
-				for go_to in data[graph_node]["go to"]: # get each in array
-					graph_edit.connect_node(node.name, 0, data[graph_node]["go to"][go_to_count], 0)
-					
-					go_to_count += 1
-					
-		
-		# node offset
-		# offset
-		node.offset.x = data[graph_node]["offset x"]
-		node.offset.y = data[graph_node]["offset y"]
-		initial_pos = node.offset		
+					for go_to in data[graph_node]["go to"]: # get each in array
+						graph_edit.connect_node(node.name, go_to_count, data[graph_node]["go to"][go_to_count], 0)
+						
+						go_to_count += 1
+				else:		
+					var go_to_count = 0
+					for go_to in data[graph_node]["go to"]: # get each in array
+						graph_edit.connect_node(node.name, 0, data[graph_node]["go to"][go_to_count], 0)
+						
+						go_to_count += 1
+						
+			
+			# node offset
+			# offset
+			node.offset.x = data[graph_node]["offset x"]
+			node.offset.y = data[graph_node]["offset y"]
+			initial_pos = node.offset		
 
 
 
 func _on_NewOption_pressed():
-	node_index += 1
+	
+	# update option count
+	all_nodes_index += 1
+	option_index += 1
+	option_count.text = "Option Count: " + str(option_index)
 	
 	# instance node
 	var option_node = load("res://OptionNode.tscn")
@@ -461,7 +493,8 @@ func _on_NewOption_pressed():
 	graph_edit.add_child(option_node)
 	
 	# graph offset
-	option_node.offset += initial_pos + (node_index * Vector2(5,5))
+	option_node.offset = get_global_mouse_position()
+	# += initial_pos + (node_index * Vector2(5,5))
 	initial_pos = option_node.offset
 	
 	
@@ -490,7 +523,10 @@ func _on_Clear_pressed():
 	for node in get_tree().get_nodes_in_group("graph_nodes"):
 		node.queue_free()
 	graph_edit.clear_connections()
+	
 	node_index = 0
+	all_nodes_index = 0
+	option_count = 0
 
 
 func _on_GraphEdit_gui_input(event):
