@@ -6,54 +6,44 @@
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = -731.0
-offset_bottom = -406.0
+offset_top = -5.0
+offset_right = -752.0
+offset_bottom = -504.0
+grow_horizontal = 2
+grow_vertical = 2
 theme_override_constants/separation = 10
 script = ExtResource("1_pm854")
-skill = NodePath("ConditionalsSkill")
-stack_index = NodePath("HBoxContainer/Label")
 
-[node name="Label" type="Label" parent="."]
+[node name="PanelContainer" type="PanelContainer" parent="."]
 layout_mode = 2
-text = "_________________________________________________"
-clip_text = true
+size_flags_vertical = 3
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer"]
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="Label" type="Label" parent="HBoxContainer"]
-layout_mode = 2
-theme_override_colors/font_color = Color(1, 0.290196, 0.290196, 1)
-text = "IF"
-
-[node name="Conditionals" type="OptionButton" parent="HBoxContainer"]
+[node name="Conditionals" type="OptionButton" parent="PanelContainer/MarginContainer/HBoxContainer"]
 layout_mode = 2
 toggle_mode = false
+item_count = 3
+selected = 0
+popup/item_0/text = "IF"
+popup/item_0/id = 0
+popup/item_1/text = "OR"
+popup/item_1/id = 1
+popup/item_2/text = "AND"
+popup/item_2/id = 2
 
-[node name="Button" type="Button" parent="HBoxContainer"]
+[node name="Button" type="Button" parent="PanelContainer/MarginContainer/HBoxContainer"]
 layout_mode = 2
 text = "+"
 
-[node name="ConditionalsSkill" type="HBoxContainer" parent="."]
-visible = false
-layout_mode = 2
-theme_override_constants/separation = 13
-
-[node name="Skills" type="Label" parent="ConditionalsSkill"]
-layout_mode = 2
-text = "IF Skills"
-
-[node name="HBoxContainer" type="HBoxContainer" parent="ConditionalsSkill"]
-layout_mode = 2
-
-[node name="SkillOption" type="OptionButton" parent="ConditionalsSkill/HBoxContainer"]
-layout_mode = 2
-
-[node name="SkillPoints" type="LineEdit" parent="ConditionalsSkill/HBoxContainer"]
-custom_minimum_size = Vector2(110, 0)
-layout_mode = 2
-placeholder_text = "<=> int"
-
-[connection signal="item_selected" from="HBoxContainer/Conditionals" to="." method="_on_Conditionals_item_selected"]
-[connection signal="pressed" from="HBoxContainer/Button" to="." method="_on_Button_pressed"]
+[connection signal="item_selected" from="PanelContainer/MarginContainer/HBoxContainer/Conditionals" to="." method="_on_Conditionals_item_selected"]
+[connection signal="pressed" from="PanelContainer/MarginContainer/HBoxContainer/Button" to="." method="_on_Button_pressed"]
