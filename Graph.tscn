@@ -4,73 +4,89 @@
 
 [node name="Control" type="Control"]
 layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("2_1tprk")
 file_path = "4.2.2023_2028"
 
-[node name="GraphEdit" type="GraphEdit" parent="."]
-layout_mode = 0
-offset_top = 2.0
-offset_right = 1930.0
-offset_bottom = 1086.0
-right_disconnects = true
-scroll_offset = Vector2(-40, -123)
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
-layout_mode = 0
-offset_left = 27.0
-offset_top = 82.0
-offset_right = 214.0
-offset_bottom = 133.0
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
 theme_override_constants/separation = 10
 
-[node name="NewNode" type="Button" parent="HBoxContainer"]
+[node name="NewNode" type="Button" parent="VBoxContainer/HBoxContainer"]
 layout_mode = 2
 mouse_default_cursor_shape = 2
-text = "+ NODE"
+theme_override_font_sizes/font_size = 12
+text = "New Node"
 
-[node name="NewOption" type="Button" parent="HBoxContainer"]
+[node name="NewOption" type="Button" parent="VBoxContainer/HBoxContainer"]
 layout_mode = 2
 mouse_default_cursor_shape = 2
-text = "+ OPTION"
+theme_override_font_sizes/font_size = 12
+text = "New Option"
 
-[node name="Feature" type="Button" parent="HBoxContainer"]
+[node name="Feature" type="Button" parent="VBoxContainer/HBoxContainer"]
 layout_mode = 2
 mouse_default_cursor_shape = 2
-text = "+ FEATURE"
+theme_override_font_sizes/font_size = 12
+text = "New Feature"
 
-[node name="NewRoll" type="Button" parent="HBoxContainer"]
+[node name="NewRoll" type="Button" parent="VBoxContainer/HBoxContainer"]
 layout_mode = 2
 mouse_default_cursor_shape = 2
-text = "+DICE ROLL"
+theme_override_font_sizes/font_size = 12
+text = "New DiceRoll"
 
-[node name="Save" type="Button" parent="HBoxContainer"]
+[node name="Save" type="Button" parent="VBoxContainer/HBoxContainer"]
 layout_mode = 2
 mouse_default_cursor_shape = 2
-text = "RUN"
+theme_override_font_sizes/font_size = 12
+text = "Run"
 
-[node name="Clear" type="Button" parent="HBoxContainer"]
+[node name="Clear" type="Button" parent="VBoxContainer/HBoxContainer"]
 layout_mode = 2
 mouse_default_cursor_shape = 2
-text = "CLEAR"
+theme_override_font_sizes/font_size = 12
+text = "Clear"
 
-[node name="Notification" type="Label" parent="HBoxContainer"]
+[node name="Notification" type="Label" parent="VBoxContainer/HBoxContainer"]
 visible = false
 layout_mode = 2
 text = "SAVED!"
+
+[node name="GraphEdit" type="GraphEdit" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+right_disconnects = true
+scroll_offset = Vector2(-422.4, -224.84)
+zoom = 0.6
+zoom_min = 0.35
+zoom_max = 1.0
+zoom_step = 1.0
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 3.0
 one_shot = true
 
-[connection signal="connection_request" from="GraphEdit" to="." method="_on_GraphEdit_connection_request"]
-[connection signal="disconnection_request" from="GraphEdit" to="." method="_on_GraphEdit_disconnection_request"]
-[connection signal="gui_input" from="GraphEdit" to="." method="_on_GraphEdit_gui_input"]
-[connection signal="pressed" from="HBoxContainer/NewNode" to="." method="_on_Button_pressed"]
-[connection signal="pressed" from="HBoxContainer/NewOption" to="." method="_on_NewOption_pressed"]
-[connection signal="pressed" from="HBoxContainer/Feature" to="." method="_on_feature_pressed"]
-[connection signal="pressed" from="HBoxContainer/NewRoll" to="." method="_on_NewRoll_pressed"]
-[connection signal="pressed" from="HBoxContainer/Save" to="." method="_on_RunProgram_pressed"]
-[connection signal="pressed" from="HBoxContainer/Clear" to="." method="_on_Clear_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/NewNode" to="." method="_on_Button_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/NewOption" to="." method="_on_NewOption_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/Feature" to="." method="_on_feature_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/NewRoll" to="." method="_on_NewRoll_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/Save" to="." method="_on_RunProgram_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/Clear" to="." method="_on_Clear_pressed"]
+[connection signal="connection_request" from="VBoxContainer/GraphEdit" to="." method="_on_GraphEdit_connection_request"]
+[connection signal="disconnection_request" from="VBoxContainer/GraphEdit" to="." method="_on_GraphEdit_disconnection_request"]
+[connection signal="gui_input" from="VBoxContainer/GraphEdit" to="." method="_on_GraphEdit_gui_input"]

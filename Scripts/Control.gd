@@ -9,7 +9,7 @@ var dialog_for_localisation = []
 @onready var dice_roll_node = preload("res://Objects/DiceRoll.tscn")
 @onready var feature_node = preload("res://Objects/Feature.tscn")
 
-@onready var graph_edit = $GraphEdit
+@onready var graph_edit = $VBoxContainer/GraphEdit
 @onready var timer = $Timer
 
 var initial_pos = Vector2(40,40)
