@@ -1,0 +1,250 @@
+[gd_scene load_steps=15 format=3]
+
+[ext_resource type="Script" path="res://Scripts/OptionNode.gd" id="1"]
+[ext_resource type="FontFile" uid="uid://44q6n7unxdv" path="res://Assets/AdobeClean-SemiCn.otf" id="2"]
+[ext_resource type="FontFile" path="res://Assets/Clean.tres" id="3"]
+[ext_resource type="Texture2D" uid="uid://gmtnw7vodn2v" path="res://Assets/port.png" id="4"]
+
+[sub_resource type="StyleBoxFlat" id=12]
+content_margin_left = 10.0
+content_margin_right = 10.0
+bg_color = Color( 0.639216, 0.258824, 0.0823529, 0.380392 )
+border_color = Color( 0.639216, 0.258824, 0.0823529, 1 )
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id=13]
+content_margin_left = 10.0
+content_margin_right = 10.0
+bg_color = Color( 0.639216, 0.258824, 0.0823529, 0.0941176 )
+border_color = Color( 0.639216, 0.258824, 0.0823529, 1 )
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id=14]
+bg_color = Color( 0.796078, 0.784314, 0.741176, 1 )
+
+[sub_resource type="StyleBoxFlat" id=9]
+content_margin_top = 30.0
+bg_color = Color( 0.639216, 0.258824, 0.0823529, 0.105882 )
+border_color = Color( 0.639216, 0.258824, 0.0823529, 1 )
+expand_margin_left = 15.0
+expand_margin_right = 15.0
+expand_margin_top = 15.0
+expand_margin_bottom = 15.0
+
+[sub_resource type="StyleBoxFlat" id=17]
+content_margin_top = 30.0
+bg_color = Color( 1, 0.611765, 0.435294, 0.172549 )
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color( 0.639216, 0.258824, 0.0823529, 1 )
+expand_margin_left = 15.0
+expand_margin_right = 15.0
+expand_margin_top = 15.0
+expand_margin_bottom = 15.0
+
+[sub_resource type="FontFile" id=7]
+size = 24
+use_mipmaps = true
+use_filter = true
+extra_spacing_char = 2
+font_data = ExtResource( 2 )
+
+[sub_resource type="StyleBoxFlat" id=8]
+content_margin_left = 12.0
+content_margin_right = 12.0
+content_margin_top = 12.0
+content_margin_bottom = 12.0
+bg_color = Color( 0.796078, 0.784314, 0.741176, 1 )
+
+[sub_resource type="StyleBoxFlat" id=11]
+content_margin_left = 12.0
+content_margin_right = 12.0
+content_margin_top = 12.0
+content_margin_bottom = 12.0
+bg_color = Color( 0.796078, 0.784314, 0.741176, 1 )
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[sub_resource type="Theme" id=16]
+default_font = ExtResource( 3 )
+Button/colors/font_color = Color( 0.639216, 0.258824, 0.0823529, 1 )
+Button/constants/h_separation = 2
+Button/fonts/font = ExtResource( 3 )
+Button/styles/focus = SubResource( 12 )
+Button/styles/hover = SubResource( 12 )
+Button/styles/normal = SubResource( 13 )
+Button/styles/pressed = SubResource( 12 )
+CheckBox/constants/h_separation = 20
+GraphEdit/styles/bg = SubResource( 14 )
+GraphNode/constants/port_offset = -17
+GraphNode/icons/port = ExtResource( 4 )
+GraphNode/styles/frame = SubResource( 9 )
+GraphNode/styles/selected_frame = SubResource( 17 )
+Label/colors/font_color = Color( 0.639216, 0.258824, 0.0823529, 1 )
+Label/fonts/font = null
+LineEdit/colors/font_color = Color( 0, 0, 0, 1 )
+LineEdit/fonts/font = SubResource( 7 )
+LineEdit/styles/normal = SubResource( 8 )
+TextEdit/colors/font_color = Color( 0, 0, 0, 1 )
+TextEdit/fonts/font = null
+TextEdit/styles/normal = SubResource( 11 )
+
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 0.6, 0.6, 0.6, 0 )
+
+[node name="OptionNode" type="GraphNode" groups=["graph_nodes"]]
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -1530.0
+offset_bottom = -914.0
+theme = SubResource( 16 )
+title = "New Option"
+show_close = true
+resizable = true
+slot/0/left_enabled = false
+slot/0/left_type = 0
+slot/0/left_color = Color( 0.235294, 0.32549, 0.219608, 1 )
+slot/0/right_enabled = false
+slot/0/right_type = 0
+slot/0/right_color = Color( 0.235294, 0.32549, 0.219608, 1 )
+slot/1/left_enabled = true
+slot/1/left_type = 0
+slot/1/left_color = Color( 0.639216, 0.258824, 0.0823529, 1 )
+slot/1/right_enabled = true
+slot/1/right_type = 0
+slot/1/right_color = Color( 0.639216, 0.258824, 0.0823529, 1 )
+script = ExtResource( 1 )
+comment_box = NodePath("HBoxContainer/MainColumn/Comment")
+main = NodePath("HBoxContainer/MainColumn")
+more = NodePath("HBoxContainer/AddColumn")
+text = NodePath("HBoxContainer/MainColumn/Text")
+node_title = NodePath("HBoxContainer/MainColumn/Title/LineEdit")
+
+[node name="Label" type="Label" parent="."]
+offset_top = 30.0
+offset_right = 390.0
+offset_bottom = 55.0
+text = "OPTION"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+offset_top = 56.0
+offset_right = 390.0
+offset_bottom = 221.0
+theme_override_constants/separation = 40
+
+[node name="MainColumn" type="VBoxContainer" parent="HBoxContainer"]
+offset_right = 314.0
+offset_bottom = 165.0
+theme_override_constants/separation = 10
+
+[node name="Title" type="HBoxContainer" parent="HBoxContainer/MainColumn"]
+offset_right = 314.0
+offset_bottom = 55.0
+theme_override_constants/separation = 60
+
+[node name="Label" type="Label" parent="HBoxContainer/MainColumn/Title"]
+offset_top = 15.0
+offset_right = 40.0
+offset_bottom = 40.0
+text = "Title"
+
+[node name="LineEdit" type="LineEdit" parent="HBoxContainer/MainColumn/Title"]
+offset_left = 100.0
+offset_right = 208.0
+offset_bottom = 55.0
+
+[node name="Text" type="HBoxContainer" parent="HBoxContainer/MainColumn"]
+offset_top = 65.0
+offset_right = 314.0
+offset_bottom = 165.0
+theme_override_constants/separation = 76
+
+[node name="Text" type="Label" parent="HBoxContainer/MainColumn/Text"]
+offset_top = 37.0
+offset_right = 38.0
+offset_bottom = 62.0
+text = "Text"
+
+[node name="TextEdit" type="TextEdit" parent="HBoxContainer/MainColumn/Text"]
+offset_left = 114.0
+offset_right = 314.0
+offset_bottom = 100.0
+custom_minimum_size = Vector2( 200, 100 )
+wrap_enabled = true
+
+[node name="Comment" type="HBoxContainer" parent="HBoxContainer/MainColumn"]
+visible = false
+offset_top = 110.0
+offset_right = 303.0
+offset_bottom = 160.0
+theme_override_constants/separation = 28
+
+[node name="Comment" type="Label" parent="HBoxContainer/MainColumn/Comment"]
+offset_top = 18.0
+offset_right = 63.0
+offset_bottom = 32.0
+text = "Comment"
+
+[node name="Comment2" type="TextEdit" parent="HBoxContainer/MainColumn/Comment"]
+offset_left = 91.0
+offset_right = 291.0
+offset_bottom = 50.0
+custom_minimum_size = Vector2( 200, 50 )
+theme_override_colors/font_color = Color( 0, 0, 0, 1 )
+theme_override_colors/background_color = Color( 1, 0.933333, 0.694118, 1 )
+syntax_highlighter = true
+wrap_enabled = true
+
+[node name="AddColumn" type="VBoxContainer" parent="HBoxContainer"]
+visible = false
+offset_left = 343.0
+offset_right = 448.0
+offset_bottom = 260.0
+
+[node name="Text" type="Button" parent="HBoxContainer/AddColumn"]
+offset_top = 120.0
+offset_right = 105.0
+offset_bottom = 140.0
+toggle_mode = true
+text = "Text"
+
+[node name="Conditional" type="Button" parent="HBoxContainer/AddColumn"]
+offset_top = 168.0
+offset_right = 105.0
+offset_bottom = 188.0
+text = "+Conditional"
+
+[node name="Comment" type="Button" parent="HBoxContainer/AddColumn"]
+offset_top = 240.0
+offset_right = 105.0
+offset_bottom = 260.0
+toggle_mode = true
+text = "+Comment"
+
+[node name="More" type="Button" parent="HBoxContainer"]
+offset_left = 354.0
+offset_right = 369.0
+offset_bottom = 165.0
+custom_minimum_size = Vector2( 15, 0 )
+mouse_default_cursor_shape = 2
+theme_override_styles/normal = SubResource( 1 )
+toggle_mode = true
+text = "+"
+
+[connection signal="close_request" from="." to="." method="_on_OptionNode_close_request"]
+[connection signal="resize_request" from="." to="." method="_on_OptionNode_resize_request"]
+[connection signal="text_changed" from="HBoxContainer/MainColumn/Title/LineEdit" to="." method="_on_LineEdit_text_changed"]
+[connection signal="toggled" from="HBoxContainer/AddColumn/Text" to="." method="_on_Text_toggled"]
+[connection signal="pressed" from="HBoxContainer/AddColumn/Conditional" to="." method="_on_Conditional_pressed"]
+[connection signal="toggled" from="HBoxContainer/AddColumn/Comment" to="." method="_on_Comment_toggled"]
+[connection signal="toggled" from="HBoxContainer/More" to="." method="_on_More_toggled"]

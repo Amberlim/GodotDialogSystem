@@ -1,0 +1,33 @@
+[gd_scene format=2]
+
+[node name="ConditionalsVisited" type="HBoxContainer" groups=["conditionals_visited"]]
+offset_top = 64.0
+offset_right = 295.0
+offset_bottom = 88.0
+theme_override_constants/separation = 13
+
+[node name="Visited" type="Label" parent="."]
+offset_top = 5.0
+offset_right = 60.0
+offset_bottom = 19.0
+text = "IF Visited"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+offset_left = 73.0
+offset_right = 293.0
+offset_bottom = 24.0
+custom_minimum_size = Vector2( 200, 0 )
+theme_override_constants/separation = 20
+
+[node name="VisitedNode" type="SpinBox" parent="HBoxContainer"]
+offset_right = 100.0
+offset_bottom = 24.0
+custom_minimum_size = Vector2( 100, 0 )
+prefix = "Node"
+
+[node name="VisitedIndex" type="SpinBox" parent="HBoxContainer"]
+offset_left = 120.0
+offset_right = 220.0
+offset_bottom = 24.0
+custom_minimum_size = Vector2( 100, 0 )
+suffix = "times"

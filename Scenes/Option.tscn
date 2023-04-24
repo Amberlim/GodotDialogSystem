@@ -1,0 +1,26 @@
+[gd_scene format=2]
+
+[node name="Option" type="HBoxContainer"]
+offset_left = 16.0
+offset_top = 180.0
+offset_right = 359.0
+offset_bottom = 204.0
+theme_override_constants/separation = 39
+
+[node name="Option" type="Label" parent="."]
+offset_top = 5.0
+offset_right = 56.0
+offset_bottom = 19.0
+text = "Option 1"
+
+[node name="LineEdit" type="LineEdit" parent="."]
+offset_left = 95.0
+offset_right = 295.0
+offset_bottom = 24.0
+custom_minimum_size = Vector2( 200, 0 )
+
+[node name="RepeatableOption" type="CheckBox" parent="."]
+offset_left = 334.0
+offset_right = 433.0
+offset_bottom = 24.0
+text = "Repeatable"

@@ -1,0 +1,31 @@
+[gd_scene format=2]
+
+[node name="ConditionalsBrowniePoints" type="HBoxContainer" groups=["conditionals_brownie"]]
+offset_top = 98.0
+offset_right = 293.0
+offset_bottom = 122.0
+theme_override_constants/separation = 13
+
+[node name="BrowniePoints" type="Label" parent="."]
+offset_top = 5.0
+offset_right = 112.0
+offset_bottom = 19.0
+text = "IF Brownie Points"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+offset_left = 125.0
+offset_right = 271.0
+offset_bottom = 24.0
+
+[node name="NPC" type="OptionButton" parent="HBoxContainer"]
+offset_right = 68.0
+offset_bottom = 24.0
+text = "Mable"
+items = [ "Mable", null, false, 0, null, "Letty", null, false, 1, null ]
+selected = 0
+
+[node name="BrowniePoints" type="SpinBox" parent="HBoxContainer"]
+offset_left = 72.0
+offset_right = 146.0
+offset_bottom = 24.0
+allow_lesser = true
