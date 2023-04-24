@@ -2,12 +2,12 @@ extends GraphNode
 
 var node_type = "Option"
 
-@export(NodePath) onready var comment_box = get_node(comment_box) as HBoxContainer
+@onready var comment_box = $HBoxContainer/MainColumn/Comment
 
-@export(NodePath) onready var main = get_node(main) as VBoxContainer
-@export(NodePath) onready var more = get_node(more) as VBoxContainer
-@export(NodePath) onready var text = get_node(text) as HBoxContainer
-@export(NodePath) onready var node_title =  get_node(node_title) as LineEdit
+@onready var main = $HBoxContainer/MainColumn
+@onready var more = $HBoxContainer/AddColumn
+@onready var text = $HBoxContainer/MainColumn/Text
+@onready var node_title =  $HBoxContainer/MainColumn/Title
 
 var if_stack
 

@@ -33,11 +33,6 @@ slot/1/right_color = Color(0.639216, 0.258824, 0.0823529, 1)
 slot/1/right_icon = null
 slot/1/draw_stylebox = true
 script = ExtResource("4_5yoga")
-comment_box = NodePath("HBoxContainer/MainColumn/Comment")
-main = NodePath("HBoxContainer/MainColumn")
-more = NodePath("HBoxContainer/AddColumn")
-text = NodePath("HBoxContainer/MainColumn/Text")
-node_title = NodePath("HBoxContainer/MainColumn/Title/LineEdit")
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 2
