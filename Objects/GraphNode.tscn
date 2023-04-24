@@ -43,20 +43,23 @@ theme_override_constants/separation = 10
 
 [node name="Title" type="HBoxContainer" parent="MarginContainer/HBoxContainer/MainColumn"]
 layout_mode = 2
-theme_override_constants/separation = 60
+theme_override_constants/separation = 0
 
 [node name="Label" type="Label" parent="MarginContainer/HBoxContainer/MainColumn/Title"]
+custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 text = "Title"
 
 [node name="LineEdit" type="LineEdit" parent="MarginContainer/HBoxContainer/MainColumn/Title"]
 layout_mode = 2
+size_flags_horizontal = 3
 
 [node name="Character" type="HBoxContainer" parent="MarginContainer/HBoxContainer/MainColumn"]
 layout_mode = 2
-theme_override_constants/separation = 30
+theme_override_constants/separation = 0
 
 [node name="Character" type="Label" parent="MarginContainer/HBoxContainer/MainColumn/Character"]
+custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 text = "Character"
 
@@ -67,34 +70,40 @@ size_flags_horizontal = 3
 [node name="DisplayName" type="HBoxContainer" parent="MarginContainer/HBoxContainer/MainColumn"]
 visible = false
 layout_mode = 2
-theme_override_constants/separation = -9
+theme_override_constants/separation = 0
 
 [node name="DisplayName" type="Label" parent="MarginContainer/HBoxContainer/MainColumn/DisplayName"]
+custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 text = "Display Name"
 
 [node name="LineEdit" type="LineEdit" parent="MarginContainer/HBoxContainer/MainColumn/DisplayName"]
 layout_mode = 2
+size_flags_horizontal = 3
 
 [node name="LineAsset" type="HBoxContainer" parent="MarginContainer/HBoxContainer/MainColumn"]
 visible = false
 layout_mode = 2
-theme_override_constants/separation = 65
+theme_override_constants/separation = 0
 
 [node name="LineAsset" type="Label" parent="MarginContainer/HBoxContainer/MainColumn/LineAsset"]
+custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 text = "Asset"
 
 [node name="LineEdit" type="LineEdit" parent="MarginContainer/HBoxContainer/MainColumn/LineAsset"]
 custom_minimum_size = Vector2(120, 0)
 layout_mode = 2
+size_flags_horizontal = 3
 
 [node name="Text" type="HBoxContainer" parent="MarginContainer/HBoxContainer/MainColumn"]
 layout_mode = 2
-theme_override_constants/separation = 76
+theme_override_constants/separation = 0
 
 [node name="Text" type="Label" parent="MarginContainer/HBoxContainer/MainColumn/Text"]
+custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
+size_flags_vertical = 0
 text = "Text"
 
 [node name="TextEdit" type="TextEdit" parent="MarginContainer/HBoxContainer/MainColumn/Text"]
@@ -105,7 +114,7 @@ caret_blink = true
 [node name="Comment" type="HBoxContainer" parent="MarginContainer/HBoxContainer/MainColumn"]
 visible = false
 layout_mode = 2
-theme_override_constants/separation = 28
+theme_override_constants/separation = 0
 
 [node name="Comment" type="Label" parent="MarginContainer/HBoxContainer/MainColumn/Comment"]
 layout_mode = 2
@@ -114,6 +123,7 @@ text = "Comment"
 [node name="Comment2" type="TextEdit" parent="MarginContainer/HBoxContainer/MainColumn/Comment"]
 custom_minimum_size = Vector2(200, 50)
 layout_mode = 2
+size_flags_horizontal = 3
 theme_override_colors/background_color = Color(1, 0.933333, 0.694118, 1)
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 

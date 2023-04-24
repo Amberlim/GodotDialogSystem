@@ -9,8 +9,9 @@ extends GraphNode
 @onready var character: HBoxContainer = $MarginContainer/HBoxContainer/MainColumn/Character
 @onready var character_drop: OptionButton = $MarginContainer/HBoxContainer/MainColumn/Character/CharacterDrop
 @onready var line_asset: HBoxContainer = $MarginContainer/HBoxContainer/MainColumn/LineAsset
+@onready var add_column = $MarginContainer/HBoxContainer/AddColumn
 
-@onready var conditionals_stack_node = load("res://Objects/ConditionalsStack.tscn")
+@onready var conditionals_stack_node = preload("res://Objects/ConditionalsStack.tscn")
 
 var id = UUID.v4()
 
@@ -41,22 +42,9 @@ func _on_GraphNode_close_request():
 	queue_free()
 
 
-
-
 func _on_Conditional_pressed():
 	var conditionals_stack = conditionals_stack_node.instantiate()
 	main.add_child(conditionals_stack)
-	
-	stack_count += 1
-	
-	if stack_count >= 2: 
-		conditionals_stack.stack_index.text = "OR"
-		
-	conditionals_stack.name = "IfStack" + str(stack_count)
-	conditionals_list.append(conditionals_stack.name)
-	
-	if_stack = conditionals_stack
-	
 
 
 func _on_DisplayName_toggled(button_pressed):
@@ -73,17 +61,11 @@ func _on_Comment_toggled(button_pressed):
 		comment_box.visible = false
 
 
-
-
-
-func _on_More_toggled(button_pressed):
-	var add_column = $HBoxContainer/AddColumn
-	
+func _on_More_toggled(button_pressed):	
 	if button_pressed:
 		add_column.visible = true
 	else:
 		add_column.visible = false
-
 
 
 func _on_LineAsset_toggled(button_pressed):
