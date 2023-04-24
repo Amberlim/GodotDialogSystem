@@ -1,10 +1,9 @@
 [gd_scene format=3 uid="uid://dmmaitgac87vx"]
 
 [node name="Option" type="HBoxContainer"]
-offset_left = 16.0
-offset_top = 180.0
-offset_right = 359.0
-offset_bottom = 204.0
+anchors_preset = -1
+offset_right = 461.0
+offset_bottom = 31.0
 theme_override_constants/separation = 39
 
 [node name="Option" type="Label" parent="."]
