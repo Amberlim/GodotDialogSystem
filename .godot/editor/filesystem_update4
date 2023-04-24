@@ -11,3 +11,4 @@ res://Objects/OptionNode.tscn
 res://Objects/SaveVar.tscn
 res://Objects/GraphNode.tscn
 res://Scripts/GraphNode.gd
+res://Scripts/DiceRoll.gd

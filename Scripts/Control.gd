@@ -6,8 +6,8 @@ var dialog_for_localisation = []
 @export var file_path: String
 
 @onready var graph_node = preload("res://Objects/GraphNode.tscn")
-@onready var dice_roll_node = load("res://DiceRoll.tscn")
-@onready var feature_node = load("res://Feature.tscn")
+@onready var dice_roll_node = preload("res://Objects/DiceRoll.tscn")
+@onready var feature_node = preload("res://Objects/Feature.tscn")
 
 @onready var graph_edit = $GraphEdit
 @onready var timer = $Timer
