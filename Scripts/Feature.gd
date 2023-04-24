@@ -1,15 +1,15 @@
 extends GraphNode
 
-@export(NodePath) onready var more = get_node(more) as VBoxContainer
+@onready var more = $HBoxContainer/AddColumn
 
-@export(NodePath) onready var money = get_node(money) as HBoxContainer
+@onready var money = $HBoxContainer/MainColumn/Money
 
-@export(NodePath) onready var save_var = get_node(save_var) as HBoxContainer
-@export(NodePath) onready var task = get_node(task) as HBoxContainer
-@export(NodePath) onready var end = get_node(end) as HBoxContainer
-@export(NodePath) onready var skills = get_node(skills) as HBoxContainer
-@export(NodePath) onready var signal_emit = get_node(signal_emit) as HBoxContainer
-@export(NodePath) onready var node_title =  get_node(node_title) as LineEdit
+@onready var save_var = $HBoxContainer/MainColumn/SaveVar
+@onready var task = $HBoxContainer/MainColumn/Task
+@onready var end = $HBoxContainer/MainColumn/End
+@onready var skills = $HBoxContainer/MainColumn/Skills
+@onready var signal_emit = $HBoxContainer/MainColumn/EmitSignal
+@onready var node_title = $HBoxContainer/MainColumn/Title
 
 @onready var main = $HBoxContainer/MainColumn
 
