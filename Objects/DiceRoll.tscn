@@ -1,0 +1,195 @@
+[gd_scene load_steps=14 format=3 uid="uid://t3yxh8oxugj5"]
+
+[ext_resource type="FontFile" path="res://Assets/Clean.tres" id="1_sqojf"]
+[ext_resource type="Texture2D" uid="uid://gmtnw7vodn2v" path="res://Assets/port.png" id="2_lqjpq"]
+[ext_resource type="FontFile" uid="uid://44q6n7unxdv" path="res://Assets/AdobeClean-SemiCn.otf" id="3_iciil"]
+[ext_resource type="Script" path="res://Scripts/DiceRoll.gd" id="4_4behm"]
+
+[sub_resource type="StyleBoxFlat" id="12"]
+content_margin_left = 10.0
+content_margin_right = 10.0
+bg_color = Color(0.639216, 0.258824, 0.0823529, 0.380392)
+border_color = Color(0.639216, 0.258824, 0.0823529, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="13"]
+content_margin_left = 10.0
+content_margin_right = 10.0
+bg_color = Color(0.639216, 0.258824, 0.0823529, 0.0941176)
+border_color = Color(0.639216, 0.258824, 0.0823529, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="14"]
+bg_color = Color(0.796078, 0.784314, 0.741176, 1)
+
+[sub_resource type="StyleBoxFlat" id="16"]
+content_margin_top = 30.0
+bg_color = Color(1, 1, 1, 0.705882)
+expand_margin_left = 15.0
+expand_margin_top = 15.0
+expand_margin_right = 15.0
+expand_margin_bottom = 15.0
+
+[sub_resource type="StyleBoxFlat" id="15"]
+content_margin_top = 30.0
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+expand_margin_left = 15.0
+expand_margin_top = 15.0
+expand_margin_right = 15.0
+expand_margin_bottom = 15.0
+
+[sub_resource type="FontFile" id="7"]
+fallbacks = Array[Font]([ExtResource("3_iciil")])
+face_index = null
+embolden = null
+transform = null
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
+cache/0/16/0/kerning_overrides/16/0 = Vector2(0, 0)
+
+[sub_resource type="StyleBoxFlat" id="8"]
+content_margin_left = 12.0
+content_margin_top = 12.0
+content_margin_right = 12.0
+content_margin_bottom = 12.0
+bg_color = Color(0.796078, 0.784314, 0.741176, 1)
+
+[sub_resource type="StyleBoxFlat" id="11"]
+content_margin_left = 12.0
+content_margin_top = 12.0
+content_margin_right = 12.0
+content_margin_bottom = 12.0
+bg_color = Color(0.796078, 0.784314, 0.741176, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[sub_resource type="Theme" id="17"]
+default_font = ExtResource("1_sqojf")
+Button/colors/font_color = Color(0.639216, 0.258824, 0.0823529, 1)
+Button/constants/h_separation = 2
+Button/fonts/font = ExtResource("1_sqojf")
+Button/styles/focus = SubResource("12")
+Button/styles/hover = SubResource("12")
+Button/styles/normal = SubResource("13")
+Button/styles/pressed = SubResource("12")
+CheckBox/constants/h_separation = 20
+GraphEdit/styles/bg = SubResource("14")
+GraphNode/constants/port_offset = -17
+GraphNode/icons/port = ExtResource("2_lqjpq")
+GraphNode/styles/frame = SubResource("16")
+GraphNode/styles/selected_frame = SubResource("15")
+Label/colors/font_color = Color(0.639216, 0.258824, 0.0823529, 1)
+Label/fonts/font = ExtResource("1_sqojf")
+LineEdit/colors/font_color = Color(0, 0, 0, 1)
+LineEdit/fonts/font = SubResource("7")
+LineEdit/styles/normal = SubResource("8")
+TextEdit/colors/font_color = Color(0, 0, 0, 1)
+TextEdit/fonts/font = ExtResource("1_sqojf")
+TextEdit/styles/normal = SubResource("11")
+
+[node name="DiceRoll" type="GraphNode" groups=["graph_nodes"]]
+anchors_preset = -1
+anchor_right = 0.102
+anchor_bottom = 0.269
+offset_right = 85.16
+offset_bottom = 104.48
+theme = SubResource("17")
+theme_override_constants/separation = 20
+title = "Dice Roll"
+slot/0/left_enabled = false
+slot/0/left_type = 0
+slot/0/left_color = Color(1, 1, 1, 1)
+slot/0/left_icon = null
+slot/0/right_enabled = true
+slot/0/right_type = 0
+slot/0/right_color = Color(1, 0.905882, 0.666667, 1)
+slot/0/right_icon = null
+slot/0/draw_stylebox = true
+slot/1/left_enabled = false
+slot/1/left_type = 0
+slot/1/left_color = Color(1, 1, 1, 1)
+slot/1/left_icon = null
+slot/1/right_enabled = true
+slot/1/right_type = 0
+slot/1/right_color = Color(0.0901961, 1, 0, 1)
+slot/1/right_icon = null
+slot/1/draw_stylebox = true
+slot/2/left_enabled = true
+slot/2/left_type = 0
+slot/2/left_color = Color(1, 1, 1, 1)
+slot/2/left_icon = null
+slot/2/right_enabled = false
+slot/2/right_type = 0
+slot/2/right_color = Color(0.435294, 0.901961, 0, 1)
+slot/2/right_icon = null
+slot/2/draw_stylebox = true
+script = ExtResource("4_4behm")
+node_title = NodePath("VBoxContainer/Title/LineEdit")
+
+[node name="Fail" type="Label" parent="."]
+layout_mode = 2
+text = "Fail"
+
+[node name="Pass" type="Label" parent="."]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.0784314, 0.545098, 0, 1)
+text = "Pass"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+theme_override_constants/separation = 40
+
+[node name="Title" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 60
+
+[node name="Label" type="Label" parent="VBoxContainer/Title"]
+layout_mode = 2
+text = "Title"
+
+[node name="LineEdit" type="LineEdit" parent="VBoxContainer/Title"]
+layout_mode = 2
+
+[node name="Skill" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "Skill involved"
+
+[node name="OptionButton" type="OptionButton" parent="VBoxContainer/Skill"]
+layout_mode = 0
+offset_top = 30.0
+offset_right = 160.0
+offset_bottom = 38.0
+
+[node name="Target" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "Target"
+
+[node name="TargetNumber" type="SpinBox" parent="VBoxContainer/Target"]
+layout_mode = 0
+offset_top = 30.0
+offset_right = 161.0
+offset_bottom = 42.0
+allow_greater = true
+allow_lesser = true
+
+[connection signal="text_changed" from="VBoxContainer/Title/LineEdit" to="." method="_on_LineEdit_text_changed"]

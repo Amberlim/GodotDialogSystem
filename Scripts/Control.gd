@@ -5,12 +5,16 @@ var dialog_for_localisation = []
 
 @export var file_path: String
 
-var initial_pos = Vector2(40,40)
+@onready var graph_node = preload("res://Objects/GraphNode.tscn")
+@onready var dice_roll_node = load("res://DiceRoll.tscn")
+@onready var feature_node = load("res://Feature.tscn")
+
 @onready var graph_edit = $GraphEdit
 @onready var timer = $Timer
 
-@onready var node_count = $NodeCount
-@onready var option_count = $OptionCount
+var initial_pos = Vector2(40,40)
+# @onready var node_count = $NodeCount
+# @onready var option_count = $OptionCount
 var option_index = 0
 var node_index = 0
 var all_nodes_index = 0
@@ -27,17 +31,14 @@ func _on_Button_pressed():
 	# update node count
 	all_nodes_index += 1
 	node_index += 1
-	node_count.text = "Node Count: " + str(node_index)
+	# node_count.text = "Node Count: " + str(node_index)
 	
 	# instance node
-	var node = load("res://GraphNode.tscn")
-	node = node.instantiate()
+	var node = graph_node.instantiate()
 	graph_edit.add_child(node)
 	
 	# graph offset
 #	node.offset += initial_pos + (node_index * Vector2(5,5))
-	node.offset = get_global_mouse_position()
-	initial_pos = node.offset
 	
 	# autosave everytime a new node is instanced
 #	_on_RunProgram_pressed(0)
@@ -253,12 +254,12 @@ func load_save():
 	file.close()
 
 	# load node and option count
-	all_nodes_index = data["all_nodes_index"] 
-	option_index = data["option_index"] 
-	node_index = data["node_index"] 
+	all_nodes_index = data.get("all_nodes_index") if data.has("all_nodes_index") else 0
+	option_index = data.get("option_index") if data.has("option_index") else 0
+	node_index = data.get("node_index") if data.has("node_index") else 0
 	
-	option_count.text = "Option Count: " + str(option_index)
-	node_count.text = "Node Count: " + str(node_index)
+	# option_count.text = "Option Count: " + str(option_index)
+	# node_count.text = "Node Count: " + str(node_index)
 	
 	for graph_node in data:
 		
@@ -485,7 +486,7 @@ func _on_NewOption_pressed():
 	# update option count
 	all_nodes_index += 1
 	option_index += 1
-	option_count.text = "Option Count: " + str(option_index)
+	# option_count.text = "Option Count: " + str(option_index)
 	
 	# instance node
 	var option_node = load("res://OptionNode.tscn")
@@ -496,21 +497,6 @@ func _on_NewOption_pressed():
 	option_node.offset = get_global_mouse_position()
 	# += initial_pos + (node_index * Vector2(5,5))
 	initial_pos = option_node.offset
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 
 # connect nodes
 func _on_GraphEdit_connection_request(from, from_slot, to, to_slot):
@@ -526,13 +512,13 @@ func _on_Clear_pressed():
 	
 	node_index = 0
 	all_nodes_index = 0
-	option_count = 0
+	# option_count = 0
 
 
 func _on_GraphEdit_gui_input(event):
 	if Input.is_action_pressed("right_click"):
 		_on_Button_pressed()
-	elif event is InputEventMouseButton and event.doubleclick:
+	elif event is InputEventMouseButton and false:
 		_on_NewOption_pressed()
 	elif Input.is_action_pressed("save"):
 		_on_RunProgram_pressed()
@@ -544,8 +530,7 @@ func _on_NewRoll_pressed():
 	node_index += 1
 	
 	# instance node
-	var dice_roll = load("res://DiceRoll.tscn")
-	dice_roll = dice_roll.instantiate()
+	var dice_roll = dice_roll_node.instantiate()
 	graph_edit.add_child(dice_roll)
 	
 	# graph offset
@@ -555,7 +540,6 @@ func _on_NewRoll_pressed():
 
 func _on_feature_pressed():
 	# instance node
-	var feature = load("res://Feature.tscn")
-	feature = feature.instantiate()
+	var feature = feature_node.instantiate()
 	graph_edit.add_child(feature)
 	

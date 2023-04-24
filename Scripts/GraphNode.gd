@@ -1,21 +1,20 @@
 extends GraphNode
 
-@export(NodePath) onready var comment_box = get_node(comment_box) as HBoxContainer
-@export(NodePath) onready var main = get_node(main) as VBoxContainer
-@export(NodePath) onready var more = get_node(more) as VBoxContainer
-@export(NodePath) onready var text = get_node(text) as HBoxContainer
-@export(NodePath) onready var display_name = get_node(display_name) as HBoxContainer
-@export(NodePath) onready var node_title =  get_node(node_title) as LineEdit
+@onready var comment_box: HBoxContainer = $HBoxContainer/MainColumn/Comment
+@onready var main: VBoxContainer = $HBoxContainer/MainColumn
+@onready var more: VBoxContainer = $HBoxContainer/AddColumn
+@onready var text: HBoxContainer =  $HBoxContainer/MainColumn/Text
+@onready var display_name: HBoxContainer = $HBoxContainer/MainColumn/DisplayName
+@onready var node_title: LineEdit = $HBoxContainer/MainColumn/Title/LineEdit
+@onready var character: HBoxContainer = $HBoxContainer/MainColumn/Character
+@onready var character_drop: OptionButton = $HBoxContainer/MainColumn/Character/CharacterDrop
+@onready var line_asset: HBoxContainer = $HBoxContainer/MainColumn/LineAsset
 
-@export(NodePath) onready var character = get_node(character) as HBoxContainer
-@export(NodePath) onready var character_drop = get_node(character_drop) as OptionButton
+@onready var conditionals_stack_node = load("res://Objects/ConditionalsStack.tscn")
 
-@export(NodePath) onready var line_asset = get_node(line_asset) as HBoxContainer
+var id = UUID.v4()
 
 var if_stack
-
-# edit character drop down items
-#var profiles = ["Raymond", "Mable", "???", "Ren", "Narration", "Uncle Ping"]
 var profiles = ["Santa", "Elf"]
 
 var stack_count = 0
@@ -29,6 +28,8 @@ func _ready():
 	for profile in profiles:
 		character_drop.add_item(profile, profile_index)
 		profile_index += 1 
+	
+	title = node_type + " (" + id + ")"
 
 func _on_GraphNode_resize_request(new_minsize):
 	size = new_minsize
@@ -43,8 +44,7 @@ func _on_GraphNode_close_request():
 
 
 func _on_Conditional_pressed():
-	var conditionals_stack = load("res://ConditionalsStack.tscn")
-	conditionals_stack = conditionals_stack.instantiate()
+	var conditionals_stack = conditionals_stack_node.instantiate()
 	main.add_child(conditionals_stack)
 	
 	stack_count += 1
@@ -93,7 +93,6 @@ func _on_LineAsset_toggled(button_pressed):
 		line_asset.visible = false
 
 
-
 func _on_Text_toggled(button_pressed):
 	if button_pressed:
 		text.visible = true
@@ -101,9 +100,5 @@ func _on_Text_toggled(button_pressed):
 		text.visible = false
 
 
-			
-
-
 func _on_LineEdit_text_changed(new_text):
 	name = "NODE_" + new_text
-	title = "NODE_" + new_text

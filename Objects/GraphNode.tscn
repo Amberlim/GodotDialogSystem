@@ -1,9 +1,9 @@
-[gd_scene load_steps=3 format=3]
+[gd_scene load_steps=3 format=3 uid="uid://b3qj588pwvho1"]
 
 [ext_resource type="Script" path="res://Scripts/GraphNode.gd" id="1"]
 
-[sub_resource type="StyleBoxFlat" id=1]
-bg_color = Color( 0.6, 0.6, 0.6, 0 )
+[sub_resource type="StyleBoxFlat" id="1"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
 
 [node name="GraphNode" type="GraphNode" groups=["graph_nodes"]]
 offset_right = 390.0
@@ -13,203 +13,138 @@ show_close = true
 resizable = true
 slot/0/left_enabled = true
 slot/0/left_type = 0
-slot/0/left_color = Color( 0.639216, 0.258824, 0.0823529, 1 )
+slot/0/left_color = Color(0.639216, 0.258824, 0.0823529, 1)
+slot/0/left_icon = null
 slot/0/right_enabled = true
 slot/0/right_type = 0
-slot/0/right_color = Color( 0.639216, 0.258824, 0.0823529, 1 )
-script = ExtResource( 1 )
-comment_box = NodePath("HBoxContainer/MainColumn/Comment")
-main = NodePath("HBoxContainer/MainColumn")
-more = NodePath("HBoxContainer/AddColumn")
-text = NodePath("HBoxContainer/MainColumn/Text")
-display_name = NodePath("HBoxContainer/MainColumn/DisplayName")
-node_title = NodePath("HBoxContainer/MainColumn/Title/LineEdit")
-character = NodePath("HBoxContainer/MainColumn/Character")
-character_drop = NodePath("HBoxContainer/MainColumn/Character/CharacterDrop")
-line_asset = NodePath("HBoxContainer/MainColumn/LineAsset")
+slot/0/right_color = Color(0.639216, 0.258824, 0.0823529, 1)
+slot/0/right_icon = null
+slot/0/draw_stylebox = true
+script = ExtResource("1")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
-offset_left = 16.0
-offset_top = 24.0
-offset_right = 574.0
-offset_bottom = 188.0
+layout_mode = 2
 theme_override_constants/separation = 40
 
 [node name="MainColumn" type="VBoxContainer" parent="HBoxContainer"]
-offset_right = 503.0
-offset_bottom = 164.0
+layout_mode = 2
 theme_override_constants/separation = 10
 
 [node name="Title" type="HBoxContainer" parent="HBoxContainer/MainColumn"]
-offset_right = 503.0
-offset_bottom = 24.0
+layout_mode = 2
 theme_override_constants/separation = 60
 
 [node name="Label" type="Label" parent="HBoxContainer/MainColumn/Title"]
-offset_top = 5.0
-offset_right = 28.0
-offset_bottom = 19.0
+layout_mode = 2
 text = "Title"
 
 [node name="LineEdit" type="LineEdit" parent="HBoxContainer/MainColumn/Title"]
-offset_left = 88.0
-offset_right = 146.0
-offset_bottom = 24.0
+layout_mode = 2
 
 [node name="Character" type="HBoxContainer" parent="HBoxContainer/MainColumn"]
-offset_top = 34.0
-offset_right = 503.0
-offset_bottom = 54.0
+layout_mode = 2
 theme_override_constants/separation = 30
 
 [node name="Character" type="Label" parent="HBoxContainer/MainColumn/Character"]
-offset_top = 3.0
-offset_right = 60.0
-offset_bottom = 17.0
+layout_mode = 2
 text = "Character"
 
 [node name="CharacterDrop" type="OptionButton" parent="HBoxContainer/MainColumn/Character"]
-offset_left = 90.0
-offset_right = 178.0
-offset_bottom = 20.0
-text = "Raymond"
+layout_mode = 2
+size_flags_horizontal = 3
 
 [node name="DisplayName" type="HBoxContainer" parent="HBoxContainer/MainColumn"]
 visible = false
-offset_top = 41.0
-offset_right = 314.0
-offset_bottom = 96.0
+layout_mode = 2
 theme_override_constants/separation = -9
 
 [node name="DisplayName" type="Label" parent="HBoxContainer/MainColumn/DisplayName"]
-offset_top = 15.0
-offset_right = 122.0
-offset_bottom = 40.0
+layout_mode = 2
 text = "Display Name"
 
 [node name="LineEdit" type="LineEdit" parent="HBoxContainer/MainColumn/DisplayName"]
-offset_left = 113.0
-offset_right = 221.0
-offset_bottom = 55.0
+layout_mode = 2
 
 [node name="LineAsset" type="HBoxContainer" parent="HBoxContainer/MainColumn"]
 visible = false
-offset_top = 41.0
-offset_right = 314.0
-offset_bottom = 96.0
+layout_mode = 2
 theme_override_constants/separation = 65
 
 [node name="LineAsset" type="Label" parent="HBoxContainer/MainColumn/LineAsset"]
-offset_top = 15.0
-offset_right = 48.0
-offset_bottom = 40.0
+layout_mode = 2
 text = "Asset"
 
 [node name="LineEdit" type="LineEdit" parent="HBoxContainer/MainColumn/LineAsset"]
-offset_left = 113.0
-offset_right = 233.0
-offset_bottom = 55.0
-custom_minimum_size = Vector2( 120, 0 )
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
 
 [node name="Text" type="HBoxContainer" parent="HBoxContainer/MainColumn"]
-offset_top = 64.0
-offset_right = 503.0
-offset_bottom = 164.0
+layout_mode = 2
 theme_override_constants/separation = 76
 
 [node name="Text" type="Label" parent="HBoxContainer/MainColumn/Text"]
-offset_top = 43.0
-offset_right = 27.0
-offset_bottom = 57.0
+layout_mode = 2
 text = "Text"
 
 [node name="TextEdit" type="TextEdit" parent="HBoxContainer/MainColumn/Text"]
-offset_left = 103.0
-offset_right = 503.0
-offset_bottom = 100.0
-custom_minimum_size = Vector2( 400, 100 )
-wrap_enabled = true
+custom_minimum_size = Vector2(400, 100)
+layout_mode = 2
 caret_blink = true
 
 [node name="Comment" type="HBoxContainer" parent="HBoxContainer/MainColumn"]
 visible = false
-offset_top = 140.0
-offset_right = 503.0
-offset_bottom = 190.0
+layout_mode = 2
 theme_override_constants/separation = 28
 
 [node name="Comment" type="Label" parent="HBoxContainer/MainColumn/Comment"]
-offset_top = 18.0
-offset_right = 63.0
-offset_bottom = 32.0
+layout_mode = 2
 text = "Comment"
 
 [node name="Comment2" type="TextEdit" parent="HBoxContainer/MainColumn/Comment"]
-offset_left = 91.0
-offset_right = 291.0
-offset_bottom = 50.0
-custom_minimum_size = Vector2( 200, 50 )
-theme_override_colors/font_color = Color( 0, 0, 0, 1 )
-theme_override_colors/background_color = Color( 1, 0.933333, 0.694118, 1 )
-syntax_highlighter = true
-wrap_enabled = true
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 2
+theme_override_colors/background_color = Color(1, 0.933333, 0.694118, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
 
 [node name="AddColumn" type="VBoxContainer" parent="HBoxContainer"]
 visible = false
-offset_left = 543.0
-offset_right = 648.0
-offset_bottom = 236.0
-grow_horizontal = 2
-grow_vertical = 2
+layout_mode = 2
 
 [node name="DisplayName" type="Button" parent="HBoxContainer/AddColumn"]
-offset_right = 105.0
-offset_bottom = 20.0
+layout_mode = 2
 toggle_mode = true
 text = "+DisplayName"
 
 [node name="Options" type="Button" parent="HBoxContainer/AddColumn"]
 visible = false
-offset_top = 24.0
-offset_right = 105.0
-offset_bottom = 44.0
+layout_mode = 2
 toggle_mode = true
 text = "Options"
 
 [node name="Text" type="Button" parent="HBoxContainer/AddColumn"]
-offset_top = 96.0
-offset_right = 105.0
-offset_bottom = 116.0
+layout_mode = 2
 toggle_mode = true
 text = "Text"
 
 [node name="Conditional" type="Button" parent="HBoxContainer/AddColumn"]
-offset_top = 144.0
-offset_right = 105.0
-offset_bottom = 164.0
+layout_mode = 2
 text = "+Conditional"
 
 [node name="LineAsset" type="Button" parent="HBoxContainer/AddColumn"]
-offset_top = 192.0
-offset_right = 105.0
-offset_bottom = 212.0
+layout_mode = 2
 toggle_mode = true
 text = "+LineAsset"
 
 [node name="Comment" type="Button" parent="HBoxContainer/AddColumn"]
-offset_top = 216.0
-offset_right = 105.0
-offset_bottom = 236.0
+layout_mode = 2
 toggle_mode = true
 text = "+Comment"
 
 [node name="More" type="Button" parent="HBoxContainer"]
-offset_left = 543.0
-offset_right = 558.0
-offset_bottom = 164.0
-custom_minimum_size = Vector2( 15, 0 )
+custom_minimum_size = Vector2(15, 0)
+layout_mode = 2
 mouse_default_cursor_shape = 2
-theme_override_styles/normal = SubResource( 1 )
+theme_override_styles/normal = SubResource("1")
 toggle_mode = true
 text = "+"
 

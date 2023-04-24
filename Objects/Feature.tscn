@@ -1,124 +1,132 @@
-[gd_scene load_steps=15 format=3]
+[gd_scene load_steps=15 format=3 uid="uid://c5htviq7382ci"]
 
-[ext_resource type="Script" path="res://Scripts/Feature.gd" id="1"]
-[ext_resource type="Texture2D" uid="uid://gmtnw7vodn2v" path="res://Assets/port.png" id="2"]
-[ext_resource type="FontFile" uid="uid://44q6n7unxdv" path="res://Assets/AdobeClean-SemiCn.otf" id="3"]
-[ext_resource type="FontFile" path="res://Assets/Clean.tres" id="4"]
+[ext_resource type="FontFile" path="res://Assets/Clean.tres" id="1_hbl2f"]
+[ext_resource type="Texture2D" uid="uid://gmtnw7vodn2v" path="res://Assets/port.png" id="2_murg5"]
+[ext_resource type="FontFile" uid="uid://44q6n7unxdv" path="res://Assets/AdobeClean-SemiCn.otf" id="3_yuwjv"]
+[ext_resource type="Script" path="res://Scripts/Feature.gd" id="4_lwoqe"]
 
-[sub_resource type="StyleBoxFlat" id=12]
+[sub_resource type="StyleBoxFlat" id="12"]
 content_margin_left = 10.0
 content_margin_right = 10.0
-bg_color = Color( 0.639216, 0.258824, 0.0823529, 0.380392 )
-border_color = Color( 0.639216, 0.258824, 0.0823529, 1 )
+bg_color = Color(0.639216, 0.258824, 0.0823529, 0.380392)
+border_color = Color(0.639216, 0.258824, 0.0823529, 1)
 corner_radius_top_left = 4
 corner_radius_top_right = 4
 corner_radius_bottom_right = 4
 corner_radius_bottom_left = 4
 
-[sub_resource type="StyleBoxFlat" id=13]
+[sub_resource type="StyleBoxFlat" id="13"]
 content_margin_left = 10.0
 content_margin_right = 10.0
-bg_color = Color( 0.639216, 0.258824, 0.0823529, 0.0941176 )
-border_color = Color( 0.639216, 0.258824, 0.0823529, 1 )
+bg_color = Color(0.639216, 0.258824, 0.0823529, 0.0941176)
+border_color = Color(0.639216, 0.258824, 0.0823529, 1)
 corner_radius_top_left = 4
 corner_radius_top_right = 4
 corner_radius_bottom_right = 4
 corner_radius_bottom_left = 4
 
-[sub_resource type="StyleBoxFlat" id=14]
-bg_color = Color( 0.796078, 0.784314, 0.741176, 1 )
+[sub_resource type="StyleBoxFlat" id="14"]
+bg_color = Color(0.796078, 0.784314, 0.741176, 1)
 
-[sub_resource type="StyleBoxFlat" id=16]
+[sub_resource type="StyleBoxFlat" id="16"]
 content_margin_top = 30.0
-bg_color = Color( 1, 1, 1, 0.705882 )
+bg_color = Color(1, 1, 1, 0.705882)
 expand_margin_left = 15.0
-expand_margin_right = 15.0
 expand_margin_top = 15.0
+expand_margin_right = 15.0
 expand_margin_bottom = 15.0
 
-[sub_resource type="StyleBoxFlat" id=15]
+[sub_resource type="StyleBoxFlat" id="15"]
 content_margin_top = 30.0
-bg_color = Color( 1, 1, 1, 1 )
+bg_color = Color(1, 1, 1, 1)
 border_width_left = 3
 border_width_top = 3
 border_width_right = 3
 border_width_bottom = 3
-border_color = Color( 1, 1, 1, 1 )
+border_color = Color(1, 1, 1, 1)
 corner_radius_top_left = 3
 corner_radius_top_right = 3
 corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
 expand_margin_left = 15.0
-expand_margin_right = 15.0
 expand_margin_top = 15.0
+expand_margin_right = 15.0
 expand_margin_bottom = 15.0
 
-[sub_resource type="FontFile" id=7]
-size = 24
-use_mipmaps = true
-use_filter = true
-extra_spacing_char = 2
-font_data = ExtResource( 3 )
+[sub_resource type="FontFile" id="7"]
+fallbacks = Array[Font]([ExtResource("3_yuwjv")])
+face_index = null
+embolden = null
+transform = null
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
+cache/0/16/0/kerning_overrides/16/0 = Vector2(0, 0)
 
-[sub_resource type="StyleBoxFlat" id=8]
+[sub_resource type="StyleBoxFlat" id="8"]
 content_margin_left = 12.0
-content_margin_right = 12.0
 content_margin_top = 12.0
+content_margin_right = 12.0
 content_margin_bottom = 12.0
-bg_color = Color( 0.796078, 0.784314, 0.741176, 1 )
+bg_color = Color(0.796078, 0.784314, 0.741176, 1)
 
-[sub_resource type="StyleBoxFlat" id=11]
+[sub_resource type="StyleBoxFlat" id="11"]
 content_margin_left = 12.0
-content_margin_right = 12.0
 content_margin_top = 12.0
+content_margin_right = 12.0
 content_margin_bottom = 12.0
-bg_color = Color( 0.796078, 0.784314, 0.741176, 1 )
+bg_color = Color(0.796078, 0.784314, 0.741176, 1)
 corner_radius_top_left = 6
 corner_radius_top_right = 6
 corner_radius_bottom_right = 6
 corner_radius_bottom_left = 6
 
-[sub_resource type="Theme" id=17]
-default_font = ExtResource( 4 )
-Button/colors/font_color = Color( 0.639216, 0.258824, 0.0823529, 1 )
+[sub_resource type="Theme" id="17"]
+default_font = ExtResource("1_hbl2f")
+Button/colors/font_color = Color(0.639216, 0.258824, 0.0823529, 1)
 Button/constants/h_separation = 2
-Button/fonts/font = ExtResource( 4 )
-Button/styles/focus = SubResource( 12 )
-Button/styles/hover = SubResource( 12 )
-Button/styles/normal = SubResource( 13 )
-Button/styles/pressed = SubResource( 12 )
+Button/fonts/font = ExtResource("1_hbl2f")
+Button/styles/focus = SubResource("12")
+Button/styles/hover = SubResource("12")
+Button/styles/normal = SubResource("13")
+Button/styles/pressed = SubResource("12")
 CheckBox/constants/h_separation = 20
-GraphEdit/styles/bg = SubResource( 14 )
+GraphEdit/styles/bg = SubResource("14")
 GraphNode/constants/port_offset = -17
-GraphNode/icons/port = ExtResource( 2 )
-GraphNode/styles/frame = SubResource( 16 )
-GraphNode/styles/selected_frame = SubResource( 15 )
-Label/colors/font_color = Color( 0.639216, 0.258824, 0.0823529, 1 )
-Label/fonts/font = null
-LineEdit/colors/font_color = Color( 0, 0, 0, 1 )
-LineEdit/fonts/font = SubResource( 7 )
-LineEdit/styles/normal = SubResource( 8 )
-TextEdit/colors/font_color = Color( 0, 0, 0, 1 )
-TextEdit/fonts/font = null
-TextEdit/styles/normal = SubResource( 11 )
+GraphNode/icons/port = ExtResource("2_murg5")
+GraphNode/styles/frame = SubResource("16")
+GraphNode/styles/selected_frame = SubResource("15")
+Label/colors/font_color = Color(0.639216, 0.258824, 0.0823529, 1)
+Label/fonts/font = ExtResource("1_hbl2f")
+LineEdit/colors/font_color = Color(0, 0, 0, 1)
+LineEdit/fonts/font = SubResource("7")
+LineEdit/styles/normal = SubResource("8")
+TextEdit/colors/font_color = Color(0, 0, 0, 1)
+TextEdit/fonts/font = ExtResource("1_hbl2f")
+TextEdit/styles/normal = SubResource("11")
 
-[sub_resource type="StyleBoxFlat" id=1]
-bg_color = Color( 0.6, 0.6, 0.6, 0 )
+[sub_resource type="StyleBoxFlat" id="1"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
 
 [node name="FeatureNode" type="GraphNode" groups=["graph_nodes"]]
 offset_right = 390.0
 offset_bottom = 257.0
-theme = SubResource( 17 )
+theme = SubResource("17")
 title = "New node"
 show_close = true
 resizable = true
 slot/0/left_enabled = true
 slot/0/left_type = 0
-slot/0/left_color = Color( 0.639216, 0.258824, 0.0823529, 1 )
+slot/0/left_color = Color(0.639216, 0.258824, 0.0823529, 1)
+slot/0/left_icon = null
 slot/0/right_enabled = true
 slot/0/right_type = 0
-slot/0/right_color = Color( 0.639216, 0.258824, 0.0823529, 1 )
-script = ExtResource( 1 )
+slot/0/right_color = Color(0.639216, 0.258824, 0.0823529, 1)
+slot/0/right_icon = null
+slot/0/draw_stylebox = true
+script = ExtResource("4_lwoqe")
 more = NodePath("HBoxContainer/More")
 money = NodePath("HBoxContainer/MainColumn/Money")
 save_var = NodePath("HBoxContainer/MainColumn/SaveVar")
@@ -129,86 +137,107 @@ signal_emit = NodePath("HBoxContainer/MainColumn/EmitSignal")
 node_title = NodePath("HBoxContainer/MainColumn/Title/LineEdit")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
-offset_top = 30.0
-offset_right = 390.0
-offset_bottom = 85.0
+layout_mode = 2
 theme_override_constants/separation = 40
 
 [node name="MainColumn" type="VBoxContainer" parent="HBoxContainer"]
-offset_right = 208.0
-offset_bottom = 55.0
+layout_mode = 2
 theme_override_constants/separation = 10
 
 [node name="Title" type="HBoxContainer" parent="HBoxContainer/MainColumn"]
-offset_right = 208.0
-offset_bottom = 55.0
+layout_mode = 2
 theme_override_constants/separation = 60
 
 [node name="Label" type="Label" parent="HBoxContainer/MainColumn/Title"]
-offset_top = 15.0
-offset_right = 40.0
-offset_bottom = 40.0
+layout_mode = 2
 text = "Title"
 
 [node name="LineEdit" type="LineEdit" parent="HBoxContainer/MainColumn/Title"]
-offset_left = 100.0
-offset_right = 208.0
-offset_bottom = 55.0
+layout_mode = 2
 
 [node name="EmitSignal" type="HBoxContainer" parent="HBoxContainer/MainColumn"]
 visible = false
-offset_top = 65.0
-offset_right = 233.0
-offset_bottom = 120.0
+layout_mode = 2
 theme_override_constants/separation = 60
 
 [node name="EmitSignal" type="Label" parent="HBoxContainer/MainColumn/EmitSignal"]
-offset_top = 15.0
-offset_right = 53.0
-offset_bottom = 40.0
+layout_mode = 2
 text = "Signal"
 
 [node name="LineEdit" type="LineEdit" parent="HBoxContainer/MainColumn/EmitSignal"]
-offset_left = 113.0
-offset_right = 233.0
-offset_bottom = 55.0
-custom_minimum_size = Vector2( 120, 0 )
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
 
 [node name="Timer2" type="Timer" parent="HBoxContainer/MainColumn/EmitSignal/LineEdit"]
 wait_time = 0.65
 
 [node name="PopupMenu2" type="PopupMenu" parent="HBoxContainer/MainColumn/EmitSignal/LineEdit"]
-items = [ "Cut", null, 0, false, false, 0, 134217816, null, "", false, "Copy", null, 0, false, false, 1, 134217795, null, "", false, "Paste", null, 0, false, false, 2, 134217814, null, "", false, "", null, 0, false, false, -1, 0, null, "", true, "Select All", null, 0, false, false, 4, 134217793, null, "", false, "Clear", null, 0, false, false, 3, 0, null, "", false, "", null, 0, false, false, -1, 0, null, "", true, "Undo", null, 0, false, false, 5, 134217818, null, "", false, "Redo", null, 0, false, false, 6, 167772250, null, "", false ]
+item_count = 9
+item_0/text = "Cut"
+item_0/id = 0
+item_1/text = "Copy"
+item_1/id = 1
+item_2/text = "Paste"
+item_2/id = 2
+item_3/text = ""
+item_3/id = -1
+item_3/separator = true
+item_4/text = "Select All"
+item_4/id = 4
+item_5/text = "Clear"
+item_5/id = 3
+item_6/text = ""
+item_6/id = -1
+item_6/separator = true
+item_7/text = "Undo"
+item_7/id = 5
+item_8/text = "Redo"
+item_8/id = 6
 
 [node name="Timer3" type="Timer" parent="HBoxContainer/MainColumn/EmitSignal/LineEdit"]
 wait_time = 0.65
 
 [node name="PopupMenu3" type="PopupMenu" parent="HBoxContainer/MainColumn/EmitSignal/LineEdit"]
-items = [ "Cut", null, 0, false, false, 0, 134217816, null, "", false, "Copy", null, 0, false, false, 1, 134217795, null, "", false, "Paste", null, 0, false, false, 2, 134217814, null, "", false, "", null, 0, false, false, -1, 0, null, "", true, "Select All", null, 0, false, false, 4, 134217793, null, "", false, "Clear", null, 0, false, false, 3, 0, null, "", false, "", null, 0, false, false, -1, 0, null, "", true, "Undo", null, 0, false, false, 5, 134217818, null, "", false, "Redo", null, 0, false, false, 6, 167772250, null, "", false ]
+item_count = 9
+item_0/text = "Cut"
+item_0/id = 0
+item_1/text = "Copy"
+item_1/id = 1
+item_2/text = "Paste"
+item_2/id = 2
+item_3/text = ""
+item_3/id = -1
+item_3/separator = true
+item_4/text = "Select All"
+item_4/id = 4
+item_5/text = "Clear"
+item_5/id = 3
+item_6/text = ""
+item_6/id = -1
+item_6/separator = true
+item_7/text = "Undo"
+item_7/id = 5
+item_8/text = "Redo"
+item_8/id = 6
 
 [node name="Task" type="HBoxContainer" parent="HBoxContainer/MainColumn"]
 visible = false
-offset_right = 302.0
-offset_bottom = 30.0
+layout_mode = 2
 theme_override_constants/separation = 74
 
 [node name="Task" type="Label" parent="HBoxContainer/MainColumn/Task"]
-offset_top = 8.0
-offset_right = 28.0
-offset_bottom = 22.0
+layout_mode = 2
 text = "Task"
 
 [node name="LineEdit" type="TextEdit" parent="HBoxContainer/MainColumn/Task"]
-offset_left = 102.0
-offset_right = 302.0
-offset_bottom = 30.0
-custom_minimum_size = Vector2( 200, 30 )
-syntax_highlighter = true
-wrap_enabled = true
+custom_minimum_size = Vector2(200, 30)
+layout_mode = 2
 
 [node name="HScrollBar2" type="HScrollBar" parent="HBoxContainer/MainColumn/Task/LineEdit"]
+layout_mode = 0
 
 [node name="VScrollBar2" type="VScrollBar" parent="HBoxContainer/MainColumn/Task/LineEdit"]
+layout_mode = 0
 
 [node name="Timer4" type="Timer" parent="HBoxContainer/MainColumn/Task/LineEdit"]
 wait_time = 0.65
@@ -221,10 +250,31 @@ one_shot = true
 wait_time = 0.05
 
 [node name="PopupMenu2" type="PopupMenu" parent="HBoxContainer/MainColumn/Task/LineEdit"]
-items = [ "Undo", null, 0, false, false, 5, 134217818, null, "", false, "Redo", null, 0, false, false, 6, 167772250, null, "", false, "", null, 0, false, false, -1, 0, null, "", true, "Cut", null, 0, false, false, 0, 134217816, null, "", false, "Copy", null, 0, false, false, 1, 134217795, null, "", false, "Paste", null, 0, false, false, 2, 134217814, null, "", false, "", null, 0, false, false, -1, 0, null, "", true, "Select All", null, 0, false, false, 4, 134217793, null, "", false, "Clear", null, 0, false, false, 3, 0, null, "", false ]
+item_count = 9
+item_0/text = "Undo"
+item_0/id = 5
+item_1/text = "Redo"
+item_1/id = 6
+item_2/text = ""
+item_2/id = -1
+item_2/separator = true
+item_3/text = "Cut"
+item_3/id = 0
+item_4/text = "Copy"
+item_4/id = 1
+item_5/text = "Paste"
+item_5/id = 2
+item_6/text = ""
+item_6/id = -1
+item_6/separator = true
+item_7/text = "Select All"
+item_7/id = 4
+item_8/text = "Clear"
+item_8/id = 3
 
 [node name="HScrollBar3" type="HScrollBar" parent="HBoxContainer/MainColumn/Task/LineEdit"]
 visible = false
+layout_mode = 0
 offset_top = 18.0
 offset_right = 188.0
 offset_bottom = 30.0
@@ -232,6 +282,7 @@ max_value = 0.0
 
 [node name="VScrollBar3" type="VScrollBar" parent="HBoxContainer/MainColumn/Task/LineEdit"]
 visible = false
+layout_mode = 0
 offset_left = 188.0
 offset_right = 200.0
 offset_bottom = 30.0
@@ -248,30 +299,45 @@ one_shot = true
 wait_time = 0.05
 
 [node name="PopupMenu3" type="PopupMenu" parent="HBoxContainer/MainColumn/Task/LineEdit"]
-items = [ "Cut", null, 0, false, false, 0, 134217816, null, "", false, "Copy", null, 0, false, false, 1, 134217795, null, "", false, "Paste", null, 0, false, false, 2, 134217814, null, "", false, "", null, 0, false, false, -1, 0, null, "", true, "Select All", null, 0, false, false, 4, 134217793, null, "", false, "Clear", null, 0, false, false, 3, 0, null, "", false, "", null, 0, false, false, -1, 0, null, "", true, "Undo", null, 0, false, false, 5, 134217818, null, "", false, "Redo", null, 0, false, false, 6, 167772250, null, "", false ]
+item_count = 9
+item_0/text = "Cut"
+item_0/id = 0
+item_1/text = "Copy"
+item_1/id = 1
+item_2/text = "Paste"
+item_2/id = 2
+item_3/text = ""
+item_3/id = -1
+item_3/separator = true
+item_4/text = "Select All"
+item_4/id = 4
+item_5/text = "Clear"
+item_5/id = 3
+item_6/text = ""
+item_6/id = -1
+item_6/separator = true
+item_7/text = "Undo"
+item_7/id = 5
+item_8/text = "Redo"
+item_8/id = 6
 
 [node name="Money" type="HBoxContainer" parent="HBoxContainer/MainColumn"]
 visible = false
-offset_top = 140.0
-offset_right = 503.0
-offset_bottom = 170.0
+layout_mode = 2
 theme_override_constants/separation = 74
 
 [node name="Money" type="Label" parent="HBoxContainer/MainColumn/Money"]
-offset_top = 8.0
-offset_right = 43.0
-offset_bottom = 22.0
+layout_mode = 2
 text = "Money"
 
 [node name="Spinbox" type="SpinBox" parent="HBoxContainer/MainColumn/Money"]
-offset_left = 117.0
-offset_right = 317.0
-offset_bottom = 30.0
-custom_minimum_size = Vector2( 200, 30 )
+custom_minimum_size = Vector2(200, 30)
+layout_mode = 2
 allow_greater = true
 allow_lesser = true
 
 [node name="LineEdit2" type="LineEdit" parent="HBoxContainer/MainColumn/Money/Spinbox"]
+layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_right = -16.0
@@ -281,6 +347,7 @@ text = "0"
 [node name="Timer2" type="Timer" parent="HBoxContainer/MainColumn/Money/Spinbox"]
 
 [node name="LineEdit3" type="LineEdit" parent="HBoxContainer/MainColumn/Money/Spinbox"]
+layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 1
@@ -290,48 +357,59 @@ text = "0"
 
 [node name="Skills" type="HBoxContainer" parent="HBoxContainer/MainColumn"]
 visible = false
-offset_top = 140.0
-offset_right = 503.0
-offset_bottom = 164.0
+layout_mode = 2
 theme_override_constants/separation = 7
 
 [node name="Skills" type="Label" parent="HBoxContainer/MainColumn/Skills"]
-offset_top = 5.0
-offset_right = 77.0
-offset_bottom = 19.0
+layout_mode = 2
 text = "Skills Lvl Up"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/MainColumn/Skills"]
-offset_left = 84.0
-offset_right = 281.0
-offset_bottom = 24.0
+layout_mode = 2
 
 [node name="SkillOption" type="OptionButton" parent="HBoxContainer/MainColumn/Skills/HBoxContainer"]
-offset_right = 83.0
-offset_bottom = 24.0
-text = "Intellect"
-items = [ "Intellect", null, false, 0, null, "Charisma", null, false, 1, null, "Endurance", null, false, 2, null, "Dexterity", null, false, 3, null ]
-selected = 0
+layout_mode = 2
 
 [node name="PopupMenu2" type="PopupMenu" parent="HBoxContainer/MainColumn/Skills/HBoxContainer/SkillOption"]
-input_pass_on_modal_close_click = false
-items = [ "Intellect", null, 2, true, false, 0, 0, null, "", false, "Charisma", null, 2, false, false, 1, 0, null, "", false, "Endurance", null, 2, false, false, 2, 0, null, "", false, "Dexterity", null, 2, false, false, 3, 0, null, "", false ]
-allow_search = true
+item_count = 4
+item_0/text = "Intellect"
+item_0/checkable = 2
+item_0/checked = true
+item_0/id = 0
+item_1/text = "Charisma"
+item_1/checkable = 2
+item_1/id = 1
+item_2/text = "Endurance"
+item_2/checkable = 2
+item_2/id = 2
+item_3/text = "Dexterity"
+item_3/checkable = 2
+item_3/id = 3
 
 [node name="PopupMenu3" type="PopupMenu" parent="HBoxContainer/MainColumn/Skills/HBoxContainer/SkillOption"]
-input_pass_on_modal_close_click = false
-items = [ "Intellect", null, 2, true, false, 0, 0, null, "", false, "Charisma", null, 2, false, false, 1, 0, null, "", false, "Endurance", null, 2, false, false, 2, 0, null, "", false, "Dexterity", null, 2, false, false, 3, 0, null, "", false ]
-allow_search = true
+item_count = 4
+item_0/text = "Intellect"
+item_0/checkable = 2
+item_0/checked = true
+item_0/id = 0
+item_1/text = "Charisma"
+item_1/checkable = 2
+item_1/id = 1
+item_2/text = "Endurance"
+item_2/checkable = 2
+item_2/id = 2
+item_3/text = "Dexterity"
+item_3/checkable = 2
+item_3/id = 3
 
 [node name="SkillUpgrade" type="SpinBox" parent="HBoxContainer/MainColumn/Skills/HBoxContainer"]
-offset_left = 87.0
-offset_right = 197.0
-offset_bottom = 24.0
-custom_minimum_size = Vector2( 110, 0 )
+custom_minimum_size = Vector2(110, 0)
+layout_mode = 2
 allow_greater = true
 allow_lesser = true
 
 [node name="LineEdit2" type="LineEdit" parent="HBoxContainer/MainColumn/Skills/HBoxContainer/SkillUpgrade"]
+layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_right = -16.0
@@ -341,6 +419,7 @@ text = "0"
 [node name="Timer2" type="Timer" parent="HBoxContainer/MainColumn/Skills/HBoxContainer/SkillUpgrade"]
 
 [node name="LineEdit3" type="LineEdit" parent="HBoxContainer/MainColumn/Skills/HBoxContainer/SkillUpgrade"]
+layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 1
@@ -350,121 +429,129 @@ text = "0"
 
 [node name="SaveVar" type="HBoxContainer" parent="HBoxContainer/MainColumn"]
 visible = false
-offset_top = 340.0
-offset_right = 503.0
-offset_bottom = 380.0
+layout_mode = 2
 theme_override_constants/separation = -5
 
 [node name="SaveVar" type="Label" parent="HBoxContainer/MainColumn/SaveVar"]
-offset_top = 13.0
-offset_right = 84.0
-offset_bottom = 27.0
+layout_mode = 2
 text = "Save Variable"
 
 [node name="LineEdit" type="LineEdit" parent="HBoxContainer/MainColumn/SaveVar"]
-offset_left = 79.0
-offset_right = 229.0
-offset_bottom = 40.0
-custom_minimum_size = Vector2( 150, 0 )
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
 
 [node name="Timer2" type="Timer" parent="HBoxContainer/MainColumn/SaveVar/LineEdit"]
 wait_time = 0.65
 
 [node name="PopupMenu2" type="PopupMenu" parent="HBoxContainer/MainColumn/SaveVar/LineEdit"]
-items = [ "Cut", null, 0, false, false, 0, 134217816, null, "", false, "Copy", null, 0, false, false, 1, 134217795, null, "", false, "Paste", null, 0, false, false, 2, 134217814, null, "", false, "", null, 0, false, false, -1, 0, null, "", true, "Select All", null, 0, false, false, 4, 134217793, null, "", false, "Clear", null, 0, false, false, 3, 0, null, "", false, "", null, 0, false, false, -1, 0, null, "", true, "Undo", null, 0, false, false, 5, 134217818, null, "", false, "Redo", null, 0, false, false, 6, 167772250, null, "", false ]
+item_count = 9
+item_0/text = "Cut"
+item_0/id = 0
+item_1/text = "Copy"
+item_1/id = 1
+item_2/text = "Paste"
+item_2/id = 2
+item_3/text = ""
+item_3/id = -1
+item_3/separator = true
+item_4/text = "Select All"
+item_4/id = 4
+item_5/text = "Clear"
+item_5/id = 3
+item_6/text = ""
+item_6/id = -1
+item_6/separator = true
+item_7/text = "Undo"
+item_7/id = 5
+item_8/text = "Redo"
+item_8/id = 6
 
 [node name="Timer3" type="Timer" parent="HBoxContainer/MainColumn/SaveVar/LineEdit"]
 wait_time = 0.65
 
 [node name="PopupMenu3" type="PopupMenu" parent="HBoxContainer/MainColumn/SaveVar/LineEdit"]
-items = [ "Cut", null, 0, false, false, 0, 134217816, null, "", false, "Copy", null, 0, false, false, 1, 134217795, null, "", false, "Paste", null, 0, false, false, 2, 134217814, null, "", false, "", null, 0, false, false, -1, 0, null, "", true, "Select All", null, 0, false, false, 4, 134217793, null, "", false, "Clear", null, 0, false, false, 3, 0, null, "", false, "", null, 0, false, false, -1, 0, null, "", true, "Undo", null, 0, false, false, 5, 134217818, null, "", false, "Redo", null, 0, false, false, 6, 167772250, null, "", false ]
+item_count = 9
+item_0/text = "Cut"
+item_0/id = 0
+item_1/text = "Copy"
+item_1/id = 1
+item_2/text = "Paste"
+item_2/id = 2
+item_3/text = ""
+item_3/id = -1
+item_3/separator = true
+item_4/text = "Select All"
+item_4/id = 4
+item_5/text = "Clear"
+item_5/id = 3
+item_6/text = ""
+item_6/id = -1
+item_6/separator = true
+item_7/text = "Undo"
+item_7/id = 5
+item_8/text = "Redo"
+item_8/id = 6
 
 [node name="CheckButton" type="CheckButton" parent="HBoxContainer/MainColumn/SaveVar"]
-offset_left = 224.0
-offset_right = 300.0
-offset_bottom = 40.0
+layout_mode = 2
 
 [node name="Button" type="Button" parent="HBoxContainer/MainColumn/SaveVar"]
-offset_left = 295.0
-offset_right = 315.0
-offset_bottom = 40.0
+layout_mode = 2
 text = "+"
 
 [node name="End" type="HBoxContainer" parent="HBoxContainer/MainColumn"]
 visible = false
-offset_top = 65.0
-offset_right = 208.0
-offset_bottom = 90.0
+layout_mode = 2
 
 [node name="Label" type="Label" parent="HBoxContainer/MainColumn/End"]
-offset_right = 114.0
-offset_bottom = 25.0
+layout_mode = 2
 text = "DIALOG END"
 
 [node name="AddColumn" type="VBoxContainer" parent="HBoxContainer"]
 visible = false
-offset_left = 186.0
-offset_right = 264.0
-offset_bottom = 116.0
-grow_horizontal = 2
-grow_vertical = 2
+layout_mode = 2
 
 [node name="Options" type="Button" parent="HBoxContainer/AddColumn"]
 visible = false
-offset_top = 24.0
-offset_right = 105.0
-offset_bottom = 44.0
+layout_mode = 2
 toggle_mode = true
 text = "Options"
 
 [node name="Task" type="Button" parent="HBoxContainer/AddColumn"]
-offset_right = 78.0
-offset_bottom = 20.0
+layout_mode = 2
 toggle_mode = true
 text = "+Task"
 
 [node name="Skills" type="Button" parent="HBoxContainer/AddColumn"]
-offset_top = 24.0
-offset_right = 78.0
-offset_bottom = 44.0
+layout_mode = 2
 toggle_mode = true
 text = "+Skills"
 
 [node name="Money" type="Button" parent="HBoxContainer/AddColumn"]
-offset_top = 48.0
-offset_right = 78.0
-offset_bottom = 68.0
+layout_mode = 2
 toggle_mode = true
 text = "Money"
 
 [node name="EmitSignal" type="Button" parent="HBoxContainer/AddColumn"]
-offset_top = 72.0
-offset_right = 78.0
-offset_bottom = 92.0
+layout_mode = 2
 toggle_mode = true
 text = "EmitSignal"
 
 [node name="SaveVar" type="Button" parent="HBoxContainer/AddColumn"]
-offset_top = 96.0
-offset_right = 78.0
-offset_bottom = 116.0
+layout_mode = 2
 toggle_mode = true
 text = "+SaveVar"
 
 [node name="End" type="Button" parent="HBoxContainer/AddColumn"]
-offset_top = 96.0
-offset_right = 78.0
-offset_bottom = 116.0
+layout_mode = 2
 toggle_mode = true
 text = "END"
 
 [node name="More" type="Button" parent="HBoxContainer"]
-offset_left = 248.0
-offset_right = 263.0
-offset_bottom = 55.0
-custom_minimum_size = Vector2( 15, 0 )
+custom_minimum_size = Vector2(15, 0)
+layout_mode = 2
 mouse_default_cursor_shape = 2
-theme_override_styles/normal = SubResource( 1 )
+theme_override_styles/normal = SubResource("1")
 toggle_mode = true
 text = "+"
 

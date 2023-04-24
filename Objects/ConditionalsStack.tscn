@@ -1,81 +1,58 @@
-[gd_scene load_steps=2 format=3]
+[gd_scene load_steps=2 format=3 uid="uid://csbc3kripw3eh"]
 
-[ext_resource type="Script" path="res://Scripts/ConditionalsStack.gd" id="1"]
+[ext_resource type="Script" path="res://Scripts/ConditionalsStack.gd" id="1_pm854"]
 
 [node name="ConditionalsStack" type="VBoxContainer"]
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_right = -731.0
 offset_bottom = -406.0
 theme_override_constants/separation = 10
-script = ExtResource( 1 )
+script = ExtResource("1_pm854")
 skill = NodePath("ConditionalsSkill")
 stack_index = NodePath("HBoxContainer/Label")
 
 [node name="Label" type="Label" parent="."]
-offset_right = 1189.0
-offset_bottom = 14.0
+layout_mode = 2
 text = "_________________________________________________"
 clip_text = true
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
-offset_top = 24.0
-offset_right = 1189.0
-offset_bottom = 44.0
+layout_mode = 2
 theme_override_constants/separation = 10
 
 [node name="Label" type="Label" parent="HBoxContainer"]
-offset_top = 3.0
-offset_right = 12.0
-offset_bottom = 17.0
-theme_override_colors/font_color = Color( 1, 0.290196, 0.290196, 1 )
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.290196, 0.290196, 1)
 text = "IF"
 
 [node name="Conditionals" type="OptionButton" parent="HBoxContainer"]
-offset_left = 22.0
-offset_right = 51.0
-offset_bottom = 20.0
+layout_mode = 2
 toggle_mode = false
-align = 1
-items = [ "Skills", null, false, 0, null, "Global Variables", null, false, 1, null, "Visited", null, false, 2, null, "NPC Brownie Points", null, false, 5, null ]
-selected = 0
 
 [node name="Button" type="Button" parent="HBoxContainer"]
-offset_left = 61.0
-offset_right = 81.0
-offset_bottom = 20.0
+layout_mode = 2
 text = "+"
 
 [node name="ConditionalsSkill" type="HBoxContainer" parent="."]
 visible = false
-offset_top = 54.0
-offset_right = 1189.0
-offset_bottom = 78.0
+layout_mode = 2
 theme_override_constants/separation = 13
 
 [node name="Skills" type="Label" parent="ConditionalsSkill"]
-offset_top = 5.0
-offset_right = 49.0
-offset_bottom = 19.0
+layout_mode = 2
 text = "IF Skills"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="ConditionalsSkill"]
-offset_left = 62.0
-offset_right = 259.0
-offset_bottom = 24.0
+layout_mode = 2
 
 [node name="SkillOption" type="OptionButton" parent="ConditionalsSkill/HBoxContainer"]
-offset_right = 83.0
-offset_bottom = 24.0
-text = "Intellect"
-items = [ "Intellect", null, false, 0, null, "Charisma", null, false, 1, null, "Endurance", null, false, 2, null, "Dexterity", null, false, 3, null ]
-selected = 0
+layout_mode = 2
 
 [node name="SkillPoints" type="LineEdit" parent="ConditionalsSkill/HBoxContainer"]
-offset_left = 87.0
-offset_right = 197.0
-offset_bottom = 24.0
-custom_minimum_size = Vector2( 110, 0 )
+custom_minimum_size = Vector2(110, 0)
+layout_mode = 2
 placeholder_text = "<=> int"
 
 [connection signal="item_selected" from="HBoxContainer/Conditionals" to="." method="_on_Conditionals_item_selected"]
