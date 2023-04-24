@@ -1,14 +1,17 @@
-[gd_scene load_steps=3 format=3 uid="uid://b3qj588pwvho1"]
+[gd_scene load_steps=4 format=3 uid="uid://b3qj588pwvho1"]
 
 [ext_resource type="Script" path="res://Scripts/GraphNode.gd" id="1"]
+
+[sub_resource type="Theme" id="Theme_llmqa"]
 
 [sub_resource type="StyleBoxFlat" id="1"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
 
 [node name="GraphNode" type="GraphNode" groups=["graph_nodes"]]
-offset_right = 390.0
-offset_bottom = 257.0
-title = "New node"
+offset_right = 565.0
+offset_bottom = 177.0
+theme = SubResource("Theme_llmqa")
+title = "GraphNode"
 show_close = true
 resizable = true
 slot/0/left_enabled = true
@@ -22,125 +25,133 @@ slot/0/right_icon = null
 slot/0/draw_stylebox = true
 script = ExtResource("1")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
+[node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 3
 theme_override_constants/separation = 40
 
-[node name="MainColumn" type="VBoxContainer" parent="HBoxContainer"]
+[node name="MainColumn" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="Title" type="HBoxContainer" parent="HBoxContainer/MainColumn"]
+[node name="Title" type="HBoxContainer" parent="MarginContainer/HBoxContainer/MainColumn"]
 layout_mode = 2
 theme_override_constants/separation = 60
 
-[node name="Label" type="Label" parent="HBoxContainer/MainColumn/Title"]
+[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/MainColumn/Title"]
 layout_mode = 2
 text = "Title"
 
-[node name="LineEdit" type="LineEdit" parent="HBoxContainer/MainColumn/Title"]
+[node name="LineEdit" type="LineEdit" parent="MarginContainer/HBoxContainer/MainColumn/Title"]
 layout_mode = 2
 
-[node name="Character" type="HBoxContainer" parent="HBoxContainer/MainColumn"]
+[node name="Character" type="HBoxContainer" parent="MarginContainer/HBoxContainer/MainColumn"]
 layout_mode = 2
 theme_override_constants/separation = 30
 
-[node name="Character" type="Label" parent="HBoxContainer/MainColumn/Character"]
+[node name="Character" type="Label" parent="MarginContainer/HBoxContainer/MainColumn/Character"]
 layout_mode = 2
 text = "Character"
 
-[node name="CharacterDrop" type="OptionButton" parent="HBoxContainer/MainColumn/Character"]
+[node name="CharacterDrop" type="OptionButton" parent="MarginContainer/HBoxContainer/MainColumn/Character"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="DisplayName" type="HBoxContainer" parent="HBoxContainer/MainColumn"]
+[node name="DisplayName" type="HBoxContainer" parent="MarginContainer/HBoxContainer/MainColumn"]
 visible = false
 layout_mode = 2
 theme_override_constants/separation = -9
 
-[node name="DisplayName" type="Label" parent="HBoxContainer/MainColumn/DisplayName"]
+[node name="DisplayName" type="Label" parent="MarginContainer/HBoxContainer/MainColumn/DisplayName"]
 layout_mode = 2
 text = "Display Name"
 
-[node name="LineEdit" type="LineEdit" parent="HBoxContainer/MainColumn/DisplayName"]
+[node name="LineEdit" type="LineEdit" parent="MarginContainer/HBoxContainer/MainColumn/DisplayName"]
 layout_mode = 2
 
-[node name="LineAsset" type="HBoxContainer" parent="HBoxContainer/MainColumn"]
+[node name="LineAsset" type="HBoxContainer" parent="MarginContainer/HBoxContainer/MainColumn"]
 visible = false
 layout_mode = 2
 theme_override_constants/separation = 65
 
-[node name="LineAsset" type="Label" parent="HBoxContainer/MainColumn/LineAsset"]
+[node name="LineAsset" type="Label" parent="MarginContainer/HBoxContainer/MainColumn/LineAsset"]
 layout_mode = 2
 text = "Asset"
 
-[node name="LineEdit" type="LineEdit" parent="HBoxContainer/MainColumn/LineAsset"]
+[node name="LineEdit" type="LineEdit" parent="MarginContainer/HBoxContainer/MainColumn/LineAsset"]
 custom_minimum_size = Vector2(120, 0)
 layout_mode = 2
 
-[node name="Text" type="HBoxContainer" parent="HBoxContainer/MainColumn"]
+[node name="Text" type="HBoxContainer" parent="MarginContainer/HBoxContainer/MainColumn"]
 layout_mode = 2
 theme_override_constants/separation = 76
 
-[node name="Text" type="Label" parent="HBoxContainer/MainColumn/Text"]
+[node name="Text" type="Label" parent="MarginContainer/HBoxContainer/MainColumn/Text"]
 layout_mode = 2
 text = "Text"
 
-[node name="TextEdit" type="TextEdit" parent="HBoxContainer/MainColumn/Text"]
+[node name="TextEdit" type="TextEdit" parent="MarginContainer/HBoxContainer/MainColumn/Text"]
 custom_minimum_size = Vector2(400, 100)
 layout_mode = 2
 caret_blink = true
 
-[node name="Comment" type="HBoxContainer" parent="HBoxContainer/MainColumn"]
+[node name="Comment" type="HBoxContainer" parent="MarginContainer/HBoxContainer/MainColumn"]
 visible = false
 layout_mode = 2
 theme_override_constants/separation = 28
 
-[node name="Comment" type="Label" parent="HBoxContainer/MainColumn/Comment"]
+[node name="Comment" type="Label" parent="MarginContainer/HBoxContainer/MainColumn/Comment"]
 layout_mode = 2
 text = "Comment"
 
-[node name="Comment2" type="TextEdit" parent="HBoxContainer/MainColumn/Comment"]
+[node name="Comment2" type="TextEdit" parent="MarginContainer/HBoxContainer/MainColumn/Comment"]
 custom_minimum_size = Vector2(200, 50)
 layout_mode = 2
 theme_override_colors/background_color = Color(1, 0.933333, 0.694118, 1)
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 
-[node name="AddColumn" type="VBoxContainer" parent="HBoxContainer"]
+[node name="AddColumn" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
 visible = false
 layout_mode = 2
 
-[node name="DisplayName" type="Button" parent="HBoxContainer/AddColumn"]
+[node name="DisplayName" type="Button" parent="MarginContainer/HBoxContainer/AddColumn"]
 layout_mode = 2
 toggle_mode = true
 text = "+DisplayName"
 
-[node name="Options" type="Button" parent="HBoxContainer/AddColumn"]
+[node name="Options" type="Button" parent="MarginContainer/HBoxContainer/AddColumn"]
 visible = false
 layout_mode = 2
 toggle_mode = true
 text = "Options"
 
-[node name="Text" type="Button" parent="HBoxContainer/AddColumn"]
+[node name="Text" type="Button" parent="MarginContainer/HBoxContainer/AddColumn"]
 layout_mode = 2
 toggle_mode = true
 text = "Text"
 
-[node name="Conditional" type="Button" parent="HBoxContainer/AddColumn"]
+[node name="Conditional" type="Button" parent="MarginContainer/HBoxContainer/AddColumn"]
 layout_mode = 2
 text = "+Conditional"
 
-[node name="LineAsset" type="Button" parent="HBoxContainer/AddColumn"]
+[node name="LineAsset" type="Button" parent="MarginContainer/HBoxContainer/AddColumn"]
 layout_mode = 2
 toggle_mode = true
 text = "+LineAsset"
 
-[node name="Comment" type="Button" parent="HBoxContainer/AddColumn"]
+[node name="Comment" type="Button" parent="MarginContainer/HBoxContainer/AddColumn"]
 layout_mode = 2
 toggle_mode = true
 text = "+Comment"
 
-[node name="More" type="Button" parent="HBoxContainer"]
+[node name="More" type="Button" parent="MarginContainer/HBoxContainer"]
 custom_minimum_size = Vector2(15, 0)
 layout_mode = 2
 mouse_default_cursor_shape = 2
@@ -150,11 +161,11 @@ text = "+"
 
 [connection signal="close_request" from="." to="." method="_on_GraphNode_close_request"]
 [connection signal="resize_request" from="." to="." method="_on_GraphNode_resize_request"]
-[connection signal="text_changed" from="HBoxContainer/MainColumn/Title/LineEdit" to="." method="_on_LineEdit_text_changed"]
-[connection signal="toggled" from="HBoxContainer/AddColumn/DisplayName" to="." method="_on_DisplayName_toggled"]
-[connection signal="toggled" from="HBoxContainer/AddColumn/Options" to="." method="_on_Options_toggled"]
-[connection signal="toggled" from="HBoxContainer/AddColumn/Text" to="." method="_on_Text_toggled"]
-[connection signal="pressed" from="HBoxContainer/AddColumn/Conditional" to="." method="_on_Conditional_pressed"]
-[connection signal="toggled" from="HBoxContainer/AddColumn/LineAsset" to="." method="_on_LineAsset_toggled"]
-[connection signal="toggled" from="HBoxContainer/AddColumn/Comment" to="." method="_on_Comment_toggled"]
-[connection signal="toggled" from="HBoxContainer/More" to="." method="_on_More_toggled"]
+[connection signal="text_changed" from="MarginContainer/HBoxContainer/MainColumn/Title/LineEdit" to="." method="_on_LineEdit_text_changed"]
+[connection signal="toggled" from="MarginContainer/HBoxContainer/AddColumn/DisplayName" to="." method="_on_DisplayName_toggled"]
+[connection signal="toggled" from="MarginContainer/HBoxContainer/AddColumn/Options" to="." method="_on_Options_toggled"]
+[connection signal="toggled" from="MarginContainer/HBoxContainer/AddColumn/Text" to="." method="_on_Text_toggled"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/AddColumn/Conditional" to="." method="_on_Conditional_pressed"]
+[connection signal="toggled" from="MarginContainer/HBoxContainer/AddColumn/LineAsset" to="." method="_on_LineAsset_toggled"]
+[connection signal="toggled" from="MarginContainer/HBoxContainer/AddColumn/Comment" to="." method="_on_Comment_toggled"]
+[connection signal="toggled" from="MarginContainer/HBoxContainer/More" to="." method="_on_More_toggled"]

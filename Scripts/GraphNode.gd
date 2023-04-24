@@ -1,14 +1,14 @@
 extends GraphNode
 
-@onready var comment_box: HBoxContainer = $HBoxContainer/MainColumn/Comment
-@onready var main: VBoxContainer = $HBoxContainer/MainColumn
-@onready var more: VBoxContainer = $HBoxContainer/AddColumn
-@onready var text: HBoxContainer =  $HBoxContainer/MainColumn/Text
-@onready var display_name: HBoxContainer = $HBoxContainer/MainColumn/DisplayName
-@onready var node_title: LineEdit = $HBoxContainer/MainColumn/Title/LineEdit
-@onready var character: HBoxContainer = $HBoxContainer/MainColumn/Character
-@onready var character_drop: OptionButton = $HBoxContainer/MainColumn/Character/CharacterDrop
-@onready var line_asset: HBoxContainer = $HBoxContainer/MainColumn/LineAsset
+@onready var comment_box: HBoxContainer = $MarginContainer/HBoxContainer/MainColumn/Comment
+@onready var main: VBoxContainer = $MarginContainer/HBoxContainer/MainColumn
+@onready var more: VBoxContainer = $MarginContainer/HBoxContainer/AddColumn
+@onready var text: HBoxContainer =  $MarginContainer/HBoxContainer/MainColumn/Text
+@onready var display_name: HBoxContainer = $MarginContainer/HBoxContainer/MainColumn/DisplayName
+@onready var node_title: LineEdit = $MarginContainer/HBoxContainer/MainColumn/Title/LineEdit
+@onready var character: HBoxContainer = $MarginContainer/HBoxContainer/MainColumn/Character
+@onready var character_drop: OptionButton = $MarginContainer/HBoxContainer/MainColumn/Character/CharacterDrop
+@onready var line_asset: HBoxContainer = $MarginContainer/HBoxContainer/MainColumn/LineAsset
 
 @onready var conditionals_stack_node = load("res://Objects/ConditionalsStack.tscn")
 
