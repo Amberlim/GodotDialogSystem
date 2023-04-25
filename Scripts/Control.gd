@@ -8,6 +8,7 @@ var dialog_for_localisation = []
 @onready var graph_node = preload("res://Objects/GraphNode.tscn")
 @onready var dice_roll_node = preload("res://Objects/DiceRoll.tscn")
 @onready var feature_node = preload("res://Objects/Feature.tscn")
+@onready var option_node = load("res://Objects/OptionNode.tscn")
 
 @onready var graph_edit = $VBoxContainer/GraphEdit
 @onready var timer = $Timer
@@ -479,24 +480,9 @@ func load_save():
 			node.offset.y = data[graph_node]["offset y"]
 			initial_pos = node.offset		
 
-
-
 func _on_NewOption_pressed():
-	
-	# update option count
-	all_nodes_index += 1
-	option_index += 1
-	# option_count.text = "Option Count: " + str(option_index)
-	
-	# instance node
-	var option_node = load("res://OptionNode.tscn")
-	option_node = option_node.instantiate()
-	graph_edit.add_child(option_node)
-	
-	# graph offset
-	option_node.offset = get_global_mouse_position()
-	# += initial_pos + (node_index * Vector2(5,5))
-	initial_pos = option_node.offset
+	var new_option_node = option_node.instantiate()
+	graph_edit.add_child(new_option_node)
 
 # connect nodes
 func _on_GraphEdit_connection_request(from, from_slot, to, to_slot):
