@@ -7,10 +7,8 @@ bg_color = Color(0.6, 0.6, 0.6, 0)
 
 [node name="OptionNode" type="GraphNode" groups=["graph_nodes"]]
 anchors_preset = -1
-anchor_right = 0.354
-anchor_bottom = 0.237
-offset_right = 0.160004
-offset_bottom = 0.019989
+offset_right = 340.0
+offset_bottom = 128.0
 theme_override_constants/separation = 10
 title = "New Option"
 show_close = true
