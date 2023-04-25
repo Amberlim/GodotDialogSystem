@@ -11,15 +11,15 @@ config_version=5
 [application]
 
 config/name="Dialog System 2"
-run/main_scene="res://Graph.tscn"
+run/main_scene="res://Scenes/App.tscn"
 config/features=PackedStringArray("4.0")
 boot_splash/fullsize=false
 config/icon="res://icon.png"
 
 [autoload]
 
-CharacterProfiles="*res://Global/CharacterProfiles.gd"
-GameSave="*res://Global/GameSave.gd"
+CharacterProfiles="*res://Scripts/Global/CharacterProfiles.gd"
+GameSave="*res://Scripts/Global/GameSave.gd"
 UUID="*res://Scripts/UUID.gd"
 
 [display]

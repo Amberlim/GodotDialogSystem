@@ -1,11 +1,11 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=10 format=3]
 
-[ext_resource path="res://Assets/dialog_box.png" type="Texture2D" id=1]
-[ext_resource path="res://Assets/portrait.png" type="Texture2D" id=2]
-[ext_resource path="res://Assets/SourceSerif4_18pt-Italic.ttf" type="FontFile" id=3]
-[ext_resource path="res://Assets/SourceSerif4_18pt-Regular.ttf" type="FontFile" id=4]
-[ext_resource path="res://Assets/SourceSerif4_18pt-SemiBold.ttf" type="FontFile" id=5]
-[ext_resource path="res://DialogBox/DialogBox.gd" type="Script" id=6]
+[ext_resource type="Texture2D" uid="uid://dvgtcqjlrybh6" path="res://Assets/dialog_box.png" id="1"]
+[ext_resource type="Texture2D" uid="uid://chw8553sy8pmi" path="res://Assets/portrait.png" id="2"]
+[ext_resource type="FontFile" uid="uid://b1s4iy2niwwce" path="res://Assets/SourceSerif4_18pt-Italic.ttf" id="3"]
+[ext_resource type="FontFile" uid="uid://dhi31i7ate6n6" path="res://Assets/SourceSerif4_18pt-Regular.ttf" id="4"]
+[ext_resource type="FontFile" uid="uid://qqrgrwq3dm7h" path="res://Assets/SourceSerif4_18pt-SemiBold.ttf" id="5"]
+[ext_resource type="Script" path="res://Objects/DialogBox/DialogBox.gd" id="6"]
 
 [sub_resource type="FontFile" id=3]
 size = 23

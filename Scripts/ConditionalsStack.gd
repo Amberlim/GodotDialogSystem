@@ -18,7 +18,7 @@ func _on_Button_pressed():
 	if selected_conditional == 0: #skill
 		skill.visible = true
 	elif selected_conditional == 1: #global var
-		var new_var = preload("res://ConditionalsStacks/ConditionalsVar.tscn")
+		var new_var = preload("res://Objects/ConditionalsStacks/ConditionalsVar.tscn")
 		new_var = new_var.instantiate()
 		add_child(new_var)
 		new_var.name = "NewVar" + str(variable_count)
@@ -26,7 +26,7 @@ func _on_Button_pressed():
 		conditionals_var.append(new_var.name)
 #		print("Variables: " + str(variable_count))
 	elif selected_conditional == 2: #visited
-		var new_visited = preload("res://ConditionalsStacks/ConditionalsVisited.tscn")
+		var new_visited = preload("res://Objects/ConditionalsStacks/ConditionalsVisited.tscn")
 		new_visited = new_visited.instantiate()
 		add_child(new_visited)
 		new_visited.name = "NewVisited" + str(visited_count)
@@ -34,7 +34,7 @@ func _on_Button_pressed():
 		conditionals_visited.append(new_visited.name)
 #		print("Visited: " + str(visited_count))
 	elif selected_conditional == 3: #brownie 
-		var new_brownie = preload("res://ConditionalsStacks/ConditionalsBrowniePoints.tscn")
+		var new_brownie = preload("res://Objects/ConditionalsStacks/ConditionalsBrowniePoints.tscn")
 		new_brownie = new_brownie.instantiate()
 		add_child(new_brownie)
 		new_brownie.name = "NewBrownie" + str(brownie_count)

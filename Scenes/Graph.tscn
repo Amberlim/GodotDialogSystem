@@ -71,7 +71,6 @@ text = "SAVED!"
 layout_mode = 2
 size_flags_vertical = 3
 right_disconnects = true
-scroll_offset = Vector2(-960, -255)
 zoom = 0.6
 zoom_min = 0.35
 zoom_max = 1.0
