@@ -74,7 +74,7 @@ right_disconnects = true
 zoom = 0.6
 zoom_min = 0.35
 zoom_max = 1.0
-arrange_nodes_button_hidden = true
+minimap_enabled = false
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 3.0
