@@ -2,11 +2,7 @@ extends GraphNode
 
 var node_type = "Option"
 
-@onready var comment_box = $HBoxContainer/MainColumn/Comment
-@onready var main = $HBoxContainer/MainColumn
-@onready var more = $HBoxContainer/AddColumn
-@onready var text = $HBoxContainer/MainColumn/Text
-@onready var node_title =  $HBoxContainer/MainColumn/Title
+@onready var text = $Title/LineEdit
 
 @onready var conditionals_stack = preload("res://Objects/ConditionalsStack.tscn")
 @onready var option_panel = preload("res://Objects/OptionPanel.tscn")
@@ -34,19 +30,7 @@ func _on_OptionNode_close_request():
 func _on_LineEdit_text_changed(new_text):
 	title = "OPTION_" + new_text
 	name = "OPTION_" + new_text
-
-
-func _on_Conditional_pressed():
-	conditionals_stack = conditionals_stack.instantiate()
-	main.add_child(conditionals_stack)	
-
-
-func _on_Comment_toggled(button_pressed):
-	if button_pressed:
-		comment_box.visible = true
-	else:
-		comment_box.visible = false
-
+	
 
 func _on_More_toggled(button_pressed = null):
 	var new_option = option_panel.instantiate()
