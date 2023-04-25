@@ -13,7 +13,6 @@ offset_bottom = 177.0
 theme = SubResource("Theme_llmqa")
 title = "GraphNode"
 show_close = true
-resizable = true
 slot/0/left_enabled = true
 slot/0/left_type = 0
 slot/0/left_color = Color(0.639216, 0.258824, 0.0823529, 1)

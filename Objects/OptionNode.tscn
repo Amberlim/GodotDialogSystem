@@ -13,7 +13,6 @@ offset_right = -1530.0
 offset_bottom = -914.0
 title = "New Option"
 show_close = true
-resizable = true
 slot/0/left_enabled = false
 slot/0/left_type = 0
 slot/0/left_color = Color(0.235294, 0.32549, 0.219608, 1)
