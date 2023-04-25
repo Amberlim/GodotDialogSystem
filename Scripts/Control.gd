@@ -9,6 +9,7 @@ var dialog_for_localisation = []
 @onready var dice_roll_node = preload("res://Objects/DiceRoll.tscn")
 @onready var feature_node = preload("res://Objects/Feature.tscn")
 @onready var option_node = load("res://Objects/OptionNode.tscn")
+@onready var root_node = load("res://Objects/RootNode.tscn")
 
 @onready var graph_edit = $VBoxContainer/GraphEdit
 @onready var timer = $Timer
@@ -21,7 +22,9 @@ var all_nodes_index = 0
 func _ready():
 	if not file_path.is_empty():
 		load_save()
-		
+	
+	var new_root_node = root_node.instantiate()
+	graph_edit.add_child(new_root_node)
 
 	
 # ADD NEW NODE

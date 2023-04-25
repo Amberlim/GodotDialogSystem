@@ -1,0 +1,52 @@
+[gd_scene load_steps=3 format=3 uid="uid://cn0k1eado2t4t"]
+
+[ext_resource type="Script" path="res://Scripts/RootNode.gd" id="1_e8g7i"]
+
+[sub_resource type="Theme" id="Theme_llmqa"]
+
+[node name="GraphNode" type="GraphNode" groups=["graph_nodes"]]
+offset_right = 414.0
+offset_bottom = 105.0
+theme = SubResource("Theme_llmqa")
+title = "RootNode"
+show_close = true
+slot/0/left_enabled = false
+slot/0/left_type = 0
+slot/0/left_color = Color(1, 0.156863, 0.396078, 1)
+slot/0/left_icon = null
+slot/0/right_enabled = true
+slot/0/right_type = 0
+slot/0/right_color = Color(0.0352941, 0.443137, 0.407843, 1)
+slot/0/right_icon = null
+slot/0/draw_stylebox = true
+script = ExtResource("1_e8g7i")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 40
+
+[node name="Title" type="HBoxContainer" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 0
+
+[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/Title"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "Title"
+
+[node name="LineEdit" type="LineEdit" parent="MarginContainer/HBoxContainer/Title"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[connection signal="close_request" from="." to="." method="_on_GraphNode_close_request"]
+[connection signal="resize_request" from="." to="." method="_on_GraphNode_resize_request"]
+[connection signal="text_changed" from="MarginContainer/HBoxContainer/Title/LineEdit" to="." method="_on_LineEdit_text_changed"]
