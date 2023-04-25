@@ -20,7 +20,7 @@ var conditionals_list = []
 
 
 func _ready():
-	set_slot(1, false, 1, Color(1, 0, 0, 0), true, 1, Color(0, 1, 0, 1))
+	_on_More_toggled()
 
 
 func _on_OptionNode_resize_request(new_minsize):
@@ -48,10 +48,11 @@ func _on_Comment_toggled(button_pressed):
 		comment_box.visible = false
 
 
-func _on_More_toggled(button_pressed):
+func _on_More_toggled(button_pressed = null):
 	var new_option = option_panel.instantiate()
-	
 	add_child(new_option)
+	move_child($More, get_child_count()-1)
+	set_slot(get_child_count()-2, false, 1, Color(1, 0, 0, 0), true, 1, Color(0, 1, 0, 1))
 
 
 func _on_Text_toggled(button_pressed):

@@ -1,7 +1,4 @@
-[gd_scene load_steps=2 format=3 uid="uid://c1vi16fa41rpy"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_y0h8y"]
-bg_color = Color(0.0784314, 0.0784314, 0.0784314, 1)
+[gd_scene format=3 uid="uid://c1vi16fa41rpy"]
 
 [node name="PanelContainer" type="PanelContainer"]
 anchors_preset = -1
@@ -9,7 +6,7 @@ anchor_right = 0.236
 anchor_bottom = 0.067
 offset_right = 0.439987
 offset_bottom = -0.18
-mouse_filter = 2
+mouse_filter = 1
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 2
@@ -31,10 +28,7 @@ size_flags_horizontal = 0
 size_flags_vertical = 0
 text = "Text"
 
-[node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer/VBoxContainer/HBoxContainer"]
-custom_minimum_size = Vector2(0, 50)
+[node name="TextEdit" type="TextEdit" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(150, 50)
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_styles/normal = SubResource("StyleBoxFlat_y0h8y")
-bbcode_enabled = true
-fit_content = true
