@@ -32,8 +32,10 @@ func _ready():
 	
 	title = node_type + " (" + id + ")"
 
+
 func _on_GraphNode_resize_request(new_minsize):
 	size = new_minsize
+
 
 func _on_GraphNode_close_request():
 	queue_free()
