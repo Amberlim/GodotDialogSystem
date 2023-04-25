@@ -22,15 +22,15 @@ var stack_count = 0
 var save_var_count = 0
 var conditionals_list = []
 var save_var_list = ["SaveVar"]
-var node_type = "Node"
+var node_type = "Dialog"
 
 func _ready():
 	var profile_index = 0
 	for profile in profiles:
 		character_drop.add_item(profile, profile_index)
-		profile_index += 1 
+		profile_index += 1
 	
-	title = node_type + " (" + id + ")"
+	title = node_type + "Node (" + id + ")"
 
 
 func _on_GraphNode_resize_request(new_minsize):
@@ -79,7 +79,3 @@ func _on_Text_toggled(button_pressed):
 		text.visible = true
 	else:
 		text.visible = false
-
-
-func _on_LineEdit_text_changed(new_text):
-	name = "NODE_" + new_text
