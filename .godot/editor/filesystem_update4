@@ -1,11 +1,9 @@
 res://default_env.tres
-res://Graph.tscn
+res://Objects/SaveVar.tscn
+res://Scenes/Graph.tscn
 res://Objects/DiceRoll.tscn
 res://Objects/OptionNode.tscn
-res://Objects/SaveVar.tscn
 res://Objects/GraphNode.tscn
 res://Scenes/App.tscn
-res://Assets/LightTheme.tres
-res://Scenes/Graph.tscn
 res://Test.tscn
-res://Scripts/ConditionalsStack.gd
+res://Scripts/GraphNode.gd

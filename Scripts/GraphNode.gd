@@ -36,9 +36,6 @@ func _on_GraphNode_resize_request(new_minsize):
 	size = new_minsize
 
 func _on_GraphNode_close_request():
-	# if last node is deleted, replace that node index and name
-	if get_parent().get_parent().node_index == (int(self.name.lstrip("Node "))):
-		get_parent().get_parent().node_index -= 1
 	queue_free()
 
 
