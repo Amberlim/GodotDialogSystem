@@ -38,9 +38,15 @@ func _to_dict() -> Dictionary:
 		list_nodes.append(node._to_dict())
 	
 	return {
-		"RootNodeID": 1,
+		"RootNodeID": get_root_node_id(list_nodes),
 		"ListNodes": list_nodes
 	}
+
+
+func get_root_node_id(nodes):
+	for node in nodes:
+		if node.get("$type") == "NodeRoot":
+			return node.get("ID")
 
 
 func _on_NewOption_pressed():
@@ -70,13 +76,28 @@ func _on_NewRoll_pressed():
 
 
 func _on_save_pressed():
-	var file = FileAccess.open(file_path, FileAccess.WRITE)
-	file.store_line(JSON.new().stringify(dialog))
+	var path = file_path + "/dialogs.json"
+	var file = FileAccess.open(path, FileAccess.WRITE)
+	var data = JSON.stringify(_to_dict(), "\t")
+	file.store_string(data)
 	file.close()
-	
-	$HBoxContainer/Notification.visible = true
-	$HBoxContainer/Notification.visible = false
-
 
 func _on_project_finder_dialog_dir_selected(dir):
+	match $ProjectFinderDialog.open_mode:
+		0: # NEW
+			var path = dir + "/config.json"
+			var file = FileAccess.open(path, FileAccess.WRITE)
+			var project_name = dir.split("/")[len(dir.split("/"))-1]
+			
+			file.store_string(Util.base_config_file(project_name))
+			
+			file_path = dir
+			$WelcomeWindow.hide()
+		1: # OPEN
+			var path = dir + "/config.json"
+			print(path)
+			Util.check_config_file(path)
+			
+			file_path = dir
+			$WelcomeWindow.hide()
 	file_path = dir

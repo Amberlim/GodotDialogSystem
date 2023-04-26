@@ -21,6 +21,7 @@ config/icon="res://icon.png"
 CharacterProfiles="*res://Scripts/Global/CharacterProfiles.gd"
 GameSave="*res://Scripts/Global/GameSave.gd"
 UUID="*res://Scripts/UUID.gd"
+Util="*res://Scripts/Global/Util.gd"
 
 [display]
 
