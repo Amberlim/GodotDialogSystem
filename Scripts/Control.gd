@@ -7,7 +7,7 @@ var dialog_for_localisation = []
 
 @onready var graph_node = preload("res://Objects/DialogNode.tscn")
 @onready var dice_roll_node = preload("res://Objects/DiceRoll.tscn")
-@onready var option_node = load("res://Objects/OptionNode.tscn")
+@onready var choice_node = load("res://Objects/ChoiceNode.tscn")
 @onready var root_node = load("res://Objects/RootNode.tscn")
 
 @onready var graph_edit = $VBoxContainer/GraphEdit
@@ -481,8 +481,8 @@ func load_save():
 			initial_pos = node.offset		
 
 func _on_NewOption_pressed():
-	var new_option_node = option_node.instantiate()
-	graph_edit.add_child(new_option_node)
+	var new_choice_node = choice_node.instantiate()
+	graph_edit.add_child(new_choice_node)
 
 # connect nodes
 func _on_GraphEdit_connection_request(from, from_slot, to, to_slot):
