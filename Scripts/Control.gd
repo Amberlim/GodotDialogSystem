@@ -7,7 +7,6 @@ var dialog_for_localisation = []
 
 @onready var graph_node = preload("res://Objects/DialogNode.tscn")
 @onready var dice_roll_node = preload("res://Objects/DiceRoll.tscn")
-@onready var feature_node = preload("res://Objects/Feature.tscn")
 @onready var option_node = load("res://Objects/OptionNode.tscn")
 @onready var root_node = load("res://Objects/RootNode.tscn")
 
@@ -515,11 +514,4 @@ func _on_GraphEdit_gui_input(event):
 
 func _on_NewRoll_pressed():
 	var dice_roll = dice_roll_node.instantiate()
-	graph_edit.add_child(dice_roll)
-	
-
-func _on_feature_pressed():
-	# instance node
-	var feature = feature_node.instantiate()
-	graph_edit.add_child(feature)
-	
+	graph_edit.add_child(dice_roll)	
