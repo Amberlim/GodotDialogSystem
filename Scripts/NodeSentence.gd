@@ -21,7 +21,7 @@ var stack_count = 0
 var save_var_count = 0
 var conditionals_list = []
 var save_var_list = ["SaveVar"]
-var node_type = "NodeDialog"
+var node_type = "NodeSentence"
 
 func _ready():
 	var profile_index = 0
