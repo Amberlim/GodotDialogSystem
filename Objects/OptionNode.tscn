@@ -6,7 +6,6 @@
 bg_color = Color(0.6, 0.6, 0.6, 0)
 
 [node name="OptionNode" type="GraphNode" groups=["graph_nodes"]]
-anchors_preset = -1
 offset_right = 340.0
 offset_bottom = 118.0
 theme_override_constants/separation = 10

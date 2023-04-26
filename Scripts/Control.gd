@@ -514,15 +514,8 @@ func _on_GraphEdit_gui_input(event):
 
 
 func _on_NewRoll_pressed():
-	node_index += 1
-	
-	# instance node
 	var dice_roll = dice_roll_node.instantiate()
 	graph_edit.add_child(dice_roll)
-	
-	# graph offset
-	dice_roll.offset += initial_pos + (node_index * Vector2(5,5))
-	initial_pos = dice_roll.offset
 	
 
 func _on_feature_pressed():

@@ -8,7 +8,6 @@
 bg_color = Color(0.6, 0.6, 0.6, 0)
 
 [node name="GraphNode" type="GraphNode" groups=["graph_nodes"]]
-anchors_preset = -1
 offset_right = 565.0
 offset_bottom = 177.0
 theme = SubResource("Theme_llmqa")
