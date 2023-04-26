@@ -1,11 +1,6 @@
-[gd_scene load_steps=2 format=3]
+[gd_scene load_steps=2 format=3 uid="uid://cycf33orllbrl"]
 
 [ext_resource type="Script" path="res://Scripts/Global/GameSave.gd" id="1"]
 
 [node name="GameSave" type="Node2D"]
-script = ExtResource( 1 )
-variables = {
-"angry": false,
-"happy": false,
-"sad": false
-}
+script = ExtResource("1")

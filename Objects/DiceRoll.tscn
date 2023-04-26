@@ -3,7 +3,6 @@
 [ext_resource type="Script" path="res://Scripts/DiceRoll.gd" id="4_4behm"]
 
 [node name="DiceRoll" type="GraphNode" groups=["graph_nodes"]]
-anchors_preset = -1
 offset_right = 339.0
 offset_bottom = 183.0
 theme_override_constants/separation = 5

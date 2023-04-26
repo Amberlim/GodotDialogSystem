@@ -10,7 +10,7 @@ var dialog_for_localisation = []
 @onready var choice_node = load("res://Objects/ChoiceNode.tscn")
 @onready var root_node = load("res://Objects/RootNode.tscn")
 
-@onready var graph_edit = $VBoxContainer/GraphEdit
+@onready var graph_edit: GraphEdit = $VBoxContainer/GraphEdit
 @onready var timer = $Timer
 
 var initial_pos = Vector2(40,40)
@@ -48,7 +48,8 @@ func _on_NewOption_pressed():
 	graph_edit.add_child(new_choice_node)
 
 func _on_GraphEdit_connection_request(from, from_slot, to, to_slot):
-	graph_edit.connect_node(from, from_slot, to, to_slot)
+	if graph_edit.get_all_connections_from_slot(from, from_slot).size() <= 0:
+		graph_edit.connect_node(from, from_slot, to, to_slot)
 
 func _on_GraphEdit_disconnection_request(from, from_slot, to, to_slot):
 	graph_edit.disconnect_node(from, from_slot, to, to_slot)
