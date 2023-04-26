@@ -4,12 +4,11 @@
 
 [sub_resource type="Theme" id="Theme_llmqa"]
 
-[node name="GraphNode" type="GraphNode" groups=["graph_nodes"]]
+[node name="RootNode" type="GraphNode" groups=["graph_nodes"]]
 offset_right = 414.0
 offset_bottom = 105.0
 theme = SubResource("Theme_llmqa")
 title = "RootNode"
-show_close = true
 slot/0/left_enabled = false
 slot/0/left_type = 0
 slot/0/left_color = Color(1, 0.156863, 0.396078, 1)
@@ -47,6 +46,4 @@ text = "Title"
 layout_mode = 2
 size_flags_horizontal = 3
 
-[connection signal="close_request" from="." to="." method="_on_GraphNode_close_request"]
-[connection signal="resize_request" from="." to="." method="_on_GraphNode_resize_request"]
 [connection signal="text_changed" from="MarginContainer/HBoxContainer/Title/LineEdit" to="." method="_on_LineEdit_text_changed"]
