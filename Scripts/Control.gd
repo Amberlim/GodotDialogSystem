@@ -5,7 +5,7 @@ var dialog_for_localisation = []
 
 @export var file_path: String
 
-@onready var graph_node = preload("res://Objects/DialogNode.tscn")
+@onready var sentence_node = preload("res://Objects/SentenceNode.tscn")
 @onready var dice_roll_node = preload("res://Objects/DiceRoll.tscn")
 @onready var choice_node = load("res://Objects/ChoiceNode.tscn")
 @onready var root_node = load("res://Objects/RootNode.tscn")
@@ -35,7 +35,7 @@ func _on_Button_pressed():
 	# node_count.text = "Node Count: " + str(node_index)
 	
 	# instance node
-	var node = graph_node.instantiate()
+	var node = sentence_node.instantiate()
 	graph_edit.add_child(node)
 	
 	# graph offset
