@@ -40,19 +40,6 @@ theme_override_constants/separation = 40
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="Title" type="HBoxContainer" parent="MarginContainer/HBoxContainer/MainColumn"]
-layout_mode = 2
-theme_override_constants/separation = 0
-
-[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/MainColumn/Title"]
-custom_minimum_size = Vector2(100, 0)
-layout_mode = 2
-text = "Title"
-
-[node name="LineEdit" type="LineEdit" parent="MarginContainer/HBoxContainer/MainColumn/Title"]
-layout_mode = 2
-size_flags_horizontal = 3
-
 [node name="Character" type="HBoxContainer" parent="MarginContainer/HBoxContainer/MainColumn"]
 layout_mode = 2
 theme_override_constants/separation = 0
@@ -170,7 +157,6 @@ text = "+"
 
 [connection signal="close_request" from="." to="." method="_on_GraphNode_close_request"]
 [connection signal="resize_request" from="." to="." method="_on_GraphNode_resize_request"]
-[connection signal="text_changed" from="MarginContainer/HBoxContainer/MainColumn/Title/LineEdit" to="." method="_on_LineEdit_text_changed"]
 [connection signal="toggled" from="MarginContainer/HBoxContainer/AddColumn/DisplayName" to="." method="_on_DisplayName_toggled"]
 [connection signal="toggled" from="MarginContainer/HBoxContainer/AddColumn/Options" to="." method="_on_Options_toggled"]
 [connection signal="toggled" from="MarginContainer/HBoxContainer/AddColumn/Text" to="." method="_on_Text_toggled"]

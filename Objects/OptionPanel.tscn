@@ -1,11 +1,8 @@
 [gd_scene format=3 uid="uid://c1vi16fa41rpy"]
 
 [node name="PanelContainer" type="PanelContainer"]
-anchors_preset = -1
-anchor_right = 0.236
-anchor_bottom = 0.067
-offset_right = 0.439987
-offset_bottom = -0.18
+offset_right = 227.0
+offset_bottom = 36.0
 mouse_filter = 1
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
@@ -26,9 +23,13 @@ custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
-text = "Text"
+text = "Option"
 
 [node name="TextEdit" type="TextEdit" parent="MarginContainer/VBoxContainer/HBoxContainer"]
-custom_minimum_size = Vector2(150, 50)
+custom_minimum_size = Vector2(200, 60)
 layout_mode = 2
 size_flags_horizontal = 3
+
+[node name="CheckBox" type="CheckBox" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "One Shot"

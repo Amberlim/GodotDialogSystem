@@ -2,8 +2,6 @@ extends GraphNode
 
 var node_type = "Choice"
 
-@onready var text = $Title/LineEdit
-
 @onready var conditionals_stack = preload("res://Objects/ConditionalsStack.tscn")
 @onready var option_panel = preload("res://Objects/OptionPanel.tscn")
 
@@ -35,12 +33,8 @@ func _on_More_toggled(button_pressed = null):
 	var new_option = option_panel.instantiate()
 	add_child(new_option)
 	move_child($More, get_child_count()-1)
+	if get_child_count()-2 <=0:
+		set_slot(get_child_count()-2, true, 0, Color("ff2865"), true, 0, Color("097168"))
+		return
+	
 	set_slot(get_child_count()-2, false, 0, Color("ff2865"), true, 0, Color("097168"))
-
-
-func _on_Text_toggled(button_pressed):
-	if button_pressed:
-		text.visible = true
-	else:
-		text.visible = false
-
