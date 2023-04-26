@@ -83,4 +83,3 @@ one_shot = true
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/Clear" to="." method="_on_Clear_pressed"]
 [connection signal="connection_request" from="VBoxContainer/GraphEdit" to="." method="_on_GraphEdit_connection_request"]
 [connection signal="disconnection_request" from="VBoxContainer/GraphEdit" to="." method="_on_GraphEdit_disconnection_request"]
-[connection signal="gui_input" from="VBoxContainer/GraphEdit" to="." method="_on_GraphEdit_gui_input"]
