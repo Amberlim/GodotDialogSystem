@@ -2,16 +2,16 @@ extends GraphNode
 
 
 var id = UUID.v4()
-var node_type = "Root"
+var node_type = "NodeRoot"
 
 
 func _ready():
-	title = node_type + "Node (" + id + ")"
+	title = node_type + " (" + id + ")"
 
 
 func _to_dict() -> Dictionary:
 	return {
-		"$type": "NodeRoot",
+		"$type": node_type,
 		"ID": id,
 		"NextID": get_next_id(),
 		"Conditions": [],

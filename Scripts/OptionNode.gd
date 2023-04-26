@@ -1,6 +1,6 @@
 extends GraphNode
 
-var node_type = "Choice"
+var node_type = "NodeChoice"
 
 @onready var conditionals_stack = preload("res://Objects/ConditionalsStack.tscn")
 @onready var option_panel = preload("res://Objects/OptionPanel.tscn")
@@ -18,7 +18,7 @@ var conditionals_list = []
 func _ready():
 	_on_More_toggled()
 	
-	title = node_type + "Node (" + id + ")"
+	title = node_type + " (" + id + ")"
 
 
 func _on_OptionNode_resize_request(new_minsize):

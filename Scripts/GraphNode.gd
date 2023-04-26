@@ -21,7 +21,7 @@ var stack_count = 0
 var save_var_count = 0
 var conditionals_list = []
 var save_var_list = ["SaveVar"]
-var node_type = "Dialog"
+var node_type = "NodeDialog"
 
 func _ready():
 	var profile_index = 0
@@ -29,7 +29,7 @@ func _ready():
 		character_drop.add_item(profile, profile_index)
 		profile_index += 1
 	
-	title = node_type + "Node (" + id + ")"
+	title = node_type + " (" + id + ")"
 
 
 func _on_GraphNode_resize_request(new_minsize):
