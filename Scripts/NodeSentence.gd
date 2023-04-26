@@ -32,8 +32,18 @@ func _ready():
 	title = node_type + " (" + id + ")"
 
 
-func _on_GraphNode_resize_request(new_minsize):
-	size = new_minsize
+func _to_dict() -> Dictionary:
+	return {
+		"$type": node_type,
+		"ID": id,
+		"NextID": 0,
+		"Sentence": text.get_node("TextEdit").text,
+		"SpeaketID": "",
+		"Conditions": [],
+		"Actions": [],
+		"Flags": [],
+		"CustomProperties": []
+	}
 
 
 func _on_GraphNode_close_request():
