@@ -17,7 +17,7 @@ func _ready():
 	title = node_type + " (" + id + ")"
 	
 	for option in loaded_options:
-		new_option(option.get("ID"))
+		new_option(option.get("ID"), option.get("Sentence"), option.get("OneShot"))
 
 
 func _to_dict() -> Dictionary:
@@ -56,10 +56,12 @@ func _on_More_toggled(button_pressed = null):
 	new_option()
 
 
-func new_option(id: String = "null"):
+func new_option(id: String = "null", sentence: String = "", one_shot: bool = false):
 	var new_option = option_panel.instantiate()
 	if id != "null":
 		new_option.id = id
+	new_option.loaded_sentence = sentence
+	new_option.loaded_one_shot = one_shot
 	
 	add_child(new_option)
 	move_child($More, get_child_count()-1)

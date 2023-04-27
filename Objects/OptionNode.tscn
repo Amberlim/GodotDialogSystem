@@ -1,5 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://dsmkmfbpepjqd"]
+[gd_scene load_steps=3 format=3 uid="uid://dsmkmfbpepjqd"]
 
+[ext_resource type="Texture2D" uid="uid://ckcnhbs2x6roy" path="res://Assets/trash_icon.png" id="2_jkpwx"]
 [ext_resource type="Script" path="res://Scripts/OptionNode.gd" id="4_5yoga"]
 
 [node name="PanelContainer" type="PanelContainer"]
@@ -33,6 +34,21 @@ custom_minimum_size = Vector2(200, 60)
 layout_mode = 2
 size_flags_horizontal = 3
 
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+
+[node name="Delete" type="TextureButton" parent="MarginContainer/VBoxContainer/HBoxContainer/MarginContainer"]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+texture_normal = ExtResource("2_jkpwx")
+stretch_mode = 3
+
 [node name="CheckBox" type="CheckBox" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 text = "One Shot"
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/MarginContainer/Delete" to="." method="_on_delete_pressed"]

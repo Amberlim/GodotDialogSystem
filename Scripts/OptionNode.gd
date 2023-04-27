@@ -2,9 +2,17 @@ extends PanelContainer
 
 
 @onready var text_edit = $MarginContainer/VBoxContainer/HBoxContainer/TextEdit
+@onready var one_shot: CheckBox = $MarginContainer/VBoxContainer/CheckBox
 
 var id = UUID.v4()
 var node_type = "NodeOption"
+var loaded_sentence = ""
+var loaded_one_shot = false
+
+
+func _ready():
+	text_edit.text = loaded_sentence
+	one_shot.button_pressed = loaded_one_shot
 
 
 func _to_dict() -> Dictionary:
@@ -22,8 +30,13 @@ func _to_dict() -> Dictionary:
 		"ID": id,
 		"NextID": next_id_node[0].id if next_id_node else -1,
 		"Sentence": text_edit.text,
+		"OneShot": one_shot.button_pressed,
 		"Conditions": [],
 		"Actions": [],
 		"Flags": [],
 		"CustomProperties": []
 	}
+
+
+func _on_delete_pressed():
+	queue_free()
