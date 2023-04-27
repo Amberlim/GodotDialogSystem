@@ -10,21 +10,14 @@ func _ready():
 
 
 func _to_dict() -> Dictionary:
+	var next_id_node = get_parent().get_all_connections_from_slot(name, 0)
+	
 	return {
 		"$type": node_type,
 		"ID": id,
-		"NextID": get_next_id(),
+		"NextID": next_id_node[0].id if next_id_node else -1,
 		"Conditions": [],
 		"Actions": [],
 		"Flags": [],
 		"CustomProperties": []
 	}
-
-
-func get_next_id():
-	var parent: GraphEdit = get_parent()
-	
-	for connection in parent.get_connection_list():
-		if connection.get("from") == "RootNode":
-			var to = parent.get_node_or_null(NodePath(connection.get("to")))
-			return to.id

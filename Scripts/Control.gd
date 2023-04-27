@@ -7,8 +7,9 @@ var dialog_for_localisation = []
 
 @onready var sentence_node = preload("res://Objects/SentenceNode.tscn")
 @onready var dice_roll_node = preload("res://Objects/DiceRoll.tscn")
-@onready var choice_node = load("res://Objects/ChoiceNode.tscn")
-@onready var root_node = load("res://Objects/RootNode.tscn")
+@onready var choice_node = preload("res://Objects/ChoiceNode.tscn")
+@onready var root_node = preload("res://Objects/RootNode.tscn")
+@onready var option_panel = preload("res://Objects/OptionNode.tscn")
 
 @onready var graph_edit: GraphEdit = $VBoxContainer/GraphEdit
 
@@ -36,6 +37,9 @@ func _to_dict() -> Dictionary:
 	
 	for node in graph_edit.get_children():
 		list_nodes.append(node._to_dict())
+		if node.node_type == "NodeChoice":
+			var option_nodes = node.get_all_options_nodes()
+			list_nodes.append_array(option_nodes)
 	
 	return {
 		"RootNodeID": get_root_node_id(list_nodes),
@@ -65,7 +69,7 @@ func _on_GraphEdit_disconnection_request(from, from_slot, to, to_slot):
 
 func _on_Clear_pressed():
 	for node in get_tree().get_nodes_in_group("graph_nodes"):
-		if node.name != "RootNode":
+		if node.node_type != "NodeRoot":
 			node.queue_free()
 	graph_edit.clear_connections()
 
@@ -95,9 +99,92 @@ func _on_project_finder_dialog_dir_selected(dir):
 			$WelcomeWindow.hide()
 		1: # OPEN
 			var path = dir + "/config.json"
-			print(path)
 			Util.check_config_file(path)
+			
+			load_project(dir)
 			
 			file_path = dir
 			$WelcomeWindow.hide()
 	file_path = dir
+
+
+func load_project(path):
+	var dialog_path = path + "/dialogs.json"
+	assert(FileAccess.file_exists(dialog_path))
+	
+	var file = FileAccess.get_file_as_string(dialog_path)
+	var data = JSON.parse_string(file)
+	
+	for node in get_tree().get_nodes_in_group("graph_nodes"):
+		node.queue_free()
+	graph_edit.clear_connections()
+	
+	var node_list = data.get("ListNodes")
+	
+	for node in node_list:
+		var new_node
+		match node.get("$type"):
+			"NodeRoot":
+				new_node = root_node.instantiate()
+			"NodeSentence":
+				new_node = sentence_node.instantiate()
+				new_node.loaded_text = node.get("Sentence")
+			"NodeChoice":
+				new_node = choice_node.instantiate()
+				
+				var options = get_option_nodes(node_list, node.get("OptionsID"))
+				for option in options:
+					new_node.loaded_options.append(option)
+			"NodeDiceRoll":
+				new_node = dice_roll_node.instantiate()
+		
+		if not new_node:
+			continue
+		
+		new_node.id = node.get("ID")
+		graph_edit.add_child(new_node)
+	
+	
+	for node in node_list:
+		match node.get("$type"):
+			"NodeRoot":
+				var current_node = get_node_by_id(node.get("ID"))
+				if node.get("NextID") is String:
+					var next_node = get_node_by_id(node.get("NextID"))
+					graph_edit.connect_node(current_node.name, 0, next_node.name, 0)
+			"NodeSentence":
+				var current_node = get_node_by_id(node.get("ID"))
+				if node.get("NextID") is String:
+					var next_node = get_node_by_id(node.get("NextID"))
+					graph_edit.connect_node(current_node.name, 0, next_node.name, 0)
+			"NodeChoice":
+				var current_node = get_node_by_id(node.get("ID"))
+			"NodeDiceRoll":
+				var current_node = get_node_by_id(node.get("ID"))
+				
+				if node.get("PassID") is String:
+					var pass_node = get_node_by_id(node.get("PassID"))
+					graph_edit.connect_node(current_node.name, 0, pass_node.name, 0)
+				
+				if node.get("FailID") is String:
+					var fail_node = get_node_by_id(node.get("FailID"))
+					graph_edit.connect_node(current_node.name, 1, fail_node.name, 0)
+				
+				
+	
+	graph_edit.arrange_nodes()
+	
+	
+func get_node_by_id(id):
+	for node in graph_edit.get_children():
+		if node.id == id:
+			return node
+
+
+func get_option_nodes(node_list, options_id):
+	var options = []
+	
+	for node in node_list:
+		if node.get("ID") in options_id:
+			options.append(node)
+	return options

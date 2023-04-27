@@ -1,5 +1,6 @@
 extends GraphNode
 
+
 @onready var comment_box: HBoxContainer = $MarginContainer/HBoxContainer/MainColumn/Comment
 @onready var main: VBoxContainer = $MarginContainer/HBoxContainer/MainColumn
 @onready var more: VBoxContainer = $MarginContainer/HBoxContainer/AddColumn
@@ -13,30 +14,27 @@ extends GraphNode
 @onready var conditionals_stack_node = preload("res://Objects/ConditionalsStack.tscn")
 
 var id = UUID.v4()
+var loaded_text = ""
 
 var if_stack
 var profiles = ["Santa", "Elf"]
 
-var stack_count = 0
-var save_var_count = 0
 var conditionals_list = []
-var save_var_list = ["SaveVar"]
 var node_type = "NodeSentence"
 
 func _ready():
-	var profile_index = 0
-	for profile in profiles:
-		character_drop.add_item(profile, profile_index)
-		profile_index += 1
-	
 	title = node_type + " (" + id + ")"
 
+	if loaded_text:
+		text.get_node("TextEdit").text = loaded_text
 
 func _to_dict() -> Dictionary:
+	var next_id_node = get_parent().get_all_connections_from_slot(name, 0)
+	
 	return {
 		"$type": node_type,
 		"ID": id,
-		"NextID": 0,
+		"NextID": next_id_node[0].id if next_id_node else -1,
 		"Sentence": text.get_node("TextEdit").text,
 		"SpeaketID": "",
 		"Conditions": [],

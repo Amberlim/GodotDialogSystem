@@ -7,11 +7,17 @@ var node_type = "NodeChoice"
 
 var id = UUID.v4()
 
+var loaded_options = []
+
 
 func _ready():
-	_on_More_toggled()
+	if loaded_options.size() <= 0:
+		new_option()
 	
 	title = node_type + " (" + id + ")"
+	
+	for option in loaded_options:
+		new_option(option.get("ID"))
 
 
 func _to_dict() -> Dictionary:
@@ -34,13 +40,27 @@ func get_all_options_id() -> Array:
 	return ids
 
 
+func get_all_options_nodes():
+	var nodes = []
+	for child in get_children():
+		if is_instance_of(child, PanelContainer) and child.id != null:
+			nodes.append(child._to_dict())
+	return nodes
+
+
 func _on_OptionNode_close_request():
-	print(_to_dict())
 	queue_free()
 
 
 func _on_More_toggled(button_pressed = null):
+	new_option()
+
+
+func new_option(id: String = "null"):
 	var new_option = option_panel.instantiate()
+	if id != "null":
+		new_option.id = id
+	
 	add_child(new_option)
 	move_child($More, get_child_count()-1)
 	if get_child_count()-2 <=0:
