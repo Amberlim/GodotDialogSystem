@@ -1,6 +1,13 @@
 extends GraphEdit
 
 
+var speakers = []
+
+
+func _ready():
+	update_speakers()
+
+
 func get_all_connections_from_node(from_node: StringName):
 	var connections = []
 	
@@ -21,3 +28,18 @@ func get_all_connections_from_slot(from_node: StringName, from_port: int):
 			connections.append(to)
 
 	return connections
+
+
+func update_speakers(characters: Array = []):
+	speakers.clear()
+	
+	speakers.append("_NARRATOR")
+	for speaker in characters:
+		if speaker.get("ID") != "":
+			speakers.append(speaker.get("ID"))
+	
+	for node in get_children():
+		if node.node_type == "NodeSentence":
+			node.character_drop.clear()
+			for speaker in speakers:
+				node.character_drop.add_item(speaker)

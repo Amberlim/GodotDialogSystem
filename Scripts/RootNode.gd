@@ -34,6 +34,8 @@ func _on_add_character_pressed():
 	character_container.add_child(new_node)
 	
 	character_container.move_child(character_add_btn, character_container.get_child_count()-1)
+	
+	get_parent().update_speakers(get_characters())
 
 
 func _on_add_variable_pressed():

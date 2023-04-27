@@ -175,10 +175,10 @@ func load_project(path):
 				if node.get("FailID") is String:
 					var fail_node = get_node_by_id(node.get("FailID"))
 					graph_edit.connect_node(current_node.name, 1, fail_node.name, 0)
-				
-				
+	
 	
 	graph_edit.arrange_nodes()
+	graph_edit.update_speakers()
 	
 	
 func get_node_by_id(id):
