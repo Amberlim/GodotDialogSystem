@@ -159,6 +159,7 @@ func load_project(path):
 					graph_edit.connect_node(current_node.name, 0, next_node.name, 0)
 			"NodeChoice":
 				var current_node = get_node_by_id(node.get("ID"))
+				current_node.connect_all_options(node_list)
 			"NodeDiceRoll":
 				var current_node = get_node_by_id(node.get("ID"))
 				

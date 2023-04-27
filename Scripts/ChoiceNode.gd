@@ -68,3 +68,25 @@ func new_option(id: String = "null"):
 		return
 	
 	set_slot(get_child_count()-2, false, 0, Color("ff2865"), true, 0, Color("097168"))
+
+
+func connect_all_options(node_list: Array):
+	var all_options = []
+	for child in get_children():
+		if is_instance_of(child, PanelContainer) and child.id != null:
+			all_options.append(child)
+	
+	var index = 0
+	for option in all_options:
+		var raw_option = node_list.filter(func(node): return node.get("ID") == option.id)[0]
+		if raw_option == null:
+			continue
+		
+		var next_node = get_next_node(raw_option.get("NextID"))
+		get_parent().connect_node(name, index, next_node.name, 0)
+		index+=1
+		
+func get_next_node(next_node_id):
+	for node in get_parent().get_children():
+		if node.id == next_node_id:
+			return node
