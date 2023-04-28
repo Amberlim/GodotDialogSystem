@@ -32,6 +32,7 @@ func _to_dict() -> Dictionary:
 func _on_add_character_pressed():
 	var new_node = character_node.instantiate()
 	character_container.add_child(new_node)
+	new_node.id_input.text_changed.connect(text_submitted_callback)
 	
 	character_container.move_child(character_add_btn, character_container.get_child_count()-1)
 	
@@ -65,3 +66,7 @@ func get_characters():
 		characters.append(child._to_dict())
 	
 	return characters
+	
+	
+func text_submitted_callback(_new_text):
+	get_parent().update_speakers(get_characters())

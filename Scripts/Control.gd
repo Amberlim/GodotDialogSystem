@@ -90,7 +90,8 @@ func _on_save_pressed():
 	var data = JSON.stringify(_to_dict(), "\t")
 	file.store_string(data)
 	file.close()
-
+	
+	
 func _on_project_finder_dialog_dir_selected(dir):
 	match $ProjectFinderDialog.open_mode:
 		0: # NEW
@@ -111,8 +112,8 @@ func _on_project_finder_dialog_dir_selected(dir):
 			file_path = dir
 			$WelcomeWindow.hide()
 	file_path = dir
-
-
+	
+	
 func load_project(path):
 	var dialog_path = path + "/dialogs.json"
 	assert(FileAccess.file_exists(dialog_path))
@@ -185,8 +186,8 @@ func get_node_by_id(id):
 	for node in graph_edit.get_children():
 		if node.id == id:
 			return node
-
-
+	
+	
 func get_option_nodes(node_list, options_id):
 	var options = []
 	
