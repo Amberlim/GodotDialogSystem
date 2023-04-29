@@ -26,3 +26,7 @@ func _to_dict() -> Dictionary:
 		"Flags": [],
 		"CustomProperties": []
 	}
+
+
+func _on_close_request():
+	queue_free()

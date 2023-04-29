@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://bh71sgkb7ilji"]
 
 [ext_resource type="Script" path="res://Scripts/NodeSentence.gd" id="1_at5jy"]
-[ext_resource type="Texture2D" uid="uid://cejwfau3dwbtt" path="res://Assets/dot_icon.png" id="2_3vp3m"]
+[ext_resource type="PackedScene" uid="uid://bomromd5ru40h" path="res://Objects/Actions.tscn" id="2_trq4v"]
 
 [sub_resource type="Theme" id="Theme_llmqa"]
 
@@ -86,56 +86,8 @@ layout_mode = 2
 size_flags_horizontal = 3
 caret_blink = true
 
-[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/MainColumn"]
+[node name="Actions" parent="MarginContainer/MainColumn" instance=ExtResource("2_trq4v")]
 layout_mode = 2
-
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/MainColumn/PanelContainer"]
-layout_mode = 2
-theme_override_constants/margin_left = 5
-theme_override_constants/margin_top = 5
-theme_override_constants/margin_right = 5
-theme_override_constants/margin_bottom = 5
-
-[node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/MainColumn/PanelContainer/MarginContainer"]
-layout_mode = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/MainColumn/PanelContainer/MarginContainer/VBoxContainer2"]
-layout_mode = 2
-theme_override_constants/separation = 5
-
-[node name="Label" type="Label" parent="MarginContainer/MainColumn/PanelContainer/MarginContainer/VBoxContainer2/VBoxContainer"]
-layout_mode = 2
-text = "Actions"
-
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/MainColumn/PanelContainer/MarginContainer/VBoxContainer2/VBoxContainer"]
-layout_mode = 2
-theme_override_constants/separation = 10
-
-[node name="TextureRect" type="TextureRect" parent="MarginContainer/MainColumn/PanelContainer/MarginContainer/VBoxContainer2/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-texture = ExtResource("2_3vp3m")
-expand_mode = 2
-stretch_mode = 3
-
-[node name="OptionButton" type="OptionButton" parent="MarginContainer/MainColumn/PanelContainer/MarginContainer/VBoxContainer2/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-item_count = 3
-selected = 0
-popup/item_0/text = "Enable Option"
-popup/item_0/id = 0
-popup/item_1/text = "Disable Option"
-popup/item_1/id = 1
-popup/item_2/text = "Update Variable"
-popup/item_2/id = 2
-
-[node name="LineEdit" type="LineEdit" parent="MarginContainer/MainColumn/PanelContainer/MarginContainer/VBoxContainer2/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-placeholder_text = "Argument"
-
-[node name="Button" type="Button" parent="MarginContainer/MainColumn/PanelContainer/MarginContainer/VBoxContainer2"]
-layout_mode = 2
-text = "+"
 
 [connection signal="close_request" from="." to="." method="_on_GraphNode_close_request"]
 [connection signal="resize_request" from="." to="." method="_on_GraphNode_resize_request"]

@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://cn0k1eado2t4t"]
+[gd_scene load_steps=4 format=3 uid="uid://cn0k1eado2t4t"]
 
 [ext_resource type="Script" path="res://Scripts/RootNode.gd" id="1_e8g7i"]
+[ext_resource type="PackedScene" uid="uid://bomromd5ru40h" path="res://Objects/Actions.tscn" id="2_q1v2k"]
 
 [sub_resource type="Theme" id="Theme_llmqa"]
 
@@ -38,10 +39,10 @@ theme_override_constants/margin_bottom = 5
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 2
 size_flags_vertical = 0
-theme_override_constants/margin_left = 10
+theme_override_constants/margin_left = 5
 theme_override_constants/margin_top = 0
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 10
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
 layout_mode = 2
@@ -87,6 +88,9 @@ theme_override_constants/separation = 5
 [node name="Add" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer"]
 layout_mode = 2
 text = "+"
+
+[node name="Actions" parent="MarginContainer/VBoxContainer" instance=ExtResource("2_q1v2k")]
+layout_mode = 2
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/Add" to="." method="add_character"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer/Add" to="." method="add_variable"]

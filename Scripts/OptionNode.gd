@@ -44,7 +44,6 @@ func _to_dict() -> Dictionary:
 func _on_delete_pressed():
 	var parent = get_parent_control()
 	queue_free()
-	parent.size.y = 0
 
 
 func _on_id_label_gui_input(event):

@@ -73,6 +73,13 @@ func new_option(id: String = "null", sentence: String = "", one_shot: bool = fal
 
 
 func connect_all_options(node_list: Array):
+	# Clear all slots
+	for child in get_child_count():
+		var connections = get_parent().get_all_connections_from_slot()
+		for connection in connections:
+			print(connection)
+	
+	
 	var all_options = []
 	for child in get_children():
 		if is_instance_of(child, PanelContainer) and child.id != null:
