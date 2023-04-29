@@ -28,7 +28,11 @@ func _to_dict() -> Dictionary:
 		"Conditions": [],
 		"Actions": [],
 		"Flags": [],
-		"CustomProperties": []
+		"CustomProperties": [],
+		"EditorPosition": {
+			"x": position_offset.x,
+			"y": position_offset.y
+		}
 	}
 
 
@@ -74,8 +78,8 @@ func new_option(id: String = "null", sentence: String = "", one_shot: bool = fal
 
 func connect_all_options(node_list: Array):
 	# Clear all slots
-	for child in get_child_count():
-		var connections = get_parent().get_all_connections_from_slot()
+	for child_idx in get_child_count():
+		var connections = get_parent().get_all_connections_from_slot(self.name, child_idx)
 		for connection in connections:
 			print(connection)
 	

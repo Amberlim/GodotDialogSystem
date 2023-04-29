@@ -2,6 +2,7 @@ extends GraphNode
 
 
 @onready var target_number = $VBoxContainer/HBoxContainer2/TargetNumber
+@onready var actions = $Actions
 
 var node_type = "NodeDiceRoll"
 var id = UUID.v4()
@@ -22,9 +23,13 @@ func _to_dict() -> Dictionary:
 		"PassID": pass_id_node[0].id if pass_id_node else -1,
 		"FailID": fail_id_node[0].id if fail_id_node else -1,
 		"Conditions": [],
-		"Actions": [],
+		"Actions": actions._to_dict(),
 		"Flags": [],
-		"CustomProperties": []
+		"CustomProperties": [],
+		"EditorPosition": {
+			"x": position_offset.x,
+			"y": position_offset.y
+		}
 	}
 
 

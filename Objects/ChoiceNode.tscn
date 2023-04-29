@@ -6,7 +6,6 @@
 bg_color = Color(0.6, 0.6, 0.6, 0)
 
 [node name="ChoiceNode" type="GraphNode" groups=["graph_nodes"]]
-anchors_preset = -1
 size_flags_vertical = 3
 theme_override_constants/separation = 10
 title = "ChoiceNode"

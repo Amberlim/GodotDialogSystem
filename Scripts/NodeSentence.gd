@@ -4,7 +4,7 @@ extends GraphNode
 @onready var text: HBoxContainer = $MarginContainer/MainColumn/Text
 @onready var display_name: HBoxContainer = $MarginContainer/MainColumn/VBoxContainer/MarginContainer/DisplayName
 @onready var character_drop: OptionButton = $MarginContainer/MainColumn/VBoxContainer/Character/CharacterDrop
-
+@onready var actions = $MarginContainer/MainColumn/Actions
 
 var id = UUID.v4()
 var loaded_text = ""
@@ -32,9 +32,13 @@ func _to_dict() -> Dictionary:
 		"SpeakerID": character_drop.get_item_text(character_drop.selected),
 		"DisplaySpeakerName": "",
 		"Conditions": [],
-		"Actions": [],
+		"Actions": actions._to_dict(),
 		"Flags": [],
-		"CustomProperties": []
+		"CustomProperties": [],
+		"EditorPosition": {
+			"x": position_offset.x,
+			"y": position_offset.y
+		}
 	}
 
 

@@ -1,6 +1,9 @@
-[gd_scene format=3 uid="uid://bomromd5ru40h"]
+[gd_scene load_steps=2 format=3 uid="uid://bomromd5ru40h"]
+
+[ext_resource type="Script" path="res://Scripts/Actions.gd" id="1_aph6k"]
 
 [node name="Actions" type="PanelContainer"]
+script = ExtResource("1_aph6k")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 2
@@ -12,14 +15,16 @@ theme_override_constants/margin_bottom = 5
 [node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer"]
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer2"]
-layout_mode = 2
-theme_override_constants/separation = 5
-
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer2/VBoxContainer"]
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer2"]
 layout_mode = 2
 text = "Actions"
+
+[node name="ActionsContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer2"]
+layout_mode = 2
+theme_override_constants/separation = 5
 
 [node name="Button" type="Button" parent="MarginContainer/VBoxContainer2"]
 layout_mode = 2
 text = "+"
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer2/Button" to="." method="_on_button_pressed"]

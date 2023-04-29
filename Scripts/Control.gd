@@ -164,14 +164,16 @@ func load_project(path):
 	
 	
 	for node in node_list:
+		if not node.has("ID"):
+			continue
+		
+		var current_node = get_node_by_id(node.get("ID"))
 		match node.get("$type"):
 			"NodeRoot":
-				var current_node = get_node_by_id(node.get("ID"))
 				if node.get("NextID") is String:
 					var next_node = get_node_by_id(node.get("NextID"))
 					graph_edit.connect_node(current_node.name, 0, next_node.name, 0)
 			"NodeSentence":
-				var current_node = get_node_by_id(node.get("ID"))
 				if node.get("NextID") is String:
 					var next_node = get_node_by_id(node.get("NextID"))
 					graph_edit.connect_node(current_node.name, 0, next_node.name, 0)
@@ -179,11 +181,8 @@ func load_project(path):
 				var speaker_idx = current_node.get_character_idx_from_text(node.get("SpeakerID"))
 				current_node.character_drop.select(speaker_idx)
 			"NodeChoice":
-				var current_node = get_node_by_id(node.get("ID"))
 				current_node.connect_all_options(node_list)
 			"NodeDiceRoll":
-				var current_node = get_node_by_id(node.get("ID"))
-				
 				if node.get("PassID") is String:
 					var pass_node = get_node_by_id(node.get("PassID"))
 					graph_edit.connect_node(current_node.name, 0, pass_node.name, 0)
@@ -191,8 +190,17 @@ func load_project(path):
 				if node.get("FailID") is String:
 					var fail_node = get_node_by_id(node.get("FailID"))
 					graph_edit.connect_node(current_node.name, 1, fail_node.name, 0)
-	
-	graph_edit.arrange_nodes()
+		
+		if not current_node: # OptionNode
+			continue
+		
+		if node.has("Actions") and not current_node.get("actions") == null:
+			for action in node.get("Actions"):
+				current_node.actions.new_action(action.get("$type"), action.get("Argument"))
+		
+		if node.has("EditorPosition"):
+			current_node.position_offset.x = node.EditorPosition.get("x")
+			current_node.position_offset.y = node.EditorPosition.get("y")
 	
 	
 func get_node_by_id(id):

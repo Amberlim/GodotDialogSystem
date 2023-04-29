@@ -6,6 +6,7 @@ extends GraphNode
 @onready var variable_container = $MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer
 @onready var variable_add_btn = $MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer/Add
 @onready var variable_node = preload("res://Objects/Variable.tscn")
+@onready var actions = $MarginContainer/VBoxContainer/Actions
 
 var id = UUID.v4()
 var node_type = "NodeRoot"
@@ -23,9 +24,13 @@ func _to_dict() -> Dictionary:
 		"ID": id,
 		"NextID": next_id_node[0].id if next_id_node else -1,
 		"Conditions": [],
-		"Actions": [],
+		"Actions": actions._to_dict(),
 		"Flags": [],
-		"CustomProperties": []
+		"CustomProperties": [],
+		"EditorPosition": {
+			"x": position_offset.x,
+			"y": position_offset.y
+		}
 	}
 
 
