@@ -1,11 +1,12 @@
-[gd_scene load_steps=4 format=3 uid="uid://bh71sgkb7ilji"]
+[gd_scene load_steps=5 format=3 uid="uid://bh71sgkb7ilji"]
 
 [ext_resource type="Script" path="res://Scripts/NodeSentence.gd" id="1_at5jy"]
+[ext_resource type="Texture2D" uid="uid://cejwfau3dwbtt" path="res://Assets/dot_icon.png" id="2_3vp3m"]
 
 [sub_resource type="Theme" id="Theme_llmqa"]
 
-[sub_resource type="StyleBoxFlat" id="1"]
-bg_color = Color(0.6, 0.6, 0.6, 0)
+[sub_resource type="LabelSettings" id="LabelSettings_r4tb1"]
+font_color = Color(0.521569, 0.521569, 0.521569, 1)
 
 [node name="DialogNode" type="GraphNode" groups=["graph_nodes"]]
 offset_right = 565.0
@@ -31,136 +32,110 @@ theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-theme_override_constants/separation = 40
-
-[node name="MainColumn" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
+[node name="MainColumn" type="VBoxContainer" parent="MarginContainer"]
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="Character" type="HBoxContainer" parent="MarginContainer/HBoxContainer/MainColumn"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/MainColumn"]
+layout_mode = 2
+
+[node name="Character" type="HBoxContainer" parent="MarginContainer/MainColumn/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/separation = 0
 
-[node name="Character" type="Label" parent="MarginContainer/HBoxContainer/MainColumn/Character"]
+[node name="Character" type="Label" parent="MarginContainer/MainColumn/VBoxContainer/Character"]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 text = "Speaker"
 
-[node name="CharacterDrop" type="OptionButton" parent="MarginContainer/HBoxContainer/MainColumn/Character"]
+[node name="CharacterDrop" type="OptionButton" parent="MarginContainer/MainColumn/VBoxContainer/Character"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="DisplayName" type="HBoxContainer" parent="MarginContainer/HBoxContainer/MainColumn"]
-visible = false
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/MainColumn/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 25
+
+[node name="DisplayName" type="HBoxContainer" parent="MarginContainer/MainColumn/VBoxContainer/MarginContainer"]
 layout_mode = 2
 theme_override_constants/separation = 0
 
-[node name="DisplayName" type="Label" parent="MarginContainer/HBoxContainer/MainColumn/DisplayName"]
-custom_minimum_size = Vector2(100, 0)
+[node name="DisplayName" type="Label" parent="MarginContainer/MainColumn/VBoxContainer/MarginContainer/DisplayName"]
+custom_minimum_size = Vector2(125, 0)
 layout_mode = 2
-text = "Display Name"
+text = "↳ Display Name"
+label_settings = SubResource("LabelSettings_r4tb1")
 
-[node name="LineEdit" type="LineEdit" parent="MarginContainer/HBoxContainer/MainColumn/DisplayName"]
+[node name="LineEdit" type="LineEdit" parent="MarginContainer/MainColumn/VBoxContainer/MarginContainer/DisplayName"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="LineAsset" type="HBoxContainer" parent="MarginContainer/HBoxContainer/MainColumn"]
-visible = false
+[node name="Text" type="HBoxContainer" parent="MarginContainer/MainColumn"]
 layout_mode = 2
 theme_override_constants/separation = 0
 
-[node name="LineAsset" type="Label" parent="MarginContainer/HBoxContainer/MainColumn/LineAsset"]
-custom_minimum_size = Vector2(100, 0)
-layout_mode = 2
-text = "Asset"
-
-[node name="LineEdit" type="LineEdit" parent="MarginContainer/HBoxContainer/MainColumn/LineAsset"]
-custom_minimum_size = Vector2(120, 0)
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="Text" type="HBoxContainer" parent="MarginContainer/HBoxContainer/MainColumn"]
-layout_mode = 2
-theme_override_constants/separation = 0
-
-[node name="Text" type="Label" parent="MarginContainer/HBoxContainer/MainColumn/Text"]
+[node name="Text" type="Label" parent="MarginContainer/MainColumn/Text"]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 size_flags_vertical = 0
 text = "Sentence"
 
-[node name="TextEdit" type="TextEdit" parent="MarginContainer/HBoxContainer/MainColumn/Text"]
+[node name="TextEdit" type="TextEdit" parent="MarginContainer/MainColumn/Text"]
 custom_minimum_size = Vector2(400, 100)
 layout_mode = 2
+size_flags_horizontal = 3
 caret_blink = true
 
-[node name="Comment" type="HBoxContainer" parent="MarginContainer/HBoxContainer/MainColumn"]
-visible = false
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/MainColumn"]
 layout_mode = 2
-theme_override_constants/separation = 0
 
-[node name="Comment" type="Label" parent="MarginContainer/HBoxContainer/MainColumn/Comment"]
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/MainColumn/PanelContainer"]
 layout_mode = 2
-text = "Comment"
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
 
-[node name="Comment2" type="TextEdit" parent="MarginContainer/HBoxContainer/MainColumn/Comment"]
-custom_minimum_size = Vector2(200, 50)
+[node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/MainColumn/PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/MainColumn/PanelContainer/MarginContainer/VBoxContainer2"]
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="Label" type="Label" parent="MarginContainer/MainColumn/PanelContainer/MarginContainer/VBoxContainer2/VBoxContainer"]
+layout_mode = 2
+text = "Actions"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/MainColumn/PanelContainer/MarginContainer/VBoxContainer2/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/MainColumn/PanelContainer/MarginContainer/VBoxContainer2/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("2_3vp3m")
+expand_mode = 2
+stretch_mode = 3
+
+[node name="OptionButton" type="OptionButton" parent="MarginContainer/MainColumn/PanelContainer/MarginContainer/VBoxContainer2/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+item_count = 3
+selected = 0
+popup/item_0/text = "Enable Option"
+popup/item_0/id = 0
+popup/item_1/text = "Disable Option"
+popup/item_1/id = 1
+popup/item_2/text = "Update Variable"
+popup/item_2/id = 2
+
+[node name="LineEdit" type="LineEdit" parent="MarginContainer/MainColumn/PanelContainer/MarginContainer/VBoxContainer2/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_colors/background_color = Color(1, 0.933333, 0.694118, 1)
-theme_override_colors/font_color = Color(0, 0, 0, 1)
+placeholder_text = "Argument"
 
-[node name="AddColumn" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
-visible = false
+[node name="Button" type="Button" parent="MarginContainer/MainColumn/PanelContainer/MarginContainer/VBoxContainer2"]
 layout_mode = 2
-
-[node name="DisplayName" type="Button" parent="MarginContainer/HBoxContainer/AddColumn"]
-layout_mode = 2
-toggle_mode = true
-text = "+DisplayName"
-
-[node name="Options" type="Button" parent="MarginContainer/HBoxContainer/AddColumn"]
-visible = false
-layout_mode = 2
-toggle_mode = true
-text = "Options"
-
-[node name="Text" type="Button" parent="MarginContainer/HBoxContainer/AddColumn"]
-layout_mode = 2
-toggle_mode = true
-text = "Text"
-
-[node name="Conditional" type="Button" parent="MarginContainer/HBoxContainer/AddColumn"]
-layout_mode = 2
-text = "+Conditional"
-
-[node name="LineAsset" type="Button" parent="MarginContainer/HBoxContainer/AddColumn"]
-layout_mode = 2
-toggle_mode = true
-text = "+LineAsset"
-
-[node name="Comment" type="Button" parent="MarginContainer/HBoxContainer/AddColumn"]
-layout_mode = 2
-toggle_mode = true
-text = "+Comment"
-
-[node name="More" type="Button" parent="MarginContainer/HBoxContainer"]
-custom_minimum_size = Vector2(15, 0)
-layout_mode = 2
-mouse_default_cursor_shape = 2
-theme_override_styles/normal = SubResource("1")
-toggle_mode = true
 text = "+"
 
 [connection signal="close_request" from="." to="." method="_on_GraphNode_close_request"]
 [connection signal="resize_request" from="." to="." method="_on_GraphNode_resize_request"]
-[connection signal="toggled" from="MarginContainer/HBoxContainer/AddColumn/DisplayName" to="." method="_on_DisplayName_toggled"]
-[connection signal="toggled" from="MarginContainer/HBoxContainer/AddColumn/Options" to="." method="_on_Options_toggled"]
-[connection signal="toggled" from="MarginContainer/HBoxContainer/AddColumn/Text" to="." method="_on_Text_toggled"]
-[connection signal="pressed" from="MarginContainer/HBoxContainer/AddColumn/Conditional" to="." method="_on_Conditional_pressed"]
-[connection signal="toggled" from="MarginContainer/HBoxContainer/AddColumn/LineAsset" to="." method="_on_LineAsset_toggled"]
-[connection signal="toggled" from="MarginContainer/HBoxContainer/AddColumn/Comment" to="." method="_on_Comment_toggled"]
-[connection signal="toggled" from="MarginContainer/HBoxContainer/More" to="." method="_on_More_toggled"]

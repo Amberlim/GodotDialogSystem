@@ -3,6 +3,7 @@ extends PanelContainer
 
 @onready var text_edit = $MarginContainer/VBoxContainer/HBoxContainer/TextEdit
 @onready var one_shot: CheckBox = $MarginContainer/VBoxContainer/CheckBox
+@onready var id_label: Label = $MarginContainer/VBoxContainer/IDLabel
 
 var id = UUID.v4()
 var node_type = "NodeOption"
@@ -13,6 +14,8 @@ var loaded_one_shot = false
 func _ready():
 	text_edit.text = loaded_sentence
 	one_shot.button_pressed = loaded_one_shot
+	
+	id_label.text = id + " (click to copy)"
 
 
 func _to_dict() -> Dictionary:
@@ -42,3 +45,8 @@ func _on_delete_pressed():
 	var parent = get_parent_control()
 	queue_free()
 	parent.size.y = 0
+
+
+func _on_id_label_gui_input(event):
+	if event is InputEventMouseButton and event.pressed:
+		DisplayServer.clipboard_set(id)
