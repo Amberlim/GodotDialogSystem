@@ -87,7 +87,7 @@ func _on_NewRoll_pressed():
 func _on_save_pressed():
 	var path = file_path + "/dialogs.json"
 	var file = FileAccess.open(path, FileAccess.WRITE)
-	var data = JSON.stringify(_to_dict(), "\t")
+	var data = JSON.stringify(_to_dict(), "\t", false, true)
 	file.store_string(data)
 	file.close()
 	
@@ -126,12 +126,14 @@ func load_project(path):
 	graph_edit.clear_connections()
 	
 	var node_list = data.get("ListNodes")
+	var root_node_ref
 	
 	for node in node_list:
 		var new_node
 		match node.get("$type"):
 			"NodeRoot":
 				new_node = root_node.instantiate()
+				root_node_ref = new_node
 			"NodeSentence":
 				new_node = sentence_node.instantiate()
 				new_node.loaded_text = node.get("Sentence")
@@ -151,6 +153,16 @@ func load_project(path):
 		graph_edit.add_child(new_node)
 	
 	
+	# Root Node Variables and Characters
+	for variable in data.get("Variables"):
+		root_node_ref.add_variable()
+	
+	for character in data.get("Characters"):
+		root_node_ref.add_character(character.get("ID"))
+	
+	graph_edit.update_speakers(root_node_ref.get_characters())
+	
+	
 	for node in node_list:
 		match node.get("$type"):
 			"NodeRoot":
@@ -163,6 +175,9 @@ func load_project(path):
 				if node.get("NextID") is String:
 					var next_node = get_node_by_id(node.get("NextID"))
 					graph_edit.connect_node(current_node.name, 0, next_node.name, 0)
+				
+				var speaker_idx = current_node.get_character_idx_from_text(node.get("SpeakerID"))
+				current_node.character_drop.select(speaker_idx)
 			"NodeChoice":
 				var current_node = get_node_by_id(node.get("ID"))
 				current_node.connect_all_options(node_list)
@@ -177,9 +192,7 @@ func load_project(path):
 					var fail_node = get_node_by_id(node.get("FailID"))
 					graph_edit.connect_node(current_node.name, 1, fail_node.name, 0)
 	
-	
 	graph_edit.arrange_nodes()
-	graph_edit.update_speakers()
 	
 	
 func get_node_by_id(id):

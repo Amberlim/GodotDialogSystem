@@ -6,8 +6,9 @@
 bg_color = Color(0.6, 0.6, 0.6, 0)
 
 [node name="ChoiceNode" type="GraphNode" groups=["graph_nodes"]]
-offset_right = 340.0
+offset_right = 170.0
 offset_bottom = 77.0
+size_flags_vertical = 0
 theme_override_constants/separation = 10
 title = "ChoiceNode"
 show_close = true

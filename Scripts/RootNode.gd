@@ -29,9 +29,10 @@ func _to_dict() -> Dictionary:
 	}
 
 
-func _on_add_character_pressed():
+func add_character(id: String = ""):
 	var new_node = character_node.instantiate()
 	character_container.add_child(new_node)
+	new_node.id_input.text = id
 	new_node.id_input.text_changed.connect(text_submitted_callback)
 	
 	character_container.move_child(character_add_btn, character_container.get_child_count()-1)
@@ -39,7 +40,7 @@ func _on_add_character_pressed():
 	get_parent().update_speakers(get_characters())
 
 
-func _on_add_variable_pressed():
+func add_variable():
 	var new_node = variable_node.instantiate()
 	variable_container.add_child(new_node)
 	

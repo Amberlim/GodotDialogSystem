@@ -1,6 +1,7 @@
-[gd_scene load_steps=10 format=3 uid="uid://dc6yhsckryppk"]
+[gd_scene load_steps=11 format=3 uid="uid://dc6yhsckryppk"]
 
 [ext_resource type="Script" path="res://Scripts/Control.gd" id="2_1tprk"]
+[ext_resource type="Texture2D" uid="uid://bnnt6new24gv3" path="res://Assets/config_icon.png" id="2_31p2a"]
 [ext_resource type="Script" path="res://Scripts/GraphEdit.gd" id="2_fn1ag"]
 [ext_resource type="Script" path="res://Scripts/WelcomeWindow.gd" id="3_bs36t"]
 [ext_resource type="Texture2D" uid="uid://d3dnd2j3ikuc2" path="res://Assets/new_file_icon.png" id="4_kk1hq"]
@@ -53,6 +54,13 @@ layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 4
 theme_override_constants/separation = 10
+
+[node name="Config" type="Button" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_override_font_sizes/font_size = 12
+text = "Config"
+icon = ExtResource("2_31p2a")
 
 [node name="NewSentence" type="Button" parent="VBoxContainer/HBoxContainer"]
 layout_mode = 2
@@ -213,6 +221,7 @@ script = SubResource("GDScript_so3r8")
 [connection signal="resized" from="." to="WelcomeWindow" method="_on_control_resized"]
 [connection signal="resized" from="." to="ProjectFinderDialog" method="_on_control_resized"]
 [connection signal="resized" from="." to="HelpWindow" method="_on_control_resized"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/Config" to="." method="_on_Button_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/NewSentence" to="." method="_on_Button_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/NewOption" to="." method="_on_NewOption_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/NewRoll" to="." method="_on_NewRoll_pressed"]

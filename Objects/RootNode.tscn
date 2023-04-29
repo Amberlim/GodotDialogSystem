@@ -88,5 +88,5 @@ theme_override_constants/separation = 5
 layout_mode = 2
 text = "+"
 
-[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/Add" to="." method="_on_add_character_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer/Add" to="." method="_on_add_variable_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/Add" to="." method="add_character"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer/Add" to="." method="add_variable"]

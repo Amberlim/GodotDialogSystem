@@ -36,7 +36,7 @@ func _to_dict() -> Dictionary:
 		"ID": id,
 		"NextID": next_id_node[0].id if next_id_node else -1,
 		"Sentence": text.get_node("TextEdit").text,
-		"SpeaketID": character_drop.get_item_text(character_drop.selected),
+		"SpeakerID": character_drop.get_item_text(character_drop.selected),
 		"DisplaySpeakerName": "",
 		"Conditions": [],
 		"Actions": [],
@@ -87,3 +87,12 @@ func _on_Text_toggled(button_pressed):
 		text.visible = true
 	else:
 		text.visible = false
+
+
+func get_character_idx_from_text(text: String):
+	for idx in character_drop.item_count:
+		var character = character_drop.get_item_text(idx)
+		if character == text:
+			return idx
+	
+	return 0
