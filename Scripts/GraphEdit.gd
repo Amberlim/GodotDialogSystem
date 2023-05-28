@@ -40,6 +40,9 @@ func update_speakers(characters: Array = []):
 	
 	for node in get_children():
 		if node.node_type == "NodeSentence":
+			var selected = node.character_drop.selected
 			node.character_drop.clear()
 			for speaker in speakers:
 				node.character_drop.add_item(speaker)
+			node.character_drop.select(selected)
+			

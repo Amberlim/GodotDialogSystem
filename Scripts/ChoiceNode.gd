@@ -83,7 +83,6 @@ func connect_all_options(node_list: Array):
 		for connection in connections:
 			print(connection)
 	
-	
 	var all_options = []
 	for child in get_children():
 		if is_instance_of(child, PanelContainer) and child.id != null:
@@ -96,10 +95,13 @@ func connect_all_options(node_list: Array):
 			continue
 		
 		var next_node = get_next_node(raw_option.get("NextID"))
-		get_parent().connect_node(name, index, next_node.name, 0)
+		if not next_node is int:
+			get_parent().connect_node(name, index, next_node.name, 0)
 		index+=1
 		
 func get_next_node(next_node_id):
 	for node in get_parent().get_children():
-		if node.id == next_node_id:
+		if not  next_node_id is int and node.id == next_node_id:
 			return node
+	
+	return -1

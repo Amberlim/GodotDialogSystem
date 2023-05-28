@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://cn0k1eado2t4t"]
 
 [ext_resource type="Script" path="res://Scripts/RootNode.gd" id="1_e8g7i"]
-[ext_resource type="PackedScene" uid="uid://bomromd5ru40h" path="res://Objects/Actions.tscn" id="2_q1v2k"]
+[ext_resource type="PackedScene" uid="uid://b1jbhbqw8er6t" path="res://Objects/RootNodePanel.tscn" id="2_u3qeq"]
 
 [sub_resource type="Theme" id="Theme_llmqa"]
 
@@ -44,53 +44,5 @@ theme_override_constants/margin_top = 0
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+[node name="VBoxContainer" parent="MarginContainer" instance=ExtResource("2_u3qeq")]
 layout_mode = 2
-size_flags_vertical = 0
-theme_override_constants/separation = 20
-
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 0
-theme_override_constants/separation = 40
-
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer"]
-custom_minimum_size = Vector2(100, 0)
-layout_mode = 2
-size_flags_vertical = 0
-text = "Characters"
-
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_constants/separation = 5
-
-[node name="Add" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
-layout_mode = 2
-text = "+"
-
-[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 0
-theme_override_constants/separation = 40
-
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
-custom_minimum_size = Vector2(100, 0)
-layout_mode = 2
-size_flags_vertical = 0
-text = "Variables"
-
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_constants/separation = 5
-
-[node name="Add" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer"]
-layout_mode = 2
-text = "+"
-
-[node name="Actions" parent="MarginContainer/VBoxContainer" instance=ExtResource("2_q1v2k")]
-layout_mode = 2
-
-[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/Add" to="." method="add_character"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer/Add" to="." method="add_variable"]

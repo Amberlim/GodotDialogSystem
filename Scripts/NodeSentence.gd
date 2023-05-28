@@ -15,11 +15,13 @@ var profiles = ["Santa", "Elf"]
 var conditionals_list = []
 var node_type = "NodeSentence"
 
+
 func _ready():
 	title = node_type + " (" + id + ")"
 
 	if loaded_text:
 		text.get_node("TextEdit").text = loaded_text
+
 
 func _to_dict() -> Dictionary:
 	var next_id_node = get_parent().get_all_connections_from_slot(name, 0)

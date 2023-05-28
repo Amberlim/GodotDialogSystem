@@ -18,6 +18,8 @@ var option_index = 0
 var node_index = 0
 var all_nodes_index = 0
 
+var root_node_ref
+
 
 func _ready():
 	if not file_path.is_empty():
@@ -30,6 +32,7 @@ func _ready():
 func _on_Button_pressed():
 	var node = sentence_node.instantiate()
 	graph_edit.add_child(node)
+	graph_edit.update_speakers(root_node_ref.get_characters())
 
 
 func _to_dict() -> Dictionary:
@@ -126,7 +129,6 @@ func load_project(path):
 	graph_edit.clear_connections()
 	
 	var node_list = data.get("ListNodes")
-	var root_node_ref
 	
 	for node in node_list:
 		var new_node

@@ -25,7 +25,7 @@ Util="*res://Scripts/Global/Util.gd"
 
 window/size/viewport_width=960
 window/size/viewport_height=540
-window/stretch/mode="2d"
+window/size/mode=2
 window/size/fullscreen=true
 
 [editor_plugins]

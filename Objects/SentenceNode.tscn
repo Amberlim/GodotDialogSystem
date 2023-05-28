@@ -11,6 +11,7 @@ font_color = Color(0.521569, 0.521569, 0.521569, 1)
 [node name="DialogNode" type="GraphNode" groups=["graph_nodes"]]
 offset_right = 565.0
 offset_bottom = 177.0
+size_flags_vertical = 0
 theme = SubResource("Theme_llmqa")
 title = "NodeSentence"
 show_close = true
@@ -27,6 +28,7 @@ script = ExtResource("1_at5jy")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 2
+size_flags_vertical = 0
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
@@ -34,6 +36,7 @@ theme_override_constants/margin_bottom = 10
 
 [node name="MainColumn" type="VBoxContainer" parent="MarginContainer"]
 layout_mode = 2
+size_flags_vertical = 0
 theme_override_constants/separation = 10
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/MainColumn"]
@@ -84,6 +87,7 @@ text = "Sentence"
 custom_minimum_size = Vector2(400, 100)
 layout_mode = 2
 size_flags_horizontal = 3
+wrap_mode = 1
 caret_blink = true
 
 [node name="Actions" parent="MarginContainer/MainColumn" instance=ExtResource("2_trq4v")]

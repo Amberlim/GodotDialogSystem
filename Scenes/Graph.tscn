@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://dc6yhsckryppk"]
+[gd_scene load_steps=15 format=3 uid="uid://dc6yhsckryppk"]
 
 [ext_resource type="Script" path="res://Scripts/Control.gd" id="2_1tprk"]
 [ext_resource type="Texture2D" uid="uid://bnnt6new24gv3" path="res://Assets/config_icon.png" id="2_31p2a"]
@@ -8,6 +8,8 @@
 [ext_resource type="Texture2D" uid="uid://btaddwoi8okc4" path="res://Assets/folder_icon.png" id="5_p7fyy"]
 [ext_resource type="Texture2D" uid="uid://bg0vjaa4shnng" path="res://Assets/help_icon.png" id="6_7yw5y"]
 [ext_resource type="Script" path="res://Scripts/NewFileDialog.gd" id="6_lrnkg"]
+[ext_resource type="Texture2D" uid="uid://cnei155dxxo2j" path="res://Assets/close_icon.png" id="9_b0faf"]
+[ext_resource type="Script" path="res://Scripts/SidePanelNodeDetails.gd" id="9_cxmnj"]
 
 [sub_resource type="GDScript" id="GDScript_gf31e"]
 script/source = "extends Window
@@ -29,6 +31,13 @@ script/source = "extends Button
 func _on_pressed():
 	get_window().hide()
 "
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0ehqk"]
+bg_color = Color(0.129412, 0.14902, 0.176471, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_p3pmt"]
+font_size = 10
+font_color = Color(0.635294, 0.635294, 0.635294, 1)
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -104,13 +113,13 @@ right_disconnects = true
 connection_lines_curvature = 0.0
 connection_lines_thickness = 3.0
 zoom = 0.6
-zoom_min = 0.35
+zoom_min = 0.2
 zoom_max = 1.0
 minimap_enabled = false
 script = ExtResource("2_fn1ag")
 
 [node name="WelcomeWindow" type="Window" parent="."]
-size = Vector2i(400, 150)
+size = Vector2i(500, 188)
 visible = false
 wrap_controls = true
 transient = true
@@ -161,7 +170,7 @@ transient = false
 exclusive = false
 borderless = true
 always_on_top = true
-ok_button_text = "Sélectionner le dossier courant"
+ok_button_text = "Sélectionner ce dossier"
 file_mode = 2
 access = 2
 script = ExtResource("6_lrnkg")
@@ -220,6 +229,51 @@ layout_mode = 2
 text = "Ok"
 script = SubResource("GDScript_so3r8")
 
+[node name="SidePanelNodeDetails" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.675
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 48.0
+offset_right = -18.0
+offset_bottom = -18.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_0ehqk")
+script = ExtResource("9_cxmnj")
+
+[node name="MarginContainer" type="MarginContainer" parent="SidePanelNodeDetails"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="PanelContainer" type="VBoxContainer" parent="SidePanelNodeDetails/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="HBoxContainer" type="HBoxContainer" parent="SidePanelNodeDetails/MarginContainer/PanelContainer"]
+layout_mode = 2
+
+[node name="LineEdit" type="LineEdit" parent="SidePanelNodeDetails/MarginContainer/PanelContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 17
+placeholder_text = "Node name"
+
+[node name="TextureButton" type="TextureButton" parent="SidePanelNodeDetails/MarginContainer/PanelContainer/HBoxContainer"]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+texture_normal = ExtResource("9_b0faf")
+stretch_mode = 3
+
+[node name="LabelID" type="Label" parent="SidePanelNodeDetails/MarginContainer/PanelContainer"]
+layout_mode = 2
+text = "id"
+label_settings = SubResource("LabelSettings_p3pmt")
+
 [connection signal="resized" from="." to="WelcomeWindow" method="_on_control_resized"]
 [connection signal="resized" from="." to="ProjectFinderDialog" method="_on_control_resized"]
 [connection signal="resized" from="." to="HelpWindow" method="_on_control_resized"]
@@ -231,8 +285,10 @@ script = SubResource("GDScript_so3r8")
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/Clear" to="." method="_on_Clear_pressed"]
 [connection signal="connection_request" from="VBoxContainer/GraphEdit" to="." method="_on_GraphEdit_connection_request"]
 [connection signal="disconnection_request" from="VBoxContainer/GraphEdit" to="." method="_on_GraphEdit_disconnection_request"]
+[connection signal="node_selected" from="VBoxContainer/GraphEdit" to="SidePanelNodeDetails" method="_on_graph_edit_node_selected"]
 [connection signal="pressed" from="WelcomeWindow/CenterContainer/VBoxContainer2/HBoxContainer/NewFileBtn" to="ProjectFinderDialog" method="_on_new_file_btn_pressed"]
 [connection signal="pressed" from="WelcomeWindow/CenterContainer/VBoxContainer2/HBoxContainer/OpenFileBtn" to="ProjectFinderDialog" method="_on_open_file_btn_pressed"]
 [connection signal="pressed" from="WelcomeWindow/CenterContainer/VBoxContainer2/CenterContainer/HelpBtn" to="HelpWindow" method="_on_help_btn_pressed"]
 [connection signal="dir_selected" from="ProjectFinderDialog" to="." method="_on_project_finder_dialog_dir_selected"]
 [connection signal="pressed" from="HelpWindow/MarginContainer/VBoxContainer/CenterContainer/Continue" to="HelpWindow/MarginContainer/VBoxContainer/CenterContainer/Continue" method="_on_pressed"]
+[connection signal="pressed" from="SidePanelNodeDetails/MarginContainer/PanelContainer/HBoxContainer/TextureButton" to="SidePanelNodeDetails" method="_on_texture_button_pressed"]

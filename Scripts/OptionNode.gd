@@ -2,7 +2,9 @@ extends PanelContainer
 
 
 @onready var text_edit = $MarginContainer/VBoxContainer/HBoxContainer/TextEdit
+@onready var enable: CheckBox = $MarginContainer/VBoxContainer/CheckBox2
 @onready var one_shot: CheckBox = $MarginContainer/VBoxContainer/CheckBox
+@onready var decisive: CheckBox = $MarginContainer/VBoxContainer/HBoxContainer2/DecisiveCheckBox
 @onready var id_label: Label = $MarginContainer/VBoxContainer/IDLabel
 
 var id = UUID.v4()
@@ -33,7 +35,9 @@ func _to_dict() -> Dictionary:
 		"ID": id,
 		"NextID": next_id_node[0].id if next_id_node else -1,
 		"Sentence": text_edit.text,
+		"Enable": enable.button_pressed,
 		"OneShot": one_shot.button_pressed,
+		"Decisive": decisive.button_pressed,
 		"Conditions": [],
 		"Actions": [],
 		"Flags": [],
