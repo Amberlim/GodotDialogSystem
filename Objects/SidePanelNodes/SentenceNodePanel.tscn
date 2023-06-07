@@ -1,0 +1,70 @@
+[gd_scene load_steps=4 format=3]
+
+[ext_resource type="Script" path="res://Scripts/SidePanelNodes/SentenceNodePanel.gd" id="1_626xh"]
+[ext_resource type="PackedScene" path="res://Objects/SubComponents/Actions.tscn" id="1_thcfs"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_c5sko"]
+font_color = Color(0.521569, 0.521569, 0.521569, 1)
+
+[node name="SentenceNodePanel" type="VBoxContainer"]
+offset_right = 500.0
+offset_bottom = 244.0
+script = ExtResource("1_626xh")
+
+[node name="SpeakerContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="SubContainer" type="HBoxContainer" parent="SpeakerContainer"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="TextLabel" type="Label" parent="SpeakerContainer/SubContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "Speaker"
+
+[node name="CharacterDrop" type="OptionButton" parent="SpeakerContainer/SubContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="DisplayNameContainer" type="MarginContainer" parent="SpeakerContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 25
+
+[node name="SubContainer" type="HBoxContainer" parent="SpeakerContainer/DisplayNameContainer"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="TextLabel" type="Label" parent="SpeakerContainer/DisplayNameContainer/SubContainer"]
+custom_minimum_size = Vector2(125, 0)
+layout_mode = 2
+text = "↳ Display Name"
+label_settings = SubResource("LabelSettings_c5sko")
+
+[node name="LineEdit" type="LineEdit" parent="SpeakerContainer/DisplayNameContainer/SubContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="SentenceContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="TextLabel" type="Label" parent="SentenceContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_vertical = 0
+text = "Sentence"
+
+[node name="TextEdit" type="TextEdit" parent="SentenceContainer"]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
+size_flags_horizontal = 3
+wrap_mode = 1
+caret_blink = true
+
+[node name="Actions" parent="." instance=ExtResource("1_thcfs")]
+layout_mode = 2
+
+[connection signal="item_selected" from="SpeakerContainer/SubContainer/CharacterDrop" to="." method="_on_character_drop_item_selected"]
+[connection signal="text_changed" from="SpeakerContainer/DisplayNameContainer/SubContainer/LineEdit" to="." method="_on_display_name_line_edit_text_changed"]
+[connection signal="text_changed" from="SentenceContainer/TextEdit" to="." method="_on_sentence_text_edit_changed"]

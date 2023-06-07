@@ -1,3 +1,11 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
 config_version=5
 
 [application]
@@ -10,7 +18,7 @@ config/icon="res://icon.png"
 
 [autoload]
 
-UUID="*res://Scripts/UUID.gd"
+UUID="*res://Scripts/Global/UUID.gd"
 Util="*res://Scripts/Global/Util.gd"
 
 [display]
@@ -22,7 +30,11 @@ window/size/fullscreen=true
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/editor_icon_previewer/plugin.cfg")
+enabled=PackedStringArray("res://addons/editor_icon_previewer/plugin.cfg", "res://addons/Todo_Manager/plugin.cfg")
+
+[gui]
+
+theme/custom="res://Assets/MainTheme.tres"
 
 [input]
 

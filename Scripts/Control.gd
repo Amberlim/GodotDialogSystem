@@ -5,11 +5,11 @@ var dialog_for_localisation = []
 
 @export var file_path: String
 
-@onready var sentence_node = preload("res://Objects/SentenceNode.tscn")
-@onready var dice_roll_node = preload("res://Objects/DiceRoll.tscn")
-@onready var choice_node = preload("res://Objects/ChoiceNode.tscn")
-@onready var root_node = preload("res://Objects/RootNode.tscn")
-@onready var option_panel = preload("res://Objects/OptionNode.tscn")
+@onready var sentence_node = preload("res://Objects/GraphNodes/SentenceNode.tscn")
+@onready var dice_roll_node = preload("res://Objects/GraphNodes/DiceRollNode.tscn")
+@onready var choice_node = preload("res://Objects/GraphNodes/ChoiceNode.tscn")
+@onready var root_node = preload("res://Objects/GraphNodes/RootNode.tscn")
+@onready var option_panel = preload("res://Objects/SubComponents/OptionNode.tscn")
 
 @onready var graph_edit: GraphEdit = $VBoxContainer/GraphEdit
 
@@ -176,12 +176,10 @@ func load_project(path):
 					var next_node = get_node_by_id(node.get("NextID"))
 					graph_edit.connect_node(current_node.name, 0, next_node.name, 0)
 			"NodeSentence":
+				current_node._from_dict(node)
 				if node.get("NextID") is String:
 					var next_node = get_node_by_id(node.get("NextID"))
 					graph_edit.connect_node(current_node.name, 0, next_node.name, 0)
-				
-				var speaker_idx = current_node.get_character_idx_from_text(node.get("SpeakerID"))
-				current_node.character_drop.select(speaker_idx)
 			"NodeChoice":
 				current_node.connect_all_options(node_list)
 			"NodeDiceRoll":
@@ -195,10 +193,6 @@ func load_project(path):
 		
 		if not current_node: # OptionNode
 			continue
-		
-		if node.has("Actions") and not current_node.get("actions") == null:
-			for action in node.get("Actions"):
-				current_node.actions.new_action(action.get("$type"), action.get("Argument"))
 		
 		if node.has("EditorPosition"):
 			current_node.position_offset.x = node.EditorPosition.get("x")

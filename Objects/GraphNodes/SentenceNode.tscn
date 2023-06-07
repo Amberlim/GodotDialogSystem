@@ -1,0 +1,43 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://Scripts/GraphNodes/NodeSentence.gd" id="1_at5jy"]
+
+[sub_resource type="Theme" id="Theme_llmqa"]
+
+[node name="DialogNode" type="GraphNode" groups=["graph_nodes"]]
+custom_minimum_size = Vector2(200, 200)
+offset_right = 200.0
+offset_bottom = 200.0
+size_flags_vertical = 0
+theme = SubResource("Theme_llmqa")
+title = "NodeSentence"
+show_close = true
+slot/0/left_enabled = true
+slot/0/left_type = 0
+slot/0/left_color = Color(1, 0.156863, 0.396078, 1)
+slot/0/left_icon = null
+slot/0/right_enabled = true
+slot/0/right_type = 0
+slot/0/right_color = Color(0.0352941, 0.443137, 0.407843, 1)
+slot/0/right_icon = null
+slot/0/draw_stylebox = true
+script = ExtResource("1_at5jy")
+
+[node name="MainContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="TextLabelPreview" type="RichTextLabel" parent="MainContainer"]
+layout_mode = 2
+theme_override_colors/default_color = Color(0.72549, 0.72549, 0.72549, 1)
+bbcode_enabled = true
+text = "None"
+fit_content = true
+scroll_following = true
+
+[connection signal="close_request" from="." to="." method="_on_GraphNode_close_request"]
+[connection signal="resize_request" from="." to="." method="_on_GraphNode_resize_request"]

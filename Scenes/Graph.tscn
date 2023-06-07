@@ -1,15 +1,24 @@
-[gd_scene load_steps=15 format=3 uid="uid://dc6yhsckryppk"]
+[gd_scene load_steps=18 format=3 uid="uid://bqjfdabrxujp7"]
 
 [ext_resource type="Script" path="res://Scripts/Control.gd" id="2_1tprk"]
 [ext_resource type="Texture2D" uid="uid://bnnt6new24gv3" path="res://Assets/config_icon.png" id="2_31p2a"]
 [ext_resource type="Script" path="res://Scripts/GraphEdit.gd" id="2_fn1ag"]
-[ext_resource type="Script" path="res://Scripts/WelcomeWindow.gd" id="3_bs36t"]
+[ext_resource type="Script" path="res://Scripts/Windows/WelcomeWindow.gd" id="3_bs36t"]
 [ext_resource type="Texture2D" uid="uid://d3dnd2j3ikuc2" path="res://Assets/new_file_icon.png" id="4_kk1hq"]
+[ext_resource type="PackedScene" path="res://Objects/GraphNodes/RootNode.tscn" id="4_mtd7q"]
 [ext_resource type="Texture2D" uid="uid://btaddwoi8okc4" path="res://Assets/folder_icon.png" id="5_p7fyy"]
 [ext_resource type="Texture2D" uid="uid://bg0vjaa4shnng" path="res://Assets/help_icon.png" id="6_7yw5y"]
-[ext_resource type="Script" path="res://Scripts/NewFileDialog.gd" id="6_lrnkg"]
+[ext_resource type="Script" path="res://Scripts/Windows/NewFileDialog.gd" id="6_lrnkg"]
 [ext_resource type="Texture2D" uid="uid://cnei155dxxo2j" path="res://Assets/close_icon.png" id="9_b0faf"]
-[ext_resource type="Script" path="res://Scripts/SidePanelNodeDetails.gd" id="9_cxmnj"]
+[ext_resource type="Script" path="res://Scripts/SidePanelNodes/SidePanelNodeDetails.gd" id="9_cxmnj"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ofwl0"]
+content_margin_top = 45.0
+bg_color = Color(0.129412, 0.14902, 0.180392, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gh0k1"]
+bg_color = Color(0.117647, 0.133333, 0.164706, 1)
+expand_margin_top = 2.0
 
 [sub_resource type="GDScript" id="GDScript_gf31e"]
 script/source = "extends Window
@@ -33,7 +42,7 @@ func _on_pressed():
 "
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0ehqk"]
-bg_color = Color(0.129412, 0.14902, 0.176471, 1)
+bg_color = Color(0.129412, 0.14902, 0.180392, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_p3pmt"]
 font_size = 10
@@ -118,8 +127,17 @@ zoom_max = 1.0
 minimap_enabled = false
 script = ExtResource("2_fn1ag")
 
+[node name="RootNode" parent="VBoxContainer/GraphEdit" instance=ExtResource("4_mtd7q")]
+layout_mode = 2
+offset_right = 960.0
+offset_bottom = 248.0
+scale = Vector2(0.6, 0.6)
+mouse_filter = 1
+theme_override_styles/frame = SubResource("StyleBoxFlat_ofwl0")
+theme_override_styles/slot = SubResource("StyleBoxFlat_gh0k1")
+
 [node name="WelcomeWindow" type="Window" parent="."]
-size = Vector2i(500, 188)
+size = Vector2i(530, 188)
 visible = false
 wrap_controls = true
 transient = true
@@ -129,35 +147,38 @@ borderless = true
 always_on_top = true
 script = ExtResource("3_bs36t")
 
-[node name="CenterContainer" type="CenterContainer" parent="WelcomeWindow"]
+[node name="PanelContainer" type="PanelContainer" parent="WelcomeWindow"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="WelcomeWindow/CenterContainer"]
+[node name="CenterContainer" type="CenterContainer" parent="WelcomeWindow/PanelContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="WelcomeWindow/PanelContainer/CenterContainer"]
 layout_mode = 2
 theme_override_constants/separation = 20
 
-[node name="HBoxContainer" type="HBoxContainer" parent="WelcomeWindow/CenterContainer/VBoxContainer2"]
+[node name="HBoxContainer" type="HBoxContainer" parent="WelcomeWindow/PanelContainer/CenterContainer/VBoxContainer2"]
 layout_mode = 2
 theme_override_constants/separation = 20
 
-[node name="NewFileBtn" type="Button" parent="WelcomeWindow/CenterContainer/VBoxContainer2/HBoxContainer"]
+[node name="NewFileBtn" type="Button" parent="WelcomeWindow/PanelContainer/CenterContainer/VBoxContainer2/HBoxContainer"]
 layout_mode = 2
 text = "New Project"
 icon = ExtResource("4_kk1hq")
 
-[node name="OpenFileBtn" type="Button" parent="WelcomeWindow/CenterContainer/VBoxContainer2/HBoxContainer"]
+[node name="OpenFileBtn" type="Button" parent="WelcomeWindow/PanelContainer/CenterContainer/VBoxContainer2/HBoxContainer"]
 layout_mode = 2
 text = "Open Project..."
 icon = ExtResource("5_p7fyy")
 
-[node name="CenterContainer" type="CenterContainer" parent="WelcomeWindow/CenterContainer/VBoxContainer2"]
+[node name="CenterContainer" type="CenterContainer" parent="WelcomeWindow/PanelContainer/CenterContainer/VBoxContainer2"]
 layout_mode = 2
 
-[node name="HelpBtn" type="Button" parent="WelcomeWindow/CenterContainer/VBoxContainer2/CenterContainer"]
+[node name="HelpBtn" type="Button" parent="WelcomeWindow/PanelContainer/CenterContainer/VBoxContainer2/CenterContainer"]
 layout_mode = 2
 text = "Need Help ?"
 icon = ExtResource("6_7yw5y")
@@ -170,7 +191,7 @@ transient = false
 exclusive = false
 borderless = true
 always_on_top = true
-ok_button_text = "Sélectionner ce dossier"
+ok_button_text = "Sélectionner le dossier courant"
 file_mode = 2
 access = 2
 script = ExtResource("6_lrnkg")
@@ -183,32 +204,35 @@ borderless = true
 always_on_top = true
 script = SubResource("GDScript_gf31e")
 
-[node name="MarginContainer" type="MarginContainer" parent="HelpWindow"]
+[node name="PanelContainer" type="PanelContainer" parent="HelpWindow"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="HelpWindow/PanelContainer"]
+layout_mode = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="VBoxContainer" type="VBoxContainer" parent="HelpWindow/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="HelpWindow/PanelContainer/MarginContainer"]
 layout_mode = 2
 theme_override_constants/separation = 20
 
-[node name="PanelContainer" type="PanelContainer" parent="HelpWindow/MarginContainer/VBoxContainer"]
+[node name="PanelContainer" type="PanelContainer" parent="HelpWindow/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="HelpWindow/MarginContainer/VBoxContainer/PanelContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="HelpWindow/PanelContainer/MarginContainer/VBoxContainer/PanelContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="RichTextLabel" type="RichTextLabel" parent="HelpWindow/MarginContainer/VBoxContainer/PanelContainer/MarginContainer"]
+[node name="RichTextLabel" type="RichTextLabel" parent="HelpWindow/PanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer"]
 layout_mode = 2
 bbcode_enabled = true
 text = "A project consists of several files all in the same folder. These files are all json files.
@@ -221,10 +245,10 @@ Then the other files are all the dialogues. which can be organized by chapters i
 fit_content = true
 scroll_active = false
 
-[node name="CenterContainer" type="CenterContainer" parent="HelpWindow/MarginContainer/VBoxContainer"]
+[node name="CenterContainer" type="CenterContainer" parent="HelpWindow/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="Continue" type="Button" parent="HelpWindow/MarginContainer/VBoxContainer/CenterContainer"]
+[node name="Continue" type="Button" parent="HelpWindow/PanelContainer/MarginContainer/VBoxContainer/CenterContainer"]
 layout_mode = 2
 text = "Ok"
 script = SubResource("GDScript_so3r8")
@@ -286,9 +310,9 @@ label_settings = SubResource("LabelSettings_p3pmt")
 [connection signal="connection_request" from="VBoxContainer/GraphEdit" to="." method="_on_GraphEdit_connection_request"]
 [connection signal="disconnection_request" from="VBoxContainer/GraphEdit" to="." method="_on_GraphEdit_disconnection_request"]
 [connection signal="node_selected" from="VBoxContainer/GraphEdit" to="SidePanelNodeDetails" method="_on_graph_edit_node_selected"]
-[connection signal="pressed" from="WelcomeWindow/CenterContainer/VBoxContainer2/HBoxContainer/NewFileBtn" to="ProjectFinderDialog" method="_on_new_file_btn_pressed"]
-[connection signal="pressed" from="WelcomeWindow/CenterContainer/VBoxContainer2/HBoxContainer/OpenFileBtn" to="ProjectFinderDialog" method="_on_open_file_btn_pressed"]
-[connection signal="pressed" from="WelcomeWindow/CenterContainer/VBoxContainer2/CenterContainer/HelpBtn" to="HelpWindow" method="_on_help_btn_pressed"]
+[connection signal="pressed" from="WelcomeWindow/PanelContainer/CenterContainer/VBoxContainer2/HBoxContainer/NewFileBtn" to="ProjectFinderDialog" method="_on_new_file_btn_pressed"]
+[connection signal="pressed" from="WelcomeWindow/PanelContainer/CenterContainer/VBoxContainer2/HBoxContainer/OpenFileBtn" to="ProjectFinderDialog" method="_on_open_file_btn_pressed"]
+[connection signal="pressed" from="WelcomeWindow/PanelContainer/CenterContainer/VBoxContainer2/CenterContainer/HelpBtn" to="HelpWindow" method="_on_help_btn_pressed"]
 [connection signal="dir_selected" from="ProjectFinderDialog" to="." method="_on_project_finder_dialog_dir_selected"]
-[connection signal="pressed" from="HelpWindow/MarginContainer/VBoxContainer/CenterContainer/Continue" to="HelpWindow/MarginContainer/VBoxContainer/CenterContainer/Continue" method="_on_pressed"]
+[connection signal="pressed" from="HelpWindow/PanelContainer/MarginContainer/VBoxContainer/CenterContainer/Continue" to="HelpWindow/PanelContainer/MarginContainer/VBoxContainer/CenterContainer/Continue" method="_on_pressed"]
 [connection signal="pressed" from="SidePanelNodeDetails/MarginContainer/PanelContainer/HBoxContainer/TextureButton" to="SidePanelNodeDetails" method="_on_texture_button_pressed"]

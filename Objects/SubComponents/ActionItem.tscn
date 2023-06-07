@@ -1,0 +1,77 @@
+[gd_scene load_steps=4 format=3 uid="uid://cdhtli8dps86p"]
+
+[ext_resource type="Texture2D" uid="uid://cejwfau3dwbtt" path="res://Assets/dot_icon.png" id="1_hyqjn"]
+[ext_resource type="Texture2D" uid="uid://ckcnhbs2x6roy" path="res://Assets/trash_icon.png" id="2_dfdnt"]
+
+[sub_resource type="GDScript" id="GDScript_56lbc"]
+script/source = "extends HBoxContainer
+
+
+@onready var option_btn: OptionButton = $OptionButton
+@onready var argument: LineEdit = $LineEdit
+
+enum actions {ENABLE_OPTION, DISABLE_OPTION, UPDATE_VARIABLE}
+
+
+func _ready():
+	option_btn.clear()
+	var i = 0
+	for action in actions:
+		option_btn.add_item(action, i)
+		i+=1
+	
+	option_btn.select(1)
+
+
+func _to_dict():
+	return {
+		\"$type\": option_btn.get_item_text(option_btn.selected),
+		\"Argument\": argument.text
+	}
+
+
+func _on_texture_button_pressed():
+	queue_free()
+
+
+func get_action_idx_from_text(text: String):
+	for idx in option_btn.item_count:
+		var action = option_btn.get_item_text(idx)
+		if action == text:
+			return idx
+	
+	return 0
+"
+
+[node name="ActionItem" type="HBoxContainer"]
+theme_override_constants/separation = 10
+script = SubResource("GDScript_56lbc")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 2
+texture = ExtResource("1_hyqjn")
+stretch_mode = 3
+
+[node name="OptionButton" type="OptionButton" parent="."]
+layout_mode = 2
+item_count = 3
+selected = 0
+popup/item_0/text = "Enable Option"
+popup/item_0/id = 0
+popup/item_1/text = "Disable Option"
+popup/item_1/id = 1
+popup/item_2/text = "Update Variable"
+popup/item_2/id = 2
+
+[node name="LineEdit" type="LineEdit" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "Argument"
+
+[node name="TextureButton" type="TextureButton" parent="."]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+texture_normal = ExtResource("2_dfdnt")
+stretch_mode = 5
+
+[connection signal="pressed" from="TextureButton" to="." method="_on_texture_button_pressed"]
