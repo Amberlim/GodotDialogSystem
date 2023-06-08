@@ -1,11 +1,12 @@
 extends GraphNode
 
-var node_type = "NodeChoice"
+var _node_dict: Dictionary
 
 @onready var conditionals_stack = preload("res://Objects/SubComponents/ConditionalsStack.tscn")
 @onready var option_panel = preload("res://Objects/SubComponents/OptionNode.tscn")
 
 var id = UUID.v4()
+var node_type = "NodeChoice"
 
 var loaded_options = []
 

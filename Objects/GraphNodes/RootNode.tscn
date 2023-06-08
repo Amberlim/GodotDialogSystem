@@ -1,13 +1,15 @@
-[gd_scene load_steps=4 format=3]
+[gd_scene load_steps=4 format=3 uid="uid://dqsnkyn3r76m4"]
 
 [ext_resource type="Script" path="res://Scripts/GraphNodes/RootNode.gd" id="1_e8g7i"]
-[ext_resource type="PackedScene" uid="uid://b1jbhbqw8er6t" path="res://Objects/SidePanelNodes/RootNodePanel.tscn" id="2_u3qeq"]
 
 [sub_resource type="Theme" id="Theme_llmqa"]
 
+[sub_resource type="LabelSettings" id="LabelSettings_afdty"]
+font_color = Color(0.635294, 0.635294, 0.635294, 1)
+
 [node name="RootNode" type="GraphNode" groups=["graph_nodes"]]
-offset_right = 503.0
-offset_bottom = 100.0
+offset_right = 350.0
+offset_bottom = 81.0
 size_flags_vertical = 0
 theme = SubResource("Theme_llmqa")
 theme_override_constants/title_h_offset = 5
@@ -21,29 +23,16 @@ slot/0/right_type = 0
 slot/0/right_color = Color(0.0352941, 0.443137, 0.407843, 1)
 slot/0/right_icon = null
 slot/0/draw_stylebox = true
-slot/1/left_enabled = false
-slot/1/left_type = 0
-slot/1/left_color = Color(1, 1, 1, 1)
-slot/1/left_icon = null
-slot/1/right_enabled = false
-slot/1/right_type = 0
-slot/1/right_color = Color(1, 1, 1, 1)
-slot/1/right_icon = null
-slot/1/draw_stylebox = true
 script = ExtResource("1_e8g7i")
 
 [node name="Connection" type="MarginContainer" parent="."]
 layout_mode = 2
-theme_override_constants/margin_top = 5
-theme_override_constants/margin_bottom = 5
-
-[node name="MarginContainer" type="MarginContainer" parent="."]
-layout_mode = 2
-size_flags_vertical = 0
 theme_override_constants/margin_left = 5
-theme_override_constants/margin_top = 0
+theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 
-[node name="VBoxContainer" parent="MarginContainer" instance=ExtResource("2_u3qeq")]
+[node name="Label" type="Label" parent="Connection"]
 layout_mode = 2
+text = "Select this node to edit settings"
+label_settings = SubResource("LabelSettings_afdty")

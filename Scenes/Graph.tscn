@@ -5,7 +5,7 @@
 [ext_resource type="Script" path="res://Scripts/GraphEdit.gd" id="2_fn1ag"]
 [ext_resource type="Script" path="res://Scripts/Windows/WelcomeWindow.gd" id="3_bs36t"]
 [ext_resource type="Texture2D" uid="uid://d3dnd2j3ikuc2" path="res://Assets/new_file_icon.png" id="4_kk1hq"]
-[ext_resource type="PackedScene" path="res://Objects/GraphNodes/RootNode.tscn" id="4_mtd7q"]
+[ext_resource type="PackedScene" uid="uid://dqsnkyn3r76m4" path="res://Objects/GraphNodes/RootNode.tscn" id="4_mtd7q"]
 [ext_resource type="Texture2D" uid="uid://btaddwoi8okc4" path="res://Assets/folder_icon.png" id="5_p7fyy"]
 [ext_resource type="Texture2D" uid="uid://bg0vjaa4shnng" path="res://Assets/help_icon.png" id="6_7yw5y"]
 [ext_resource type="Script" path="res://Scripts/Windows/NewFileDialog.gd" id="6_lrnkg"]
@@ -19,6 +19,13 @@ bg_color = Color(0.129412, 0.14902, 0.180392, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gh0k1"]
 bg_color = Color(0.117647, 0.133333, 0.164706, 1)
 expand_margin_top = 2.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0ehqk"]
+bg_color = Color(0.129412, 0.14902, 0.180392, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_p3pmt"]
+font_size = 10
+font_color = Color(0.635294, 0.635294, 0.635294, 1)
 
 [sub_resource type="GDScript" id="GDScript_gf31e"]
 script/source = "extends Window
@@ -40,13 +47,6 @@ script/source = "extends Button
 func _on_pressed():
 	get_window().hide()
 "
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0ehqk"]
-bg_color = Color(0.129412, 0.14902, 0.180392, 1)
-
-[sub_resource type="LabelSettings" id="LabelSettings_p3pmt"]
-font_size = 10
-font_color = Color(0.635294, 0.635294, 0.635294, 1)
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -115,19 +115,28 @@ visible = false
 layout_mode = 2
 text = "SAVED!"
 
-[node name="GraphEdit" type="GraphEdit" parent="VBoxContainer"]
+[node name="Control" type="Control" parent="VBoxContainer"]
 layout_mode = 2
+size_flags_vertical = 3
+
+[node name="GraphEdit" type="GraphEdit" parent="VBoxContainer/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 size_flags_vertical = 3
 right_disconnects = true
 connection_lines_curvature = 0.0
 connection_lines_thickness = 3.0
 zoom = 0.6
-zoom_min = 0.2
+zoom_min = 0.035
 zoom_max = 1.0
 minimap_enabled = false
 script = ExtResource("2_fn1ag")
 
-[node name="RootNode" parent="VBoxContainer/GraphEdit" instance=ExtResource("4_mtd7q")]
+[node name="RootNode" parent="VBoxContainer/Control/GraphEdit" instance=ExtResource("4_mtd7q")]
 layout_mode = 2
 offset_right = 960.0
 offset_bottom = 248.0
@@ -135,6 +144,57 @@ scale = Vector2(0.6, 0.6)
 mouse_filter = 1
 theme_override_styles/frame = SubResource("StyleBoxFlat_ofwl0")
 theme_override_styles/slot = SubResource("StyleBoxFlat_gh0k1")
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.629
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 0.159973
+grow_horizontal = 0
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 20
+
+[node name="SidePanelNodeDetails" type="PanelContainer" parent="VBoxContainer/Control/MarginContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_0ehqk")
+script = ExtResource("9_cxmnj")
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/Control/MarginContainer/SidePanelNodeDetails"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="PanelContainer" type="VBoxContainer" parent="VBoxContainer/Control/MarginContainer/SidePanelNodeDetails/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/Control/MarginContainer/SidePanelNodeDetails/MarginContainer/PanelContainer"]
+layout_mode = 2
+
+[node name="LineEdit" type="LineEdit" parent="VBoxContainer/Control/MarginContainer/SidePanelNodeDetails/MarginContainer/PanelContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 17
+placeholder_text = "Node name"
+
+[node name="TextureButton" type="TextureButton" parent="VBoxContainer/Control/MarginContainer/SidePanelNodeDetails/MarginContainer/PanelContainer/HBoxContainer"]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+texture_normal = ExtResource("9_b0faf")
+stretch_mode = 3
+
+[node name="LabelID" type="Label" parent="VBoxContainer/Control/MarginContainer/SidePanelNodeDetails/MarginContainer/PanelContainer"]
+layout_mode = 2
+text = "id"
+label_settings = SubResource("LabelSettings_p3pmt")
 
 [node name="WelcomeWindow" type="Window" parent="."]
 size = Vector2i(530, 188)
@@ -253,51 +313,6 @@ layout_mode = 2
 text = "Ok"
 script = SubResource("GDScript_so3r8")
 
-[node name="SidePanelNodeDetails" type="PanelContainer" parent="."]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.675
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = 48.0
-offset_right = -18.0
-offset_bottom = -18.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_0ehqk")
-script = ExtResource("9_cxmnj")
-
-[node name="MarginContainer" type="MarginContainer" parent="SidePanelNodeDetails"]
-layout_mode = 2
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 10
-
-[node name="PanelContainer" type="VBoxContainer" parent="SidePanelNodeDetails/MarginContainer"]
-layout_mode = 2
-theme_override_constants/separation = 5
-
-[node name="HBoxContainer" type="HBoxContainer" parent="SidePanelNodeDetails/MarginContainer/PanelContainer"]
-layout_mode = 2
-
-[node name="LineEdit" type="LineEdit" parent="SidePanelNodeDetails/MarginContainer/PanelContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 17
-placeholder_text = "Node name"
-
-[node name="TextureButton" type="TextureButton" parent="SidePanelNodeDetails/MarginContainer/PanelContainer/HBoxContainer"]
-layout_mode = 2
-mouse_default_cursor_shape = 2
-texture_normal = ExtResource("9_b0faf")
-stretch_mode = 3
-
-[node name="LabelID" type="Label" parent="SidePanelNodeDetails/MarginContainer/PanelContainer"]
-layout_mode = 2
-text = "id"
-label_settings = SubResource("LabelSettings_p3pmt")
-
 [connection signal="resized" from="." to="WelcomeWindow" method="_on_control_resized"]
 [connection signal="resized" from="." to="ProjectFinderDialog" method="_on_control_resized"]
 [connection signal="resized" from="." to="HelpWindow" method="_on_control_resized"]
@@ -307,12 +322,12 @@ label_settings = SubResource("LabelSettings_p3pmt")
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/NewRoll" to="." method="_on_NewRoll_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/Save" to="." method="_on_save_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/Clear" to="." method="_on_Clear_pressed"]
-[connection signal="connection_request" from="VBoxContainer/GraphEdit" to="." method="_on_GraphEdit_connection_request"]
-[connection signal="disconnection_request" from="VBoxContainer/GraphEdit" to="." method="_on_GraphEdit_disconnection_request"]
-[connection signal="node_selected" from="VBoxContainer/GraphEdit" to="SidePanelNodeDetails" method="_on_graph_edit_node_selected"]
+[connection signal="connection_request" from="VBoxContainer/Control/GraphEdit" to="." method="_on_GraphEdit_connection_request"]
+[connection signal="disconnection_request" from="VBoxContainer/Control/GraphEdit" to="." method="_on_GraphEdit_disconnection_request"]
+[connection signal="node_selected" from="VBoxContainer/Control/GraphEdit" to="VBoxContainer/Control/MarginContainer/SidePanelNodeDetails" method="_on_graph_edit_node_selected"]
+[connection signal="pressed" from="VBoxContainer/Control/MarginContainer/SidePanelNodeDetails/MarginContainer/PanelContainer/HBoxContainer/TextureButton" to="VBoxContainer/Control/MarginContainer/SidePanelNodeDetails" method="_on_texture_button_pressed"]
 [connection signal="pressed" from="WelcomeWindow/PanelContainer/CenterContainer/VBoxContainer2/HBoxContainer/NewFileBtn" to="ProjectFinderDialog" method="_on_new_file_btn_pressed"]
 [connection signal="pressed" from="WelcomeWindow/PanelContainer/CenterContainer/VBoxContainer2/HBoxContainer/OpenFileBtn" to="ProjectFinderDialog" method="_on_open_file_btn_pressed"]
 [connection signal="pressed" from="WelcomeWindow/PanelContainer/CenterContainer/VBoxContainer2/CenterContainer/HelpBtn" to="HelpWindow" method="_on_help_btn_pressed"]
 [connection signal="dir_selected" from="ProjectFinderDialog" to="." method="_on_project_finder_dialog_dir_selected"]
 [connection signal="pressed" from="HelpWindow/PanelContainer/MarginContainer/VBoxContainer/CenterContainer/Continue" to="HelpWindow/PanelContainer/MarginContainer/VBoxContainer/CenterContainer/Continue" method="_on_pressed"]
-[connection signal="pressed" from="SidePanelNodeDetails/MarginContainer/PanelContainer/HBoxContainer/TextureButton" to="SidePanelNodeDetails" method="_on_texture_button_pressed"]

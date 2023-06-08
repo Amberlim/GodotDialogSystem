@@ -1,7 +1,7 @@
-[gd_scene load_steps=4 format=3]
+[gd_scene load_steps=4 format=3 uid="uid://bqeslfyg77nj6"]
 
 [ext_resource type="Script" path="res://Scripts/SidePanelNodes/SentenceNodePanel.gd" id="1_626xh"]
-[ext_resource type="PackedScene" path="res://Objects/SubComponents/Actions.tscn" id="1_thcfs"]
+[ext_resource type="PackedScene" uid="uid://blvmilslu5boy" path="res://Objects/SubComponents/Actions.tscn" id="1_thcfs"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_c5sko"]
 font_color = Color(0.521569, 0.521569, 0.521569, 1)

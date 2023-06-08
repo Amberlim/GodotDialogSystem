@@ -11,7 +11,7 @@ var dialog_for_localisation = []
 @onready var root_node = preload("res://Objects/GraphNodes/RootNode.tscn")
 @onready var option_panel = preload("res://Objects/SubComponents/OptionNode.tscn")
 
-@onready var graph_edit: GraphEdit = $VBoxContainer/GraphEdit
+@onready var graph_edit: GraphEdit = $VBoxContainer/Control/GraphEdit
 
 var initial_pos = Vector2(40,40)
 var option_index = 0
@@ -159,10 +159,10 @@ func load_project(path):
 	for variable in data.get("Variables"):
 		root_node_ref.add_variable()
 	
-	for character in data.get("Characters"):
-		root_node_ref.add_character(character.get("ID"))
+	# for character in data.get("Characters"): # FIXME
+		# root_node_ref.add_character(character.get("ID"))
 	
-	graph_edit.update_speakers(root_node_ref.get_characters())
+	# graph_edit.update_speakers(root_node_ref.get_characters())
 	
 	
 	for node in node_list:

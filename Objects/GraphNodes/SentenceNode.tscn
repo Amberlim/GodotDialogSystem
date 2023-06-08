@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3]
+[gd_scene load_steps=3 format=3 uid="uid://cifg2nritn8t6"]
 
 [ext_resource type="Script" path="res://Scripts/GraphNodes/NodeSentence.gd" id="1_at5jy"]
 
@@ -35,8 +35,6 @@ theme_override_constants/margin_bottom = 10
 layout_mode = 2
 theme_override_colors/default_color = Color(0.72549, 0.72549, 0.72549, 1)
 bbcode_enabled = true
-text = "None"
-fit_content = true
 scroll_following = true
 
 [connection signal="close_request" from="." to="." method="_on_GraphNode_close_request"]
