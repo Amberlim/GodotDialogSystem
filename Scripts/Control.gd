@@ -143,8 +143,6 @@ func load_project(path):
 				new_node = choice_node.instantiate()
 				
 				var options = get_option_nodes(node_list, node.get("OptionsID"))
-				for option in options:
-					new_node.loaded_options.append(option)
 			"NodeDiceRoll":
 				new_node = dice_roll_node.instantiate()
 		
@@ -172,6 +170,7 @@ func load_project(path):
 		var current_node = get_node_by_id(node.get("ID"))
 		match node.get("$type"):
 			"NodeRoot":
+				current_node._from_dict(node)
 				if node.get("NextID") is String:
 					var next_node = get_node_by_id(node.get("NextID"))
 					graph_edit.connect_node(current_node.name, 0, next_node.name, 0)
@@ -181,6 +180,7 @@ func load_project(path):
 					var next_node = get_node_by_id(node.get("NextID"))
 					graph_edit.connect_node(current_node.name, 0, next_node.name, 0)
 			"NodeChoice":
+				current_node._from_dict(node, node_list)
 				current_node.connect_all_options(node_list)
 			"NodeDiceRoll":
 				if node.get("PassID") is String:

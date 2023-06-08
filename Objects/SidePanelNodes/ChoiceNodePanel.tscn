@@ -1,0 +1,20 @@
+[gd_scene load_steps=2 format=3 uid="uid://bubk8f6e236q4"]
+
+[ext_resource type="Script" path="res://Scripts/SidePanelNodes/ChoiceNodePanel.gd" id="1_mbc55"]
+
+[node name="ChoiceNodePanel" type="VBoxContainer"]
+offset_right = 40.0
+offset_bottom = 27.0
+script = ExtResource("1_mbc55")
+
+[node name="OptionsContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Add" type="Button" parent="."]
+custom_minimum_size = Vector2(15, 0)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+toggle_mode = true
+text = "+"
+
+[connection signal="pressed" from="Add" to="." method="_on_add_option_pressed"]

@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=3 uid="uid://dqivnwp0bw2ux"]
+
+[ext_resource type="Script" path="res://Scripts/SubComponents/OptionReference.gd" id="1_me3e4"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t4rei"]
+bg_color = Color(0.117647, 0.133333, 0.164706, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_xgf1c"]
+font_color = Color(0.686275, 0.686275, 0.686275, 1)
+
+[node name="OptionReference" type="PanelContainer"]
+theme_override_styles/panel = SubResource("StyleBoxFlat_t4rei")
+script = ExtResource("1_me3e4")
+
+[node name="LabelContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="Label" type="Label" parent="LabelContainer"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+label_settings = SubResource("LabelSettings_xgf1c")
+clip_text = true
+text_overrun_behavior = 3
+max_lines_visible = 1

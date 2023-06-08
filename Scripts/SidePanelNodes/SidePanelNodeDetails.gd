@@ -1,11 +1,12 @@
 extends PanelContainer
 
 
-@onready var label_id = $MarginContainer/PanelContainer/LabelID
-@onready var panel_container = $MarginContainer/PanelContainer
+@onready var label_id = $MarginContainer/ScrollContainer/PanelContainer/LabelID
+@onready var panel_container = $MarginContainer/ScrollContainer/PanelContainer
 
 @onready var root_node_panel_instance = preload("res://Objects/SidePanelNodes/RootNodePanel.tscn")
 @onready var sentence_node_panel_instance = preload("res://Objects/SidePanelNodes/SentenceNodePanel.tscn")
+@onready var choice_node_panel_instance = preload("res://Objects/SidePanelNodes/ChoiceNodePanel.tscn")
 
 var selected_node = null
 var current_panel = null
@@ -29,8 +30,8 @@ func _on_graph_edit_node_selected(node):
 			new_panel = root_node_panel_instance.instantiate()
 		"NodeSentence":
 			new_panel = sentence_node_panel_instance.instantiate()
-		"NodeChoice": # TODO
-			new_panel = null
+		"NodeChoice":
+			new_panel = choice_node_panel_instance.instantiate()
 	
 	new_panel.graph_node = node
 	

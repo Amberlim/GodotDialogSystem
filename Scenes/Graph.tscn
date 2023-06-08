@@ -172,26 +172,31 @@ theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="PanelContainer" type="VBoxContainer" parent="VBoxContainer/Control/MarginContainer/SidePanelNodeDetails/MarginContainer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer/Control/MarginContainer/SidePanelNodeDetails/MarginContainer"]
 layout_mode = 2
+
+[node name="PanelContainer" type="VBoxContainer" parent="VBoxContainer/Control/MarginContainer/SidePanelNodeDetails/MarginContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 theme_override_constants/separation = 5
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/Control/MarginContainer/SidePanelNodeDetails/MarginContainer/PanelContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/Control/MarginContainer/SidePanelNodeDetails/MarginContainer/ScrollContainer/PanelContainer"]
 layout_mode = 2
 
-[node name="LineEdit" type="LineEdit" parent="VBoxContainer/Control/MarginContainer/SidePanelNodeDetails/MarginContainer/PanelContainer/HBoxContainer"]
+[node name="LineEdit" type="LineEdit" parent="VBoxContainer/Control/MarginContainer/SidePanelNodeDetails/MarginContainer/ScrollContainer/PanelContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_font_sizes/font_size = 17
 placeholder_text = "Node name"
 
-[node name="TextureButton" type="TextureButton" parent="VBoxContainer/Control/MarginContainer/SidePanelNodeDetails/MarginContainer/PanelContainer/HBoxContainer"]
+[node name="TextureButton" type="TextureButton" parent="VBoxContainer/Control/MarginContainer/SidePanelNodeDetails/MarginContainer/ScrollContainer/PanelContainer/HBoxContainer"]
 layout_mode = 2
 mouse_default_cursor_shape = 2
 texture_normal = ExtResource("9_b0faf")
 stretch_mode = 3
 
-[node name="LabelID" type="Label" parent="VBoxContainer/Control/MarginContainer/SidePanelNodeDetails/MarginContainer/PanelContainer"]
+[node name="LabelID" type="Label" parent="VBoxContainer/Control/MarginContainer/SidePanelNodeDetails/MarginContainer/ScrollContainer/PanelContainer"]
 layout_mode = 2
 text = "id"
 label_settings = SubResource("LabelSettings_p3pmt")
@@ -325,7 +330,7 @@ script = SubResource("GDScript_so3r8")
 [connection signal="connection_request" from="VBoxContainer/Control/GraphEdit" to="." method="_on_GraphEdit_connection_request"]
 [connection signal="disconnection_request" from="VBoxContainer/Control/GraphEdit" to="." method="_on_GraphEdit_disconnection_request"]
 [connection signal="node_selected" from="VBoxContainer/Control/GraphEdit" to="VBoxContainer/Control/MarginContainer/SidePanelNodeDetails" method="_on_graph_edit_node_selected"]
-[connection signal="pressed" from="VBoxContainer/Control/MarginContainer/SidePanelNodeDetails/MarginContainer/PanelContainer/HBoxContainer/TextureButton" to="VBoxContainer/Control/MarginContainer/SidePanelNodeDetails" method="_on_texture_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/Control/MarginContainer/SidePanelNodeDetails/MarginContainer/ScrollContainer/PanelContainer/HBoxContainer/TextureButton" to="VBoxContainer/Control/MarginContainer/SidePanelNodeDetails" method="_on_texture_button_pressed"]
 [connection signal="pressed" from="WelcomeWindow/PanelContainer/CenterContainer/VBoxContainer2/HBoxContainer/NewFileBtn" to="ProjectFinderDialog" method="_on_new_file_btn_pressed"]
 [connection signal="pressed" from="WelcomeWindow/PanelContainer/CenterContainer/VBoxContainer2/HBoxContainer/OpenFileBtn" to="ProjectFinderDialog" method="_on_open_file_btn_pressed"]
 [connection signal="pressed" from="WelcomeWindow/PanelContainer/CenterContainer/VBoxContainer2/CenterContainer/HelpBtn" to="HelpWindow" method="_on_help_btn_pressed"]

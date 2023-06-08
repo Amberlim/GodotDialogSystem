@@ -1,24 +1,17 @@
 extends GraphNode
 
-var _node_dict: Dictionary
 
-@onready var conditionals_stack = preload("res://Objects/SubComponents/ConditionalsStack.tscn")
-@onready var option_panel = preload("res://Objects/SubComponents/OptionNode.tscn")
+@onready var option_reference = preload("res://Objects/SubComponents/OptionReference.tscn")
+
+var _node_dict: Dictionary
 
 var id = UUID.v4()
 var node_type = "NodeChoice"
-
-var loaded_options = []
+var options = []
 
 
 func _ready():
-	if loaded_options.size() <= 0:
-		new_option()
-	
 	title = node_type + " (" + id + ")"
-	
-	for option in loaded_options:
-		new_option(option.get("ID"), option.get("Sentence"), option.get("OneShot"))
 
 
 func _to_dict() -> Dictionary:
@@ -36,6 +29,29 @@ func _to_dict() -> Dictionary:
 		}
 	}
 
+func _from_dict(dict, global_dict):
+	_node_dict = dict
+	
+	id = dict.get("ID")
+	
+	var options_id = dict.get("OptionsID")
+	if options_id.size() <= 0:
+		new_option_reference()
+	for opt_id in options_id:
+		var node = global_dict.filter(func(n): return n.get("ID") == opt_id)[0]
+		options.append(node)
+		new_option_reference(opt_id, node.get("Sentence"))
+
+func new_option_reference(id = null, label: String = "Empty"):
+	var new_ref = option_reference.instantiate()
+	if id:
+		new_ref.id = id
+	
+	add_child(new_ref)
+	new_ref.set_label(label)
+	
+	var is_first = get_child_count() <= 1
+	set_slot(get_child_count() - 1, is_first, 0, Color("ff2865"), true, 0, Color("097168"))
 
 func get_all_options_id() -> Array:
 	var ids = []
@@ -57,26 +73,6 @@ func _on_OptionNode_close_request():
 	queue_free()
 
 
-func _on_More_toggled(button_pressed = null):
-	new_option()
-
-
-func new_option(id: String = "null", sentence: String = "", one_shot: bool = false):
-	var new_option = option_panel.instantiate()
-	if id != "null":
-		new_option.id = id
-	new_option.loaded_sentence = sentence
-	new_option.loaded_one_shot = one_shot
-	
-	add_child(new_option)
-	move_child($More, get_child_count()-1)
-	if get_child_count()-2 <=0:
-		set_slot(get_child_count()-2, true, 0, Color("ff2865"), true, 0, Color("097168"))
-		return
-	
-	set_slot(get_child_count()-2, false, 0, Color("ff2865"), true, 0, Color("097168"))
-
-
 func connect_all_options(node_list: Array):
 	# Clear all slots
 	for child_idx in get_child_count():
@@ -86,16 +82,15 @@ func connect_all_options(node_list: Array):
 	
 	var all_options = []
 	for child in get_children():
-		if is_instance_of(child, PanelContainer) and child.id != null:
-			all_options.append(child)
+		all_options.append(child)
 	
 	var index = 0
 	for option in all_options:
-		var raw_option = node_list.filter(func(node): return node.get("ID") == option.id)[0]
-		if raw_option == null:
+		var raw_option = node_list.filter(func(node): return node.get("ID") == option.id)
+		if raw_option.size() <= 0:
 			continue
 		
-		var next_node = get_next_node(raw_option.get("NextID"))
+		var next_node = get_next_node(raw_option[0].get("NextID"))
 		if not next_node is int:
 			get_parent().connect_node(name, index, next_node.name, 0)
 		index+=1
