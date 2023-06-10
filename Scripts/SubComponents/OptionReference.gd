@@ -11,5 +11,6 @@ func _ready():
 	var index = get_parent().get_children().find(self) + 1
 	option.text = "Option " + str(index)
 
+
 func set_label(text):
 	sentence_preview.text = text

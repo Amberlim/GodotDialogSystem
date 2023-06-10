@@ -27,7 +27,6 @@ func _from_dict(dict):
 	sentence_edit_node.text = sentence
 
 
-
 func _on_sentence_text_edit_changed():
 	assert(graph_node)
 	sentence = sentence_edit_node.text

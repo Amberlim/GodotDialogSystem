@@ -13,7 +13,7 @@ expand_margin_bottom = 5.0
 font_size = 11
 font_color = Color(0.556863, 0.556863, 0.556863, 1)
 
-[node name="PanelContainer" type="PanelContainer"]
+[node name="OptionNode" type="PanelContainer"]
 offset_right = 349.0
 offset_bottom = 165.0
 size_flags_vertical = 0
@@ -78,5 +78,8 @@ mouse_default_cursor_shape = 2
 text = "id"
 label_settings = SubResource("LabelSettings_52w5v")
 
+[connection signal="text_changed" from="MarginContainer/MainContainer/SentenceContainer/TextEdit" to="." method="_on_text_edit_text_changed"]
 [connection signal="pressed" from="MarginContainer/MainContainer/SentenceContainer/DeleteBtnContainer/Delete" to="." method="_on_delete_pressed"]
+[connection signal="toggled" from="MarginContainer/MainContainer/EnableBtn" to="." method="_on_enable_btn_toggled"]
+[connection signal="toggled" from="MarginContainer/MainContainer/OneShotBtn" to="." method="_on_one_shot_btn_toggled"]
 [connection signal="gui_input" from="MarginContainer/MainContainer/IDLabel" to="." method="_on_id_label_gui_input"]

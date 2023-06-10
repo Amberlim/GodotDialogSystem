@@ -41,8 +41,7 @@ func _to_dict() -> Dictionary:
 	for node in graph_edit.get_children():
 		list_nodes.append(node._to_dict())
 		if node.node_type == "NodeChoice":
-			var option_nodes = node.get_all_options_nodes()
-			list_nodes.append_array(option_nodes)
+			list_nodes.append_array(node.options)
 	
 	var root_node = get_root_node(list_nodes)
 	var root_node_obj = get_node_by_id(root_node.get("ID"))

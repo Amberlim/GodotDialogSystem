@@ -17,9 +17,12 @@ func _from_dict(dict):
 
 
 func new_option(dict = null):
-	var new_option = option_panel.instantiate()	
-	options_container.add_child(new_option)
-	new_option._from_dict(dict)
+	var option = option_panel.instantiate()
+	option.panel_node = self
+	option.graph_node = graph_node
+	
+	options_container.add_child(option)
+	option._from_dict(dict)
 	
 	graph_node.set_slot(get_child_count()-1, false, 0, Color("ff2865"), true, 0, Color("097168"))
 

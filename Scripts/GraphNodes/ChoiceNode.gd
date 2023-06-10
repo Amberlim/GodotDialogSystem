@@ -53,20 +53,20 @@ func new_option_reference(id = null, label: String = "Empty"):
 	var is_first = get_child_count() <= 1
 	set_slot(get_child_count() - 1, is_first, 0, Color("ff2865"), true, 0, Color("097168"))
 
+
+func update_option_reference(index):
+	var child = get_children()[index]
+	var option: Dictionary = options.filter(func(opt): return opt.get("ID") == child.id)[0]
+	
+	child.set_label(option.get("Sentence"))
+
+
 func get_all_options_id() -> Array:
 	var ids = []
 	for child in get_children():
 		if is_instance_of(child, PanelContainer) and child.id != null:
 			ids.append(child.id)
 	return ids
-
-
-func get_all_options_nodes():
-	var nodes = []
-	for child in get_children():
-		if is_instance_of(child, PanelContainer) and child.id != null:
-			nodes.append(child._to_dict())
-	return nodes
 
 
 func _on_OptionNode_close_request():
@@ -97,7 +97,7 @@ func connect_all_options(node_list: Array):
 		
 func get_next_node(next_node_id):
 	for node in get_parent().get_children():
-		if not  next_node_id is int and node.id == next_node_id:
+		if not next_node_id is int and node.id == next_node_id:
 			return node
 	
 	return -1
