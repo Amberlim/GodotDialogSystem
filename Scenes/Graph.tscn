@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://bqjfdabrxujp7"]
+[gd_scene load_steps=16 format=3 uid="uid://bqjfdabrxujp7"]
 
 [ext_resource type="Script" path="res://Scripts/Control.gd" id="2_1tprk"]
 [ext_resource type="Texture2D" uid="uid://bnnt6new24gv3" path="res://Assets/config_icon.png" id="2_31p2a"]
@@ -17,6 +17,9 @@ bg_color = Color(0.129412, 0.14902, 0.180392, 1)
 [sub_resource type="LabelSettings" id="LabelSettings_p3pmt"]
 font_size = 10
 font_color = Color(0.635294, 0.635294, 0.635294, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_7mcdy"]
+font_color = Color(0.423529, 0.423529, 0.423529, 1)
 
 [sub_resource type="GDScript" id="GDScript_gf31e"]
 script/source = "extends Window
@@ -171,12 +174,7 @@ theme_override_constants/separation = 5
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/Control/MarginContainer/SidePanelNodeDetails/MarginContainer/ScrollContainer/PanelContainer"]
 layout_mode = 2
-
-[node name="LineEdit" type="LineEdit" parent="VBoxContainer/Control/MarginContainer/SidePanelNodeDetails/MarginContainer/ScrollContainer/PanelContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 17
-placeholder_text = "Node name"
+alignment = 2
 
 [node name="TextureButton" type="TextureButton" parent="VBoxContainer/Control/MarginContainer/SidePanelNodeDetails/MarginContainer/ScrollContainer/PanelContainer/HBoxContainer"]
 layout_mode = 2
@@ -190,8 +188,7 @@ text = "id"
 label_settings = SubResource("LabelSettings_p3pmt")
 
 [node name="WelcomeWindow" type="Window" parent="."]
-size = Vector2i(530, 188)
-visible = false
+size = Vector2i(586, 188)
 wrap_controls = true
 transient = true
 exclusive = true
@@ -235,6 +232,12 @@ layout_mode = 2
 layout_mode = 2
 text = "Need Help ?"
 icon = ExtResource("6_7yw5y")
+
+[node name="VersionLabel" type="Label" parent="WelcomeWindow/PanelContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+label_settings = SubResource("LabelSettings_7mcdy")
 
 [node name="ProjectFinderDialog" type="FileDialog" parent="."]
 initial_position = 1
