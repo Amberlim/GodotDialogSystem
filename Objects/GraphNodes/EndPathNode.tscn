@@ -1,0 +1,32 @@
+[gd_scene load_steps=3 format=3 uid="uid://c3t0igg4s2pne"]
+
+[ext_resource type="Script" path="res://Scripts/GraphNodes/EndPathNode.gd" id="1_vdup8"]
+[ext_resource type="Texture2D" uid="uid://n5o361hb8vwu" path="res://Assets/Exit.png" id="1_yrjh5"]
+
+[node name="EndPathNode" type="GraphNode"]
+offset_right = 247.0
+offset_bottom = 160.0
+scale = Vector2(0.6, 0.6)
+mouse_filter = 1
+title = "EndPath"
+show_close = true
+slot/0/left_enabled = true
+slot/0/left_type = 0
+slot/0/left_color = Color(1, 0.156863, 0.396078, 1)
+slot/0/left_icon = null
+slot/0/right_enabled = false
+slot/0/right_type = 0
+slot/0/right_color = Color(1, 1, 1, 1)
+slot/0/right_icon = null
+slot/0/draw_stylebox = true
+script = ExtResource("1_vdup8")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 2
+size_flags_vertical = 3
+texture = ExtResource("1_yrjh5")
+expand_mode = 2
+stretch_mode = 5
+flip_h = true
+
+[connection signal="close_request" from="." to="." method="_on_close_request"]

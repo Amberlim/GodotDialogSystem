@@ -5,6 +5,8 @@ var _node_dict: Dictionary
 
 var id = UUID.v4()
 var node_type = "NodeRoot"
+var characters = []
+var variables = []
 
 
 func _ready():
@@ -28,8 +30,7 @@ func _to_dict() -> Dictionary:
 		}
 	}
 
-
-func _from_dict(dict):
+func _from_dict(dict, global_dict):
 	_node_dict = dict
 	
 	id = dict.get("ID")
@@ -37,3 +38,24 @@ func _from_dict(dict):
 	var _pos = dict.get("EditorPosition")
 	position_offset.x = _pos.get("x")
 	position_offset.x = _pos.get("y")
+
+
+func get_characters():
+	var result = []
+	for child in characters:
+		if not child is PanelContainer:
+			continue
+		
+		result.append(child._to_dict())
+	
+	return result
+
+func get_variables():
+	var result = []
+	for child in variables:
+		if not child is PanelContainer:
+			continue
+		
+		result.append(child._to_dict())
+	
+	return result

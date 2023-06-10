@@ -28,7 +28,8 @@ func add_character(id: String = ""):
 	
 	characters_container.move_child(characters_add_btn, characters_container.get_child_count()-1)
 	
-	get_parent().update_speakers(get_characters())
+	graph_node.characters = []
+	get_parent().update_speakers()
 
 
 func add_variable():
@@ -36,29 +37,7 @@ func add_variable():
 	variables_container.add_child(new_node)
 	
 	variables_container.move_child(variables_add_btn, variables_container.get_child_count()-1)
-
-
-func get_variables():
-	var variables = []
-	for child in variables_container.get_children():
-		if not child is PanelContainer:
-			continue
-		
-		variables.append(child._to_dict())
 	
-	return variables
 
-
-func get_characters():
-	var characters = []
-	for child in characters_container.get_children():
-		if not child is PanelContainer:
-			continue
-		
-		characters.append(child._to_dict())
-	
-	return characters
-	
-	
 func text_submitted_callback(_new_text):
-	get_parent().update_speakers(get_characters())
+	get_parent().update_speakers()

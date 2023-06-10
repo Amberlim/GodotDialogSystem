@@ -1,24 +1,15 @@
-[gd_scene load_steps=18 format=3 uid="uid://bqjfdabrxujp7"]
+[gd_scene load_steps=15 format=3 uid="uid://bqjfdabrxujp7"]
 
 [ext_resource type="Script" path="res://Scripts/Control.gd" id="2_1tprk"]
 [ext_resource type="Texture2D" uid="uid://bnnt6new24gv3" path="res://Assets/config_icon.png" id="2_31p2a"]
 [ext_resource type="Script" path="res://Scripts/GraphEdit.gd" id="2_fn1ag"]
 [ext_resource type="Script" path="res://Scripts/Windows/WelcomeWindow.gd" id="3_bs36t"]
 [ext_resource type="Texture2D" uid="uid://d3dnd2j3ikuc2" path="res://Assets/new_file_icon.png" id="4_kk1hq"]
-[ext_resource type="PackedScene" uid="uid://dqsnkyn3r76m4" path="res://Objects/GraphNodes/RootNode.tscn" id="4_mtd7q"]
 [ext_resource type="Texture2D" uid="uid://btaddwoi8okc4" path="res://Assets/folder_icon.png" id="5_p7fyy"]
 [ext_resource type="Texture2D" uid="uid://bg0vjaa4shnng" path="res://Assets/help_icon.png" id="6_7yw5y"]
 [ext_resource type="Script" path="res://Scripts/Windows/NewFileDialog.gd" id="6_lrnkg"]
 [ext_resource type="Texture2D" uid="uid://cnei155dxxo2j" path="res://Assets/close_icon.png" id="9_b0faf"]
 [ext_resource type="Script" path="res://Scripts/SidePanelNodes/SidePanelNodeDetails.gd" id="9_cxmnj"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ofwl0"]
-content_margin_top = 45.0
-bg_color = Color(0.129412, 0.14902, 0.180392, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gh0k1"]
-bg_color = Color(0.117647, 0.133333, 0.164706, 1)
-expand_margin_top = 2.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0ehqk"]
 bg_color = Color(0.129412, 0.14902, 0.180392, 1)
@@ -98,6 +89,12 @@ mouse_default_cursor_shape = 2
 theme_override_font_sizes/font_size = 12
 text = "New DiceRoll +"
 
+[node name="NewEnd" type="Button" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_override_font_sizes/font_size = 12
+text = "New EndPath +"
+
 [node name="Save" type="Button" parent="VBoxContainer/HBoxContainer"]
 layout_mode = 2
 mouse_default_cursor_shape = 2
@@ -135,15 +132,6 @@ zoom_min = 0.035
 zoom_max = 1.0
 minimap_enabled = false
 script = ExtResource("2_fn1ag")
-
-[node name="RootNode" parent="VBoxContainer/Control/GraphEdit" instance=ExtResource("4_mtd7q")]
-layout_mode = 2
-offset_right = 960.0
-offset_bottom = 248.0
-scale = Vector2(0.6, 0.6)
-mouse_filter = 1
-theme_override_styles/frame = SubResource("StyleBoxFlat_ofwl0")
-theme_override_styles/slot = SubResource("StyleBoxFlat_gh0k1")
 
 [node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/Control"]
 layout_mode = 1
@@ -325,7 +313,8 @@ script = SubResource("GDScript_so3r8")
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/NewSentence" to="." method="_on_Button_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/NewOption" to="." method="_on_NewOption_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/NewRoll" to="." method="_on_NewRoll_pressed"]
-[connection signal="pressed" from="VBoxContainer/HBoxContainer/Save" to="." method="_on_save_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/NewEnd" to="." method="_on_new_end_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/Save" to="." method="save"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/Clear" to="." method="_on_Clear_pressed"]
 [connection signal="connection_request" from="VBoxContainer/Control/GraphEdit" to="." method="_on_GraphEdit_connection_request"]
 [connection signal="disconnection_request" from="VBoxContainer/Control/GraphEdit" to="." method="_on_GraphEdit_disconnection_request"]

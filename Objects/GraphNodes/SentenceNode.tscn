@@ -5,10 +5,10 @@
 [sub_resource type="Theme" id="Theme_llmqa"]
 
 [node name="DialogNode" type="GraphNode" groups=["graph_nodes"]]
-custom_minimum_size = Vector2(200, 200)
+custom_minimum_size = Vector2(200, 100)
 offset_right = 200.0
-offset_bottom = 200.0
-size_flags_vertical = 0
+offset_bottom = 100.0
+size_flags_horizontal = 4
 theme = SubResource("Theme_llmqa")
 title = "NodeSentence"
 show_close = true
@@ -35,6 +35,7 @@ theme_override_constants/margin_bottom = 10
 layout_mode = 2
 theme_override_colors/default_color = Color(0.72549, 0.72549, 0.72549, 1)
 bbcode_enabled = true
+fit_content = true
 scroll_following = true
 
 [connection signal="close_request" from="." to="." method="_on_GraphNode_close_request"]

@@ -20,12 +20,14 @@ func _on_graph_edit_node_selected(node):
 	if current_panel:
 		current_panel.queue_free()
 		current_panel = null
+		
+	if node.node_type == null:
+		return
 	
 	label_id.text = node.id
-	selected_node = node
-	
+
 	var new_panel = null
-	match selected_node.node_type:
+	match node.node_type:
 		"NodeRoot":
 			new_panel = root_node_panel_instance.instantiate()
 		"NodeSentence":
@@ -38,8 +40,7 @@ func _on_graph_edit_node_selected(node):
 	if new_panel:
 		current_panel = new_panel
 		panel_container.add_child(new_panel)
-		new_panel._from_dict(node._node_dict)
-		
+		new_panel._from_dict(node._to_dict())
 	show()
 
 

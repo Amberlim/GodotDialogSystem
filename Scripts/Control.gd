@@ -8,10 +8,13 @@ var dialog_for_localisation = []
 @onready var sentence_node = preload("res://Objects/GraphNodes/SentenceNode.tscn")
 @onready var dice_roll_node = preload("res://Objects/GraphNodes/DiceRollNode.tscn")
 @onready var choice_node = preload("res://Objects/GraphNodes/ChoiceNode.tscn")
+@onready var end_node = preload("res://Objects/GraphNodes/EndPathNode.tscn")
 @onready var root_node = preload("res://Objects/GraphNodes/RootNode.tscn")
 @onready var option_panel = preload("res://Objects/SubComponents/OptionNode.tscn")
 
 @onready var graph_edit: GraphEdit = $VBoxContainer/Control/GraphEdit
+
+var live_dict: Dictionary
 
 var initial_pos = Vector2(40,40)
 var option_index = 0
@@ -19,6 +22,7 @@ var node_index = 0
 var all_nodes_index = 0
 
 var root_node_ref
+var root_dict
 
 
 func _ready():
@@ -28,7 +32,7 @@ func _ready():
 	var new_root_node = root_node.instantiate()
 	graph_edit.add_child(new_root_node)
 
-	
+
 func _on_Button_pressed():
 	var node = sentence_node.instantiate()
 	graph_edit.add_child(node)
@@ -43,20 +47,26 @@ func _to_dict() -> Dictionary:
 		if node.node_type == "NodeChoice":
 			list_nodes.append_array(node.options)
 	
-	var root_node = get_root_node(list_nodes)
-	var root_node_obj = get_node_by_id(root_node.get("ID"))
+	var root_dict = get_root_dict(list_nodes)
+	var root_node_obj = get_root_node_ref()
 	
 	return {
-		"RootNodeID": root_node.get("ID"),
+		"RootNodeID": root_dict.get("ID"),
 		"ListNodes": list_nodes,
 		"Characters": root_node_obj.get_characters(),
 		"Variables": root_node_obj.get_variables()
 	}
 
 
-func get_root_node(nodes):
+func get_root_dict(nodes):
 	for node in nodes:
 		if node.get("$type") == "NodeRoot":
+			return node
+
+
+func get_root_node_ref():
+	for node in graph_edit.get_children():
+		if node.id == root_dict.get("ID"):
 			return node
 
 
@@ -86,7 +96,11 @@ func _on_NewRoll_pressed():
 	graph_edit.add_child(dice_roll)
 
 
-func _on_save_pressed():
+func live_save():
+	live_dict = _to_dict()
+
+
+func save():
 	var path = file_path + "/dialogs.json"
 	var file = FileAccess.open(path, FileAccess.WRITE)
 	var data = JSON.stringify(_to_dict(), "\t", false, true)
@@ -95,9 +109,9 @@ func _on_save_pressed():
 	
 	
 func _on_project_finder_dialog_dir_selected(dir):
+	var path = dir + "/config.json"
 	match $ProjectFinderDialog.open_mode:
 		0: # NEW
-			var path = dir + "/config.json"
 			var file = FileAccess.open(path, FileAccess.WRITE)
 			var project_name = dir.split("/")[len(dir.split("/"))-1]
 			
@@ -105,15 +119,16 @@ func _on_project_finder_dialog_dir_selected(dir):
 			
 			file_path = dir
 			$WelcomeWindow.hide()
+			save()
+			
+			load_project(dir)
 		1: # OPEN
-			var path = dir + "/config.json"
 			Util.check_config_file(path)
 			
 			load_project(dir)
 			
 			file_path = dir
 			$WelcomeWindow.hide()
-	file_path = dir
 	
 	
 func load_project(path):
@@ -123,27 +138,31 @@ func load_project(path):
 	var file = FileAccess.get_file_as_string(dialog_path)
 	var data = JSON.parse_string(file)
 	
-	for node in get_tree().get_nodes_in_group("graph_nodes"):
+	live_dict = data
+	
+	for node in graph_edit.get_children():
 		node.queue_free()
 	graph_edit.clear_connections()
 	
 	var node_list = data.get("ListNodes")
+	root_dict = get_root_dict(node_list)
 	
 	for node in node_list:
 		var new_node
 		match node.get("$type"):
 			"NodeRoot":
 				new_node = root_node.instantiate()
-				root_node_ref = new_node
 			"NodeSentence":
 				new_node = sentence_node.instantiate()
 				new_node.loaded_text = node.get("Sentence")
 			"NodeChoice":
 				new_node = choice_node.instantiate()
 				
-				var options = get_option_nodes(node_list, node.get("OptionsID"))
+				var options = get_options_nodes(node_list, node.get("OptionsID"))
 			"NodeDiceRoll":
 				new_node = dice_roll_node.instantiate()
+			"NodeEndPath":
+				new_node = end_node.instantiate()
 		
 		if not new_node:
 			continue
@@ -169,7 +188,7 @@ func load_project(path):
 		var current_node = get_node_by_id(node.get("ID"))
 		match node.get("$type"):
 			"NodeRoot":
-				current_node._from_dict(node)
+				current_node._from_dict(node, node_list)
 				if node.get("NextID") is String:
 					var next_node = get_node_by_id(node.get("NextID"))
 					graph_edit.connect_node(current_node.name, 0, next_node.name, 0)
@@ -189,6 +208,8 @@ func load_project(path):
 				if node.get("FailID") is String:
 					var fail_node = get_node_by_id(node.get("FailID"))
 					graph_edit.connect_node(current_node.name, 1, fail_node.name, 0)
+			"NodeEndPath":
+				current_node._from_dict(node)
 		
 		if not current_node: # OptionNode
 			continue
@@ -196,6 +217,8 @@ func load_project(path):
 		if node.has("EditorPosition"):
 			current_node.position_offset.x = node.EditorPosition.get("x")
 			current_node.position_offset.y = node.EditorPosition.get("y")
+			
+	root_node_ref = get_root_node_ref()
 	
 	
 func get_node_by_id(id):
@@ -204,10 +227,15 @@ func get_node_by_id(id):
 			return node
 	
 	
-func get_option_nodes(node_list, options_id):
+func get_options_nodes(node_list, options_id):
 	var options = []
 	
 	for node in node_list:
 		if node.get("ID") in options_id:
 			options.append(node)
 	return options
+
+
+func _on_new_end_pressed():
+	var node = end_node.instantiate()
+	graph_edit.add_child(node)
