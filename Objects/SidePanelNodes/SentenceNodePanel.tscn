@@ -9,10 +9,12 @@ font_color = Color(0.521569, 0.521569, 0.521569, 1)
 [node name="SentenceNodePanel" type="VBoxContainer"]
 offset_right = 500.0
 offset_bottom = 244.0
+theme_override_constants/separation = 10
 script = ExtResource("1_626xh")
 
 [node name="SpeakerContainer" type="VBoxContainer" parent="."]
 layout_mode = 2
+theme_override_constants/separation = 10
 
 [node name="SubContainer" type="HBoxContainer" parent="SpeakerContainer"]
 layout_mode = 2

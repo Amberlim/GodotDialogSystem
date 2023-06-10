@@ -6,24 +6,21 @@ extends VBoxContainer
 
 var graph_node
 
-var id = ""
+var id = UUID.v4()
 
 
 func _from_dict(dict):
 	id = dict.get("ID")
 	
 	for option in graph_node.options:
-		new_option(option.get("ID"), option.get("Sentence"), option.get("OneShot"))
+		new_option(option)
 
 
-func new_option(id: String = "null", sentence: String = "", one_shot: bool = false):
-	var new_option = option_panel.instantiate()
-	if id != "null":
-		new_option.id = id
-	new_option.loaded_sentence = sentence
-	new_option.loaded_one_shot = one_shot
-	
+func new_option(dict = null):
+	var new_option = option_panel.instantiate()	
 	options_container.add_child(new_option)
+	new_option._from_dict(dict)
+	
 	graph_node.set_slot(get_child_count()-1, false, 0, Color("ff2865"), true, 0, Color("097168"))
 
 

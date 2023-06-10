@@ -12,14 +12,25 @@ font_color = Color(0.686275, 0.686275, 0.686275, 1)
 theme_override_styles/panel = SubResource("StyleBoxFlat_t4rei")
 script = ExtResource("1_me3e4")
 
-[node name="LabelContainer" type="MarginContainer" parent="."]
+[node name="MainContainer" type="MarginContainer" parent="."]
 layout_mode = 2
 theme_override_constants/margin_left = 5
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 
-[node name="Label" type="Label" parent="LabelContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MainContainer"]
+layout_mode = 2
+
+[node name="Option" type="Label" parent="MainContainer/VBoxContainer"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+label_settings = SubResource("LabelSettings_xgf1c")
+clip_text = true
+text_overrun_behavior = 3
+max_lines_visible = 1
+
+[node name="SentencePreview" type="Label" parent="MainContainer/VBoxContainer"]
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 label_settings = SubResource("LabelSettings_xgf1c")

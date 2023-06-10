@@ -9,6 +9,7 @@ script = ExtResource("1_mbc55")
 
 [node name="OptionsContainer" type="VBoxContainer" parent="."]
 layout_mode = 2
+theme_override_constants/separation = 10
 
 [node name="Add" type="Button" parent="."]
 custom_minimum_size = Vector2(15, 0)

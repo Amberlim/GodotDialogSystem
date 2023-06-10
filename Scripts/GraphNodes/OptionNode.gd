@@ -1,48 +1,49 @@
 extends PanelContainer
 
 
-@onready var text_edit = $MarginContainer/VBoxContainer/HBoxContainer/TextEdit
-@onready var enable: CheckBox = $MarginContainer/VBoxContainer/CheckBox2
-@onready var one_shot: CheckBox = $MarginContainer/VBoxContainer/CheckBox
-@onready var decisive: CheckBox = $MarginContainer/VBoxContainer/HBoxContainer2/DecisiveCheckBox
-@onready var id_label: Label = $MarginContainer/VBoxContainer/IDLabel
+@onready var sentence_node = $MarginContainer/MainContainer/SentenceContainer/TextEdit
+@onready var enable_node: CheckBox = $MarginContainer/MainContainer/EnableBtn
+@onready var one_shot_node: CheckBox = $MarginContainer/MainContainer/OneShotBtn
+@onready var id_label: Label = $MarginContainer/MainContainer/IDLabel
 
 var id = UUID.v4()
 var node_type = "NodeOption"
-var loaded_sentence = ""
-var loaded_one_shot = false
-
-
-func _ready():
-	text_edit.text = loaded_sentence
-	one_shot.button_pressed = loaded_one_shot
-	
-	id_label.text = id + " (click to copy)"
+var sentence = ""
+var enable = true
+var one_shot = false
 
 
 func _to_dict() -> Dictionary:
 	var parent = get_parent_control()
 	var graph_edit = parent.get_parent()
-	var index: int = -1
-	for child_index in parent.get_child_count():
-		if parent.get_child(child_index) == self:
-			index = child_index
-			
+	var index = parent.get_children().find(self)
 	var next_id_node = graph_edit.get_all_connections_from_slot(parent.name, index)
 	
 	return {
 		"$type": node_type,
 		"ID": id,
 		"NextID": next_id_node[0].id if next_id_node else -1,
-		"Sentence": text_edit.text,
-		"Enable": enable.button_pressed,
-		"OneShot": one_shot.button_pressed,
-		"Decisive": decisive.button_pressed,
+		"Sentence": sentence_node.text,
+		"Enable": enable_node.button_pressed,
+		"OneShot": one_shot_node.button_pressed,
 		"Conditions": [],
 		"Actions": [],
 		"Flags": [],
 		"CustomProperties": []
 	}
+
+
+func _from_dict(dict):
+	if dict != null:
+		sentence = dict.get("Sentence")
+		enable = dict.get("Enable")
+		one_shot = dict.get("OneShot")
+	
+	sentence_node.text = sentence
+	enable_node.button_pressed = enable
+	one_shot_node.button_pressed = one_shot
+	
+	id_label.text = id + " (click to copy)"
 
 
 func _on_delete_pressed():
