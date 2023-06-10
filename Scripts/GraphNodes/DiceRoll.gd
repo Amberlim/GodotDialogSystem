@@ -4,6 +4,8 @@ extends GraphNode
 @onready var target_number = $VBoxContainer/HBoxContainer2/TargetNumber
 @onready var actions = $Actions
 
+var graph_node
+
 var node_type = "NodeDiceRoll"
 var id = UUID.v4()
 

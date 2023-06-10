@@ -87,6 +87,7 @@ theme_override_font_sizes/font_size = 12
 text = "New Option +"
 
 [node name="NewRoll" type="Button" parent="VBoxContainer/HBoxContainer"]
+visible = false
 layout_mode = 2
 mouse_default_cursor_shape = 2
 theme_override_font_sizes/font_size = 12
