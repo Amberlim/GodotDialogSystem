@@ -220,12 +220,12 @@ theme_override_constants/separation = 20
 
 [node name="NewFileBtn" type="Button" parent="WelcomeWindow/PanelContainer/CenterContainer/VBoxContainer2/HBoxContainer"]
 layout_mode = 2
-text = "New Project"
+text = "New File"
 icon = ExtResource("4_kk1hq")
 
 [node name="OpenFileBtn" type="Button" parent="WelcomeWindow/PanelContainer/CenterContainer/VBoxContainer2/HBoxContainer"]
 layout_mode = 2
-text = "Open Project..."
+text = "Open File..."
 icon = ExtResource("5_p7fyy")
 
 [node name="CenterContainer" type="CenterContainer" parent="WelcomeWindow/PanelContainer/CenterContainer/VBoxContainer2"]
@@ -238,14 +238,14 @@ icon = ExtResource("6_7yw5y")
 
 [node name="ProjectFinderDialog" type="FileDialog" parent="."]
 initial_position = 1
-title = "Open a Directory"
+title = "Open a File"
 size = Vector2i(600, 350)
 transient = false
 exclusive = false
 borderless = true
 always_on_top = true
-ok_button_text = "Sélectionner le dossier courant"
-file_mode = 2
+ok_button_text = "Ouvrir"
+file_mode = 0
 access = 2
 script = ExtResource("6_lrnkg")
 
@@ -317,11 +317,12 @@ script = SubResource("GDScript_so3r8")
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/Save" to="." method="save"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/Clear" to="." method="_on_Clear_pressed"]
 [connection signal="connection_request" from="VBoxContainer/Control/GraphEdit" to="." method="_on_GraphEdit_connection_request"]
+[connection signal="delete_nodes_request" from="VBoxContainer/Control/GraphEdit" to="." method="_on_graph_edit_delete_nodes_request"]
 [connection signal="disconnection_request" from="VBoxContainer/Control/GraphEdit" to="." method="_on_GraphEdit_disconnection_request"]
 [connection signal="node_selected" from="VBoxContainer/Control/GraphEdit" to="VBoxContainer/Control/MarginContainer/SidePanelNodeDetails" method="_on_graph_edit_node_selected"]
 [connection signal="pressed" from="VBoxContainer/Control/MarginContainer/SidePanelNodeDetails/MarginContainer/ScrollContainer/PanelContainer/HBoxContainer/TextureButton" to="VBoxContainer/Control/MarginContainer/SidePanelNodeDetails" method="_on_texture_button_pressed"]
 [connection signal="pressed" from="WelcomeWindow/PanelContainer/CenterContainer/VBoxContainer2/HBoxContainer/NewFileBtn" to="ProjectFinderDialog" method="_on_new_file_btn_pressed"]
 [connection signal="pressed" from="WelcomeWindow/PanelContainer/CenterContainer/VBoxContainer2/HBoxContainer/OpenFileBtn" to="ProjectFinderDialog" method="_on_open_file_btn_pressed"]
 [connection signal="pressed" from="WelcomeWindow/PanelContainer/CenterContainer/VBoxContainer2/CenterContainer/HelpBtn" to="HelpWindow" method="_on_help_btn_pressed"]
-[connection signal="dir_selected" from="ProjectFinderDialog" to="." method="_on_project_finder_dialog_dir_selected"]
+[connection signal="file_selected" from="ProjectFinderDialog" to="." method="_on_file_selected"]
 [connection signal="pressed" from="HelpWindow/PanelContainer/MarginContainer/VBoxContainer/CenterContainer/Continue" to="HelpWindow/PanelContainer/MarginContainer/VBoxContainer/CenterContainer/Continue" method="_on_pressed"]

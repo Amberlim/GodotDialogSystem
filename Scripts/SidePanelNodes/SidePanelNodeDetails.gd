@@ -21,7 +21,7 @@ func _on_graph_edit_node_selected(node):
 		current_panel.queue_free()
 		current_panel = null
 		
-	if node.node_type == null:
+	if node.node_type == "EndPathNode":
 		return
 	
 	label_id.text = node.id

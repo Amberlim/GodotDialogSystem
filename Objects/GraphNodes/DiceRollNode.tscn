@@ -1,6 +1,6 @@
-[gd_scene load_steps=3 format=3]
+[gd_scene load_steps=3 format=3 uid="uid://b6mcmodpmsacw"]
 
-[ext_resource type="PackedScene" path="res://Objects/SubComponents/Actions.tscn" id="2_a22hs"]
+[ext_resource type="PackedScene" uid="uid://blvmilslu5boy" path="res://Objects/SubComponents/Actions.tscn" id="2_a22hs"]
 [ext_resource type="Script" path="res://Scripts/GraphNodes/DiceRoll.gd" id="4_4behm"]
 
 [node name="DiceRoll" type="GraphNode" groups=["graph_nodes"]]

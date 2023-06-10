@@ -35,3 +35,4 @@ func _to_dict() -> Dictionary:
 
 func _on_close_request():
 	queue_free()
+	get_parent().clear_all_empty_connections()

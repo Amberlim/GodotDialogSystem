@@ -71,6 +71,7 @@ func get_all_options_id() -> Array:
 
 func _on_OptionNode_close_request():
 	queue_free()
+	get_parent().clear_all_empty_connections()
 
 
 func connect_all_options(node_list: Array):

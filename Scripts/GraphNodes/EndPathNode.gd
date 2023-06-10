@@ -1,7 +1,7 @@
 extends GraphNode
 
 
-var node_type = "EndPath"
+var node_type = "EndPathNode"
 var id = UUID.v4()
 var actions: Array
 
@@ -30,3 +30,4 @@ func _from_dict(dict):
 
 func _on_close_request():
 	queue_free()
+	get_parent().clear_all_empty_connections()

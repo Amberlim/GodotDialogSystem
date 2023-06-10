@@ -43,6 +43,8 @@ func _to_dict() -> Dictionary:
 	var list_nodes = []
 	
 	for node in graph_edit.get_children():
+		if node.is_queued_for_deletion():
+			continue
 		list_nodes.append(node._to_dict())
 		if node.node_type == "NodeChoice":
 			list_nodes.append_array(node.options)
@@ -101,41 +103,30 @@ func live_save():
 
 
 func save():
-	var path = file_path + "/dialogs.json"
-	var file = FileAccess.open(path, FileAccess.WRITE)
+	var file = FileAccess.open(file_path, FileAccess.WRITE)
 	var data = JSON.stringify(_to_dict(), "\t", false, true)
 	file.store_string(data)
 	file.close()
 	
 	
-func _on_project_finder_dialog_dir_selected(dir):
-	var path = dir + "/config.json"
+func _on_file_selected(path):
+	file_path = path
 	match $ProjectFinderDialog.open_mode:
 		0: # NEW
-			var file = FileAccess.open(path, FileAccess.WRITE)
-			var project_name = dir.split("/")[len(dir.split("/"))-1]
-			
-			file.store_string(Util.base_config_file(project_name))
-			
-			file_path = dir
 			$WelcomeWindow.hide()
 			save()
 			
-			load_project(dir)
+			load_project(path)
 		1: # OPEN
-			Util.check_config_file(path)
+			load_project(path)
 			
-			load_project(dir)
-			
-			file_path = dir
 			$WelcomeWindow.hide()
 	
 	
 func load_project(path):
-	var dialog_path = path + "/dialogs.json"
-	assert(FileAccess.file_exists(dialog_path))
+	assert(FileAccess.file_exists(path))
 	
-	var file = FileAccess.get_file_as_string(dialog_path)
+	var file = FileAccess.get_file_as_string(path)
 	var data = JSON.parse_string(file)
 	
 	live_dict = data

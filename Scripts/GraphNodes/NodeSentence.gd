@@ -59,3 +59,4 @@ func update_preview():
 
 func _on_GraphNode_close_request():
 	queue_free()
+	get_parent().clear_all_empty_connections()

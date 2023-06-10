@@ -30,6 +30,14 @@ func get_all_connections_from_slot(from_node: StringName, from_port: int):
 	return connections
 
 
+func clear_all_empty_connections():
+	for co in get_connection_list():
+		var to_name = co.get("to")
+		var node_ref = get_node_or_null(NodePath(to_name))
+		if node_ref == null or node_ref.is_queued_for_deletion():
+			disconnect_node(co.get("from"), co.get("from_port"), co.get("to"), co.get("to_port"))
+
+
 func update_speakers(characters: Array = []):
 	speakers.clear()
 	

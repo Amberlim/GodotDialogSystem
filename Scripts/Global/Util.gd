@@ -1,20 +1,6 @@
 extends Node
 
 
-func base_config_file(name: String) -> String:
-	var dict: Dictionary = {
-		"ProjectName": name,
-		"VersionProject": "0.1.0",
-		"VersionEditor": "0.0.1",
-		"DefaultStart": "",
-		"ListSpeakers": [
-			
-		]
-	}
-	
-	return JSON.stringify(dict, "\t")
-
-
 func check_config_file(path: String):
 	assert(FileAccess.file_exists(path))
 	

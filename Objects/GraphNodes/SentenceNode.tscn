@@ -4,7 +4,7 @@
 
 [sub_resource type="Theme" id="Theme_llmqa"]
 
-[node name="DialogNode" type="GraphNode" groups=["graph_nodes"]]
+[node name="SentenceNode" type="GraphNode" groups=["graph_nodes"]]
 custom_minimum_size = Vector2(200, 100)
 offset_right = 200.0
 offset_bottom = 100.0
