@@ -61,6 +61,15 @@ func _to_dict() -> Dictionary:
 	}
 
 
+func _on_file_selected(path):
+	file_path = path
+	$WelcomeWindow.hide()
+	if $ProjectFinderDialog.open_mode == 0: #NEW
+		save()
+		
+	load_project(path)
+
+
 func get_root_dict(nodes):
 	for node in nodes:
 		if node.get("$type") == "NodeRoot":
@@ -73,48 +82,13 @@ func get_root_node_ref():
 			return node
 
 
-func _on_NewOption_pressed():
-	var new_choice_node = choice_node.instantiate()
-	graph_edit.add_child(new_choice_node)
-
-
-func _on_GraphEdit_connection_request(from, from_slot, to, to_slot):
-	if graph_edit.get_all_connections_from_slot(from, from_slot).size() <= 0:
-		graph_edit.connect_node(from, from_slot, to, to_slot)
-
-
-func _on_GraphEdit_disconnection_request(from, from_slot, to, to_slot):
-	graph_edit.disconnect_node(from, from_slot, to, to_slot)
-
-
-func _on_Clear_pressed():
-	for node in get_tree().get_nodes_in_group("graph_nodes"):
-		if node.node_type != "NodeRoot":
-			node.queue_free()
-	graph_edit.clear_connections()
-
-
-func _on_NewRoll_pressed():
-	var dice_roll = dice_roll_node.instantiate()
-	graph_edit.add_child(dice_roll)
-
-
 func save():
 	var file = FileAccess.open(file_path, FileAccess.WRITE)
 	var data = JSON.stringify(_to_dict(), "\t", false, true)
 	file.store_string(data)
 	file.close()
-	
-	
-func _on_file_selected(path):
-	file_path = path
-	$WelcomeWindow.hide()
-	if $ProjectFinderDialog.open_mode == 0: #NEW
-		save()
-		
-	load_project(path)
-	
-	
+
+
 func load_project(path):
 	assert(FileAccess.file_exists(path))
 	
@@ -200,7 +174,6 @@ func get_node_by_id(id):
 		if node.id == id:
 			return node
 	
-	
 func get_options_nodes(node_list, options_id):
 	var options = []
 	
@@ -210,11 +183,37 @@ func get_options_nodes(node_list, options_id):
 	return options
 
 
+###############################
+#  New node buttons callback  #
+###############################
+
+func _on_new_sentence_pressed():
+	var node = sentence_node.instantiate()
+	graph_edit.add_child(node)
+
+func _on_NewOption_pressed():
+	var new_choice_node = choice_node.instantiate()
+	graph_edit.add_child(new_choice_node)
+
+func _on_NewRoll_pressed():
+	var dice_roll = dice_roll_node.instantiate()
+	graph_edit.add_child(dice_roll)
+
 func _on_new_end_pressed():
 	var node = end_node.instantiate()
 	graph_edit.add_child(node)
 
 
-func _on_new_sentence_pressed():
-	var node = sentence_node.instantiate()
-	graph_edit.add_child(node)
+func _on_Clear_pressed():
+	for node in get_tree().get_nodes_in_group("graph_nodes"):
+		if node.node_type != "NodeRoot":
+			node.queue_free()
+	graph_edit.clear_connections()
+
+
+func _on_GraphEdit_connection_request(from, from_slot, to, to_slot):
+	if graph_edit.get_all_connections_from_slot(from, from_slot).size() <= 0:
+		graph_edit.connect_node(from, from_slot, to, to_slot)
+
+func _on_GraphEdit_disconnection_request(from, from_slot, to, to_slot):
+	graph_edit.disconnect_node(from, from_slot, to, to_slot)
