@@ -4,10 +4,6 @@ extends GraphEdit
 var speakers = []
 
 
-func _ready():
-	update_speakers()
-
-
 func get_all_connections_from_node(from_node: StringName):
 	var connections = []
 	
@@ -36,21 +32,3 @@ func clear_all_empty_connections():
 		var node_ref = get_node_or_null(NodePath(to_name))
 		if node_ref == null or node_ref.is_queued_for_deletion():
 			disconnect_node(co.get("from"), co.get("from_port"), co.get("to"), co.get("to_port"))
-
-
-func update_speakers(characters: Array = []):
-	speakers.clear()
-	
-	speakers.append("_NARRATOR")
-	for speaker in characters:
-		if speaker.get("ID") != "":
-			speakers.append(speaker.get("ID"))
-	
-	for node in get_children():
-		if node.node_type == "NodeSentence":
-			return
-			var selected = node.character_drop.selected
-			node.character_drop.clear()
-			for speaker in speakers:
-				node.character_drop.add_item(speaker)
-			node.character_drop.select(selected)

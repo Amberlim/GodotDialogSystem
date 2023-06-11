@@ -8,15 +8,25 @@ script/source = "extends PanelContainer
 
 @onready var id_input = $MarginContainer/HBoxContainer2/LineEdit
 
+var root_node
+var editor_index = -1
+
 
 func _to_dict():
 	return {
-		\"ID\": id_input.text
+		\"ID\": id_input.text,
+		\"EditorIndex\": editor_index
 	}
+
+
+func _from_dict(dict):
+	id_input.text = dict.get(\"ID\")
+	editor_index = dict.get(\"EditorIndex\")
 
 
 func _on_delete_pressed():
 	queue_free()
+	root_node.update_speakers()
 "
 
 [node name="Character" type="PanelContainer"]

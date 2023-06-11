@@ -33,12 +33,6 @@ func _ready():
 	graph_edit.add_child(new_root_node)
 
 
-func _on_Button_pressed():
-	var node = sentence_node.instantiate()
-	graph_edit.add_child(node)
-	graph_edit.update_speakers(root_node_ref.get_characters())
-
-
 func _to_dict() -> Dictionary:
 	var list_nodes = []
 	
@@ -49,14 +43,21 @@ func _to_dict() -> Dictionary:
 		if node.node_type == "NodeChoice":
 			list_nodes.append_array(node.options)
 	
-	var root_dict = get_root_dict(list_nodes)
-	var root_node_obj = get_root_node_ref()
+	root_dict = get_root_dict(list_nodes)
+	root_node_ref = get_root_node_ref()
+	
+	var characters = graph_edit.speakers
+	if graph_edit.speakers.size() <= 0:
+		characters.append({
+			"ID": "_NARRATOR",
+			"EditorIndex": 0
+		})
 	
 	return {
 		"RootNodeID": root_dict.get("ID"),
 		"ListNodes": list_nodes,
-		"Characters": root_node_obj.get_characters(),
-		"Variables": root_node_obj.get_variables()
+		"Characters": characters,
+		"Variables": root_node_ref.get_variables()
 	}
 
 
@@ -98,10 +99,6 @@ func _on_NewRoll_pressed():
 	graph_edit.add_child(dice_roll)
 
 
-func live_save():
-	live_dict = _to_dict()
-
-
 func save():
 	var file = FileAccess.open(file_path, FileAccess.WRITE)
 	var data = JSON.stringify(_to_dict(), "\t", false, true)
@@ -111,16 +108,11 @@ func save():
 	
 func _on_file_selected(path):
 	file_path = path
-	match $ProjectFinderDialog.open_mode:
-		0: # NEW
-			$WelcomeWindow.hide()
-			save()
-			
-			load_project(path)
-		1: # OPEN
-			load_project(path)
-			
-			$WelcomeWindow.hide()
+	$WelcomeWindow.hide()
+	if $ProjectFinderDialog.open_mode == 0: #NEW
+		save()
+		
+	load_project(path)
 	
 	
 func load_project(path):
@@ -130,6 +122,7 @@ func load_project(path):
 	var data = JSON.parse_string(file)
 	
 	live_dict = data
+	graph_edit.speakers = data.get("Characters")
 	
 	for node in graph_edit.get_children():
 		node.queue_free()
@@ -143,34 +136,29 @@ func load_project(path):
 		match node.get("$type"):
 			"NodeRoot":
 				new_node = root_node.instantiate()
+				new_node._from_dict(node, node_list)
 			"NodeSentence":
 				new_node = sentence_node.instantiate()
-				new_node.loaded_text = node.get("Sentence")
+				new_node._from_dict(node)
 			"NodeChoice":
 				new_node = choice_node.instantiate()
-				
-				var options = get_options_nodes(node_list, node.get("OptionsID"))
+				new_node._from_dict(node, node_list)
 			"NodeDiceRoll":
 				new_node = dice_roll_node.instantiate()
+				new_node._from_dict(node)
 			"NodeEndPath":
 				new_node = end_node.instantiate()
+				new_node._from_dict(node)
 		
 		if not new_node:
 			continue
 		
-		new_node.id = node.get("ID")
 		graph_edit.add_child(new_node)
 	
 	
-	# Root Node Variables and Characters
+	# Root Node Variables
 	for variable in data.get("Variables"):
 		root_node_ref.add_variable()
-	
-	# for character in data.get("Characters"): # FIXME
-		# root_node_ref.add_character(character.get("ID"))
-	
-	# graph_edit.update_speakers(root_node_ref.get_characters())
-	
 	
 	for node in node_list:
 		if not node.has("ID"):
@@ -179,17 +167,14 @@ func load_project(path):
 		var current_node = get_node_by_id(node.get("ID"))
 		match node.get("$type"):
 			"NodeRoot":
-				current_node._from_dict(node, node_list)
 				if node.get("NextID") is String:
 					var next_node = get_node_by_id(node.get("NextID"))
 					graph_edit.connect_node(current_node.name, 0, next_node.name, 0)
 			"NodeSentence":
-				current_node._from_dict(node)
 				if node.get("NextID") is String:
 					var next_node = get_node_by_id(node.get("NextID"))
 					graph_edit.connect_node(current_node.name, 0, next_node.name, 0)
 			"NodeChoice":
-				current_node._from_dict(node, node_list)
 				current_node.connect_all_options(node_list)
 			"NodeDiceRoll":
 				if node.get("PassID") is String:
@@ -199,8 +184,6 @@ func load_project(path):
 				if node.get("FailID") is String:
 					var fail_node = get_node_by_id(node.get("FailID"))
 					graph_edit.connect_node(current_node.name, 1, fail_node.name, 0)
-			"NodeEndPath":
-				current_node._from_dict(node)
 		
 		if not current_node: # OptionNode
 			continue
@@ -229,4 +212,9 @@ func get_options_nodes(node_list, options_id):
 
 func _on_new_end_pressed():
 	var node = end_node.instantiate()
+	graph_edit.add_child(node)
+
+
+func _on_new_sentence_pressed():
+	var node = sentence_node.instantiate()
 	graph_edit.add_child(node)

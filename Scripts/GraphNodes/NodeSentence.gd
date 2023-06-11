@@ -14,6 +14,7 @@ var actions: Array
 
 func _ready():
 	title = node_type + " (" + id + ")"
+	update_preview()
 
 
 func _to_dict() -> Dictionary:
@@ -24,7 +25,7 @@ func _to_dict() -> Dictionary:
 		"ID": id,
 		"NextID": next_id_node[0].id if next_id_node else -1,
 		"Sentence": sentence,
-		"SpeakerID":speaker_id,
+		"SpeakerID": speaker_id,
 		"DisplaySpeakerName": display_speaker_name,
 		"Conditions": [],
 		"Actions": actions,
@@ -46,11 +47,8 @@ func _from_dict(dict):
 	display_speaker_name = dict.get("DisplaySpeakerName")
 	actions = dict.get("Actions")
 	
-	var _pos = dict.get("EditorPosition")
-	position_offset.x = _pos.get("x")
-	position_offset.x = _pos.get("y")
-	
-	update_preview()
+	position_offset.x = dict.EditorPosition.get("x")
+	position_offset.y = dict.EditorPosition.get("y")
 
 
 func update_preview():

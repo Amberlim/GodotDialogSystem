@@ -1,7 +1,7 @@
 extends GraphNode
 
 
-var node_type = "EndPathNode"
+var node_type = "NodeEndPath"
 var id = UUID.v4()
 var actions: Array
 

@@ -4,49 +4,50 @@
 [ext_resource type="Script" path="res://Scripts/SidePanelNodes/RootNodePanel.gd" id="1_pf2u6"]
 
 [node name="RootNodePanel" type="VBoxContainer"]
+offset_right = 316.0
+offset_bottom = 221.0
 size_flags_vertical = 0
 theme_override_constants/separation = 20
 script = ExtResource("1_pf2u6")
 
-[node name="CharactersContainer" type="HBoxContainer" parent="."]
+[node name="CharactersMainContainer" type="VBoxContainer" parent="."]
 layout_mode = 2
-size_flags_vertical = 0
-theme_override_constants/separation = 40
 
-[node name="Label" type="Label" parent="CharactersContainer"]
+[node name="Label" type="Label" parent="CharactersMainContainer"]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 size_flags_vertical = 0
 text = "Characters"
 
-[node name="AddBtnContainer" type="VBoxContainer" parent="CharactersContainer"]
+[node name="CharactersContainer" type="VBoxContainer" parent="CharactersMainContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 5
 
-[node name="Add" type="Button" parent="CharactersContainer/AddBtnContainer"]
+[node name="Add" type="Button" parent="CharactersMainContainer"]
 layout_mode = 2
 text = "+"
 
-[node name="VariablesContainer" type="HBoxContainer" parent="."]
+[node name="VariablesMainContainer" type="VBoxContainer" parent="."]
 layout_mode = 2
-size_flags_vertical = 0
-theme_override_constants/separation = 40
 
-[node name="Label" type="Label" parent="VariablesContainer"]
+[node name="Label" type="Label" parent="VariablesMainContainer"]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 size_flags_vertical = 0
 text = "Variables"
 
-[node name="AddBtnContainer" type="VBoxContainer" parent="VariablesContainer"]
+[node name="VariablesContainer" type="VBoxContainer" parent="VariablesMainContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 5
 
-[node name="Add" type="Button" parent="VariablesContainer/AddBtnContainer"]
+[node name="Add" type="Button" parent="VariablesMainContainer"]
 layout_mode = 2
 text = "+"
 
 [node name="Actions" parent="." instance=ExtResource("1_omsta")]
 layout_mode = 2
+
+[connection signal="pressed" from="CharactersMainContainer/Add" to="." method="add_character"]
+[connection signal="pressed" from="VariablesMainContainer/Add" to="." method="add_variable"]

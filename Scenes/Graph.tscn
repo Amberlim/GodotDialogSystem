@@ -190,6 +190,7 @@ label_settings = SubResource("LabelSettings_p3pmt")
 
 [node name="WelcomeWindow" type="Window" parent="."]
 size = Vector2i(586, 188)
+visible = false
 wrap_controls = true
 transient = true
 exclusive = true
@@ -314,7 +315,7 @@ script = SubResource("GDScript_so3r8")
 [connection signal="resized" from="." to="ProjectFinderDialog" method="_on_control_resized"]
 [connection signal="resized" from="." to="HelpWindow" method="_on_control_resized"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/Config" to="." method="_on_Button_pressed"]
-[connection signal="pressed" from="VBoxContainer/HBoxContainer/NewSentence" to="." method="_on_Button_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/NewSentence" to="." method="_on_new_sentence_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/NewOption" to="." method="_on_NewOption_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/NewRoll" to="." method="_on_NewRoll_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/NewEnd" to="." method="_on_new_end_pressed"]

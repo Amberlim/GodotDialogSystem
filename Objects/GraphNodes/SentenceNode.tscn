@@ -7,8 +7,8 @@
 [node name="SentenceNode" type="GraphNode" groups=["graph_nodes"]]
 custom_minimum_size = Vector2(200, 100)
 offset_right = 200.0
-offset_bottom = 100.0
-size_flags_horizontal = 4
+offset_bottom = 65.0
+size_flags_vertical = 0
 theme = SubResource("Theme_llmqa")
 title = "NodeSentence"
 show_close = true

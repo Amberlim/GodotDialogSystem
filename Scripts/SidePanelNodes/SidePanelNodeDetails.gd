@@ -3,6 +3,7 @@ extends PanelContainer
 
 @onready var label_id = $MarginContainer/ScrollContainer/PanelContainer/LabelID
 @onready var panel_container = $MarginContainer/ScrollContainer/PanelContainer
+@onready var graph_edit = $"../../GraphEdit"
 
 @onready var root_node_panel_instance = preload("res://Objects/SidePanelNodes/RootNodePanel.tscn")
 @onready var sentence_node_panel_instance = preload("res://Objects/SidePanelNodes/SentenceNodePanel.tscn")
@@ -17,11 +18,12 @@ func _ready():
 
 
 func _on_graph_edit_node_selected(node):
+	graph_edit.speakers
 	if current_panel:
 		current_panel.queue_free()
 		current_panel = null
 		
-	if node.node_type == "EndPathNode":
+	if node.node_type == "NodeEndPath":
 		return
 	
 	label_id.text = node.id

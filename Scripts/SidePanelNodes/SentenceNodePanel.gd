@@ -14,6 +14,11 @@ var display_speaker_name = ""
 var actions: Array
 
 
+func _ready():
+	for speaker in graph_node.get_parent().speakers:
+		character_drop_node.add_item(speaker.get("ID"), speaker.get("EditorIndex"))
+
+
 func _from_dict(dict):
 	id = dict.get("ID")
 	sentence = dict.get("Sentence")
@@ -21,8 +26,8 @@ func _from_dict(dict):
 	display_speaker_name = dict.get("DisplaySpeakerName")
 	actions = dict.get("Actions")
 	
-	if speaker_id and false: # FIXME: Speaker ID selector
-		$SpeakerContainer/SubContainer/CharacterDrop.select(speaker_id)
+	if speaker_id:
+		character_drop_node.select(speaker_id)
 	display_speaker_name_node.text = display_speaker_name
 	sentence_edit_node.text = sentence
 
@@ -44,5 +49,4 @@ func _on_display_name_line_edit_text_changed(new_text):
 
 
 func _on_character_drop_item_selected(index):
-	# TODO: Character selection
-	graph_node.update_preview()
+	graph_node.speaker_id = index
