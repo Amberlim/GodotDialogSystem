@@ -187,21 +187,28 @@ func get_options_nodes(node_list, options_id):
 #  New node buttons callback  #
 ###############################
 
+func center_node_in_graph_edit(node):
+	node.position_offset = Vector2.ZERO
+
 func _on_new_sentence_pressed():
 	var node = sentence_node.instantiate()
 	graph_edit.add_child(node)
+	center_node_in_graph_edit(node)
 
 func _on_NewOption_pressed():
-	var new_choice_node = choice_node.instantiate()
-	graph_edit.add_child(new_choice_node)
+	var node = choice_node.instantiate()
+	graph_edit.add_child(node)
+	center_node_in_graph_edit(node)
 
 func _on_NewRoll_pressed():
-	var dice_roll = dice_roll_node.instantiate()
-	graph_edit.add_child(dice_roll)
+	var node = dice_roll_node.instantiate()
+	graph_edit.add_child(node)
+	center_node_in_graph_edit(node)
 
 func _on_new_end_pressed():
 	var node = end_node.instantiate()
 	graph_edit.add_child(node)
+	center_node_in_graph_edit(node)
 
 
 func _on_Clear_pressed():
