@@ -175,18 +175,18 @@ theme_override_constants/separation = 5
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/Control/MarginContainer/SidePanelNodeDetails/MarginContainer/ScrollContainer/PanelContainer"]
 layout_mode = 2
-alignment = 2
+
+[node name="LabelID" type="Label" parent="VBoxContainer/Control/MarginContainer/SidePanelNodeDetails/MarginContainer/ScrollContainer/PanelContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "id"
+label_settings = SubResource("LabelSettings_p3pmt")
 
 [node name="TextureButton" type="TextureButton" parent="VBoxContainer/Control/MarginContainer/SidePanelNodeDetails/MarginContainer/ScrollContainer/PanelContainer/HBoxContainer"]
 layout_mode = 2
 mouse_default_cursor_shape = 2
 texture_normal = ExtResource("9_b0faf")
 stretch_mode = 3
-
-[node name="LabelID" type="Label" parent="VBoxContainer/Control/MarginContainer/SidePanelNodeDetails/MarginContainer/ScrollContainer/PanelContainer"]
-layout_mode = 2
-text = "id"
-label_settings = SubResource("LabelSettings_p3pmt")
 
 [node name="WelcomeWindow" type="Window" parent="."]
 size = Vector2i(586, 188)

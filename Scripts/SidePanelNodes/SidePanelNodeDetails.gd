@@ -1,7 +1,7 @@
 extends PanelContainer
 
 
-@onready var label_id = $MarginContainer/ScrollContainer/PanelContainer/LabelID
+@onready var label_id = $MarginContainer/ScrollContainer/PanelContainer/HBoxContainer/LabelID
 @onready var panel_container = $MarginContainer/ScrollContainer/PanelContainer
 @onready var graph_edit = $"../../GraphEdit"
 
