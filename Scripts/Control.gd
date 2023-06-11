@@ -28,9 +28,8 @@ var root_dict
 func _ready():
 	if not file_path.is_empty():
 		$WelcomeWindow.show()
-	
-	var new_root_node = root_node.instantiate()
-	graph_edit.add_child(new_root_node)
+		
+	$NoInteractions.show()
 
 
 func _to_dict() -> Dictionary:
@@ -62,6 +61,8 @@ func _to_dict() -> Dictionary:
 
 
 func _on_file_selected(path):
+	$NoInteractions.hide()
+	
 	file_path = path
 	$WelcomeWindow.hide()
 	if $ProjectFinderDialog.open_mode == 0: #NEW

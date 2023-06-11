@@ -188,12 +188,19 @@ mouse_default_cursor_shape = 2
 texture_normal = ExtResource("9_b0faf")
 stretch_mode = 3
 
+[node name="NoInteractions" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 1, 1, 0)
+
 [node name="WelcomeWindow" type="Window" parent="."]
 size = Vector2i(586, 188)
 visible = false
 wrap_controls = true
-transient = true
-exclusive = true
 unresizable = true
 borderless = true
 always_on_top = true

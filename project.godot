@@ -15,7 +15,7 @@ run/main_scene="res://Scenes/App.tscn"
 config/features=PackedStringArray("4.0")
 boot_splash/fullsize=false
 config/icon="res://icon.png"
-config/version="1.0.0beta4"
+config/version="1.0.0beta5"
 
 [autoload]
 
