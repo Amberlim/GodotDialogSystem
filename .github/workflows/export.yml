@@ -1,7 +1,7 @@
 on:
   push:
-    tags:
-      - "v*-test"
+    branches:
+      - main
 
 jobs:
   export_game:
