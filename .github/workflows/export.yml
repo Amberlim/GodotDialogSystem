@@ -1,5 +1,7 @@
 on:
-  push:
+  pull_request:
+    types:
+      - opened
     branches:
       - main
 
@@ -31,4 +33,5 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           generateReleaseNotes: true
           tag: ${{ github.ref_name }}
+          name: ${{ github.event.pull_request.title }}
           artifacts: ${{ steps.export.outputs.archive_directory }}/* # Added "/*" at the end is glob pattern match for this action
