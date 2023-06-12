@@ -1,7 +1,0 @@
-[gd_scene format=2]
-
-[node name="Continue" type="Button"]
-offset_top = 843.0
-offset_right = 496.0
-offset_bottom = 863.0
-text = "CONTINUE"
