@@ -1,9 +1,9 @@
 [gd_scene load_steps=6 format=3 uid="uid://cfimjp133kacy"]
 
-[ext_resource type="Texture2D" uid="uid://rkypjdb7enbl" path="res://Assets/bool_icon.png" id="1_j1rmk"]
-[ext_resource type="Texture2D" uid="uid://ckcnhbs2x6roy" path="res://Assets/trash_icon.png" id="1_p6c1i"]
-[ext_resource type="Texture2D" uid="uid://x8pevxioch7i" path="res://Assets/int_icon.png" id="2_qiili"]
-[ext_resource type="Texture2D" uid="uid://by7ucii6jr7or" path="res://Assets/str_icon.png" id="3_vp1se"]
+[ext_resource type="Texture2D" uid="uid://coirxt3km0oht" path="res://Assets/Icons/trash_icon.png" id="1_qgrst"]
+[ext_resource type="Texture2D" uid="uid://bl5yb5x0rivmo" path="res://Assets/Icons/bool_icon.png" id="2_1iil2"]
+[ext_resource type="Texture2D" uid="uid://qcd8ly7qhpse" path="res://Assets/Icons/int_icon.png" id="3_wmcdv"]
+[ext_resource type="Texture2D" uid="uid://dxckss1g02ogs" path="res://Assets/Icons/str_icon.png" id="4_5xlia"]
 
 [sub_resource type="GDScript" id="GDScript_re5n5"]
 script/source = "extends PanelContainer
@@ -60,7 +60,7 @@ theme_override_constants/margin_left = 10
 [node name="Delete" type="TextureButton" parent="MarginContainer/VBoxContainer/HBoxContainer2/MarginContainer"]
 layout_mode = 2
 mouse_default_cursor_shape = 2
-texture_normal = ExtResource("1_p6c1i")
+texture_normal = ExtResource("1_qgrst")
 stretch_mode = 3
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
@@ -77,13 +77,13 @@ size_flags_horizontal = 3
 item_count = 3
 selected = 0
 popup/item_0/text = "Boolean"
-popup/item_0/icon = ExtResource("1_j1rmk")
+popup/item_0/icon = ExtResource("2_1iil2")
 popup/item_0/id = 0
 popup/item_1/text = "Integer"
-popup/item_1/icon = ExtResource("2_qiili")
+popup/item_1/icon = ExtResource("3_wmcdv")
 popup/item_1/id = 1
 popup/item_2/text = "String"
-popup/item_2/icon = ExtResource("3_vp1se")
+popup/item_2/icon = ExtResource("4_5xlia")
 popup/item_2/id = 2
 
 [node name="HBoxContainer3" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]

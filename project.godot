@@ -15,7 +15,7 @@ run/main_scene="res://Scenes/App.tscn"
 config/features=PackedStringArray("4.0")
 boot_splash/fullsize=false
 config/icon="res://icon.png"
-config/version="1.0.0beta5"
+config/version="1.0.0beta6"
 
 [autoload]
 
@@ -31,7 +31,7 @@ window/size/fullscreen=true
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/editor_icon_previewer/plugin.cfg", "res://addons/Todo_Manager/plugin.cfg")
+enabled=PackedStringArray("res://addons/Todo_Manager/plugin.cfg")
 
 [gui]
 
