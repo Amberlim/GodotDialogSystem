@@ -1,9 +1,10 @@
-[gd_scene load_steps=15 format=3 uid="uid://bqjfdabrxujp7"]
+[gd_scene load_steps=16 format=3 uid="uid://bqjfdabrxujp7"]
 
 [ext_resource type="Script" path="res://Scripts/Control.gd" id="2_1tprk"]
 [ext_resource type="Texture2D" uid="uid://baiy1kygdapj1" path="res://Assets/Icons/config_icon.png" id="2_47s6l"]
 [ext_resource type="Script" path="res://Scripts/GraphEdit.gd" id="2_fn1ag"]
 [ext_resource type="Script" path="res://Scripts/Windows/WelcomeWindow.gd" id="3_bs36t"]
+[ext_resource type="Texture2D" uid="uid://cx2kpptyyju8l" path="res://Assets/Icons/close_icon.png" id="5_f42wd"]
 [ext_resource type="Texture2D" uid="uid://cwql5qpl4e4v0" path="res://Assets/Icons/new_file_icon.png" id="5_vkhra"]
 [ext_resource type="Script" path="res://Scripts/Windows/NewFileDialog.gd" id="6_lrnkg"]
 [ext_resource type="Texture2D" uid="uid://cqqihpieogmyx" path="res://Assets/Icons/folder_icon.png" id="6_vjwwg"]
@@ -170,7 +171,7 @@ layout_mode = 2
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-theme_override_constants/separation = 5
+theme_override_constants/separation = 10
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/Control/MarginContainer/SidePanelNodeDetails/MarginContainer/ScrollContainer/PanelContainer"]
 layout_mode = 2
@@ -184,6 +185,7 @@ label_settings = SubResource("LabelSettings_p3pmt")
 [node name="TextureButton" type="TextureButton" parent="VBoxContainer/Control/MarginContainer/SidePanelNodeDetails/MarginContainer/ScrollContainer/PanelContainer/HBoxContainer"]
 layout_mode = 2
 mouse_default_cursor_shape = 2
+texture_normal = ExtResource("5_f42wd")
 stretch_mode = 3
 
 [node name="NoInteractions" type="ColorRect" parent="."]

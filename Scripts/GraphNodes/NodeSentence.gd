@@ -49,6 +49,8 @@ func _from_dict(dict):
 	
 	position_offset.x = dict.EditorPosition.get("x")
 	position_offset.y = dict.EditorPosition.get("y")
+	
+	update_preview()
 
 
 func update_preview():

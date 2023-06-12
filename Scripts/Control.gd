@@ -26,6 +26,9 @@ var root_dict
 
 
 func _ready():
+	var new_root_node = root_node.instantiate()
+	graph_edit.add_child(new_root_node)
+	
 	if not file_path.is_empty():
 		$WelcomeWindow.show()
 		
@@ -40,7 +43,8 @@ func _to_dict() -> Dictionary:
 			continue
 		list_nodes.append(node._to_dict())
 		if node.node_type == "NodeChoice":
-			list_nodes.append_array(node.options)
+			for child in node.get_children():
+				list_nodes.append(child._to_dict())
 	
 	root_dict = get_root_dict(list_nodes)
 	root_node_ref = get_root_node_ref()
@@ -91,6 +95,8 @@ func save():
 
 
 func load_project(path):
+	for node in graph_edit.get_children():
+		node.queue_free()
 	assert(FileAccess.file_exists(path))
 	
 	var file = FileAccess.get_file_as_string(path)
@@ -111,25 +117,28 @@ func load_project(path):
 		match node.get("$type"):
 			"NodeRoot":
 				new_node = root_node.instantiate()
-				new_node._from_dict(node, node_list)
 			"NodeSentence":
 				new_node = sentence_node.instantiate()
-				new_node._from_dict(node)
 			"NodeChoice":
 				new_node = choice_node.instantiate()
-				new_node._from_dict(node, node_list)
 			"NodeDiceRoll":
 				new_node = dice_roll_node.instantiate()
-				new_node._from_dict(node)
 			"NodeEndPath":
 				new_node = end_node.instantiate()
-				new_node._from_dict(node)
 		
 		if not new_node:
 			continue
+		new_node.id = node.get("ID")
 		
 		graph_edit.add_child(new_node)
+		if node.get("$type") == "NodeRoot":
+			new_node._from_dict(node, node_list)
+		else:
+			new_node._from_dict(node)
 	
+	for node in node_list.filter(func(n): return n.get("$type") == "NodeChoice"):
+		var graph_node = get_node_by_id(node.get("ID"))
+		graph_node._options_from_dict(node, node_list)
 	
 	# Root Node Variables
 	for variable in data.get("Variables"):

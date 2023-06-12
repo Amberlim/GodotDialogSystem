@@ -29,36 +29,47 @@ func _to_dict() -> Dictionary:
 		}
 	}
 
-func _from_dict(dict, global_dict):
+
+func _from_dict(dict):
 	_node_dict = dict
 	
 	id = dict.get("ID")
-	
+
+
+func _options_from_dict(dict, global_dict):
 	var options_id = dict.get("OptionsID")
-	if options_id.size() <= 0:
-		new_option_reference()
 	for opt_id in options_id:
 		var node = global_dict.filter(func(n): return n.get("ID") == opt_id)[0]
 		options.append(node)
-		new_option_reference(opt_id, node.get("Sentence"))
+		new_option_reference(node)
 
-func new_option_reference(id = null, label: String = "Empty"):
+
+func new_option_reference(dict = null):
 	var new_ref = option_reference.instantiate()
-	if id:
-		new_ref.id = id
+	if dict != null:
+		# If already exist
+		var node = get_children().filter(func(child): return child.id == id)
+		if node.size() > 0:
+			node._from_dict(dict)
+			return
 	
 	add_child(new_ref)
-	new_ref.set_label(label)
+	
+	if dict != null:
+		new_ref._from_dict(dict)
 	
 	var is_first = get_child_count() <= 1
 	set_slot(get_child_count() - 1, is_first, 0, Color("ff2865"), true, 0, Color("097168"))
 
 
-func update_option_reference(index):
+func update_option_reference(index, dict):
 	var child = get_children()[index]
-	var option: Dictionary = options.filter(func(opt): return opt.get("ID") == child.id)[0]
-	
-	child.set_label(option.get("Sentence"))
+	child._from_dict(dict)
+
+
+func delete_option_reference(id):
+	var child = get_children().filter(func(node): return node.id == id)[0]
+	child.queue_free()
 
 
 func get_all_options_id() -> Array:
@@ -78,8 +89,6 @@ func connect_all_options(node_list: Array):
 	# Clear all slots
 	for child_idx in get_child_count():
 		var connections = get_parent().get_all_connections_from_slot(self.name, child_idx)
-		for connection in connections:
-			print(connection)
 	
 	var all_options = []
 	for child in get_children():
@@ -98,7 +107,11 @@ func connect_all_options(node_list: Array):
 		
 func get_next_node(next_node_id):
 	for node in get_parent().get_children():
-		if not next_node_id is int and node.id == next_node_id:
+		if not next_node_id is float and node.id == next_node_id:
 			return node
 	
 	return -1
+
+
+func _on_slot_updated(idx):
+	pass # Replace with function body.
