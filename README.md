@@ -34,6 +34,4 @@ You can write your own script or use [this one]() (not yet written).
 
 
 ### More Support
-1. For a runthrough (of the original version), watch my video on youtube: https://www.youtube.com/watch?v=QCySgbADhEA&ab_channel=AmberLimShin%F0%9F%8D%A0
-
-2. Hop into Discord to share your project: https://discord.gg/AAcKmJz7Na 
+Hop into the Amberlim's Discord to share your project: https://discord.gg/AAcKmJz7Na
