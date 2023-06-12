@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://co06oddlr5k5"]
 
-[ext_resource type="Texture2D" uid="uid://ckcnhbs2x6roy" path="res://Assets/trash_icon.png" id="1_roxvt"]
+[ext_resource type="Texture2D" uid="uid://coirxt3km0oht" path="res://Assets/Icons/trash_icon.png" id="1_drvey"]
 
 [sub_resource type="GDScript" id="GDScript_laerw"]
 script/source = "extends PanelContainer
@@ -59,7 +59,7 @@ theme_override_constants/margin_left = 10
 [node name="Delete" type="TextureButton" parent="MarginContainer/HBoxContainer2/MarginContainer"]
 layout_mode = 2
 mouse_default_cursor_shape = 2
-texture_normal = ExtResource("1_roxvt")
+texture_normal = ExtResource("1_drvey")
 stretch_mode = 3
 
 [connection signal="pressed" from="MarginContainer/HBoxContainer2/MarginContainer/Delete" to="." method="_on_delete_pressed"]

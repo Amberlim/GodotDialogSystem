@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://3k3dukisluyn"]
 
-[ext_resource type="Texture2D" uid="uid://ckcnhbs2x6roy" path="res://Assets/trash_icon.png" id="2_jkpwx"]
+[ext_resource type="Texture2D" uid="uid://coirxt3km0oht" path="res://Assets/Icons/trash_icon.png" id="2_du61s"]
 [ext_resource type="Script" path="res://Scripts/GraphNodes/OptionNode.gd" id="4_5yoga"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_803ep"]
@@ -59,7 +59,7 @@ theme_override_constants/margin_right = 5
 [node name="Delete" type="TextureButton" parent="MarginContainer/MainContainer/SentenceContainer/DeleteBtnContainer"]
 layout_mode = 2
 mouse_default_cursor_shape = 2
-texture_normal = ExtResource("2_jkpwx")
+texture_normal = ExtResource("2_du61s")
 stretch_mode = 3
 
 [node name="EnableBtn" type="CheckBox" parent="MarginContainer/MainContainer"]

@@ -1,0 +1,11 @@
+[gd_resource type="FontFile" load_steps=2 format=3]
+
+[ext_resource type="FontFile" uid="uid://rqj158m7y2pt" path="res://Assets/Fonts/AdobeClean-Bold.otf" id="1"]
+
+
+[resource]
+size = 19
+use_mipmaps = true
+use_filter = true
+extra_spacing_char = 1
+font_data = ExtResource( 1 )

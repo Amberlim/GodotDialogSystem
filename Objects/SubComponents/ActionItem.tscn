@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://cdhtli8dps86p"]
 
-[ext_resource type="Texture2D" uid="uid://cejwfau3dwbtt" path="res://Assets/dot_icon.png" id="1_hyqjn"]
-[ext_resource type="Texture2D" uid="uid://ckcnhbs2x6roy" path="res://Assets/trash_icon.png" id="2_dfdnt"]
+[ext_resource type="Texture2D" uid="uid://di04eoki8n55k" path="res://Assets/Icons/dot_icon.png" id="1_nclpw"]
+[ext_resource type="Texture2D" uid="uid://coirxt3km0oht" path="res://Assets/Icons/trash_icon.png" id="2_jwomt"]
 
 [sub_resource type="GDScript" id="GDScript_56lbc"]
 script/source = "extends HBoxContainer
@@ -49,7 +49,7 @@ script = SubResource("GDScript_56lbc")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 2
-texture = ExtResource("1_hyqjn")
+texture = ExtResource("1_nclpw")
 stretch_mode = 3
 
 [node name="OptionButton" type="OptionButton" parent="."]
@@ -71,7 +71,7 @@ placeholder_text = "Argument"
 [node name="TextureButton" type="TextureButton" parent="."]
 layout_mode = 2
 mouse_default_cursor_shape = 2
-texture_normal = ExtResource("2_dfdnt")
+texture_normal = ExtResource("2_jwomt")
 stretch_mode = 5
 
 [connection signal="pressed" from="TextureButton" to="." method="_on_texture_button_pressed"]
