@@ -16,23 +16,13 @@ var enable = true
 var one_shot = false
 
 
-func _to_dict() -> Dictionary:
-	var parent = get_parent_control()
-	var graph_edit = graph_node.get_parent()
-	var index = parent.get_children().find(self)
-	var next_id_node = graph_edit.get_all_connections_from_slot(parent.name, index)
-	
+func _to_dict():
 	return {
 		"$type": node_type,
 		"ID": id,
-		"NextID": next_id_node[0].id if next_id_node else -1,
 		"Sentence": sentence,
 		"Enable": enable,
-		"OneShot": one_shot,
-		"Conditions": [],
-		"Actions": [],
-		"Flags": [],
-		"CustomProperties": []
+		"OneShot": one_shot
 	}
 
 
@@ -51,8 +41,9 @@ func _from_dict(dict):
 
 
 func _on_delete_pressed():
-	var parent = get_parent_control()
 	queue_free()
+	var option_ref = graph_node.get_children().filter(func(opt): return opt.id == id)[0]
+	option_ref.queue_free()
 
 
 func _on_id_label_gui_input(event):
@@ -76,9 +67,10 @@ func _on_one_shot_btn_toggled(button_pressed):
 
 
 func update_ref():
-	graph_node.options.filter(func(opt): return opt.get("ID") == id)
-	var option_ref: Dictionary = graph_node.options.filter(func(opt): return opt.get("ID") == id)[0]
-	var option_index = graph_node.options.find(option_ref)
-	graph_node.options[option_index] = _to_dict()
+	if is_queued_for_deletion():
+		graph_node.delete_option_reference(id)
+		return
+	var option_ref = graph_node.get_children().filter(func(opt): return opt.id == id)[0]
+	var option_index = graph_node.get_children().find(option_ref)
 	
-	graph_node.update_option_reference(option_index)
+	graph_node.update_option_reference(option_index, _to_dict())
