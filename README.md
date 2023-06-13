@@ -35,7 +35,7 @@ You can write your own script or use [this one]() (not yet written).
 
 This how the end of a branch is interpreted.
 If there is no EndPathNode, the next node is the last NodeChoice
-![end_path](end_path.png)
+![end_path_system](end_path.png)
 
 
 ### More Support
