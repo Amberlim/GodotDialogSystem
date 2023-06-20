@@ -1,0 +1,26 @@
+[gd_scene load_steps=2 format=3 uid="uid://chome3gcbekhp"]
+
+[ext_resource type="Script" path="res://Scripts/SidePanelNodes/DiceRollNodePanel.gd" id="1_h78kf"]
+
+[node name="TargetContainer" type="VBoxContainer"]
+theme_override_constants/separation = 10
+script = ExtResource("1_h78kf")
+
+[node name="SubContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Target" type="Label" parent="SubContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+text = "Target (in %)"
+
+[node name="TargetNumber" type="SpinBox" parent="SubContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+allow_greater = true
+allow_lesser = true
+update_on_text_changed = true
+suffix = "%"
+custom_arrow_step = 1.0
+
+[connection signal="value_changed" from="SubContainer/TargetNumber" to="." method="_on_target_number_value_changed"]

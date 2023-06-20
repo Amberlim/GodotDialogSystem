@@ -92,7 +92,6 @@ theme_override_font_sizes/font_size = 12
 text = "New Option +"
 
 [node name="NewRoll" type="Button" parent="VBoxContainer/HBoxContainer"]
-visible = false
 layout_mode = 2
 mouse_default_cursor_shape = 2
 theme_override_font_sizes/font_size = 12
@@ -136,7 +135,6 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_vertical = 3
 right_disconnects = true
-scroll_offset = Vector2(0, -9)
 connection_lines_curvature = 0.0
 connection_lines_thickness = 3.0
 zoom = 0.6
