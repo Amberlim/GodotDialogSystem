@@ -329,7 +329,7 @@ script = SubResource("GDScript_so3r8")
 [connection signal="resized" from="." to="WelcomeWindow" method="_on_control_resized"]
 [connection signal="resized" from="." to="ProjectFinderDialog" method="_on_control_resized"]
 [connection signal="resized" from="." to="HelpWindow" method="_on_control_resized"]
-[connection signal="pressed" from="VBoxContainer/HBoxContainer/Config" to="." method="_on_Button_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/Config" to="VBoxContainer/Control/MarginContainer/SidePanelNodeDetails" method="_on_config_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/NewSentence" to="." method="_on_new_sentence_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/NewOption" to="." method="_on_NewOption_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/NewRoll" to="." method="_on_NewRoll_pressed"]
