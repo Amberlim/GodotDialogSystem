@@ -43,6 +43,7 @@ func _on_graph_edit_node_selected(node):
 		current_panel = new_panel
 		panel_container.add_child(new_panel)
 		new_panel._from_dict(node._to_dict())
+		
 	show()
 
 

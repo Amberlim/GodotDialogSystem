@@ -5,6 +5,9 @@ extends PanelContainer
 @onready var action_item_node = preload("res://Objects/SubComponents/ActionItem.tscn")
 
 
+var graph_node
+
+
 func _to_dict():
 	var arr = []
 	for action in actions_container.get_children():

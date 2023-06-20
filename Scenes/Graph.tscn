@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://bqjfdabrxujp7"]
+[gd_scene load_steps=17 format=3 uid="uid://bqjfdabrxujp7"]
 
 [ext_resource type="Script" path="res://Scripts/Control.gd" id="2_1tprk"]
 [ext_resource type="Texture2D" uid="uid://baiy1kygdapj1" path="res://Assets/Icons/config_icon.png" id="2_47s6l"]
@@ -10,6 +10,11 @@
 [ext_resource type="Texture2D" uid="uid://cqqihpieogmyx" path="res://Assets/Icons/folder_icon.png" id="6_vjwwg"]
 [ext_resource type="Texture2D" uid="uid://108wgm8dsxbr" path="res://Assets/Icons/help_icon.png" id="7_nc85w"]
 [ext_resource type="Script" path="res://Scripts/SidePanelNodes/SidePanelNodeDetails.gd" id="9_cxmnj"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_gptd3"]
+line_spacing = 0.0
+font_size = 12
+font_color = Color(0.647059, 0.858824, 0.505882, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0ehqk"]
 bg_color = Color(0.129412, 0.14902, 0.180392, 1)
@@ -111,10 +116,12 @@ mouse_default_cursor_shape = 2
 theme_override_font_sizes/font_size = 12
 text = "Clear"
 
-[node name="Notification" type="Label" parent="VBoxContainer/HBoxContainer"]
+[node name="SavedNotification" type="Label" parent="VBoxContainer/HBoxContainer"]
 visible = false
 layout_mode = 2
-text = "SAVED!"
+text = "✅ SAVED"
+label_settings = SubResource("LabelSettings_gptd3")
+vertical_alignment = 1
 
 [node name="Control" type="Control" parent="VBoxContainer"]
 layout_mode = 2
@@ -129,6 +136,7 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_vertical = 3
 right_disconnects = true
+scroll_offset = Vector2(0, -9)
 connection_lines_curvature = 0.0
 connection_lines_thickness = 3.0
 zoom = 0.6
