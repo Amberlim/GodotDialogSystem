@@ -9,6 +9,7 @@ extends PanelContainer
 @onready var root_node_panel_instance = preload("res://Objects/SidePanelNodes/RootNodePanel.tscn")
 @onready var sentence_node_panel_instance = preload("res://Objects/SidePanelNodes/SentenceNodePanel.tscn")
 @onready var choice_node_panel_instance = preload("res://Objects/SidePanelNodes/ChoiceNodePanel.tscn")
+@onready var dice_roll_node_panel_instance = preload("res://Objects/SidePanelNodes/DiceRollNodePanel.tscn")
 
 var selected_node = null
 var current_panel = null
@@ -40,6 +41,8 @@ func _on_graph_edit_node_selected(node):
 			new_panel = sentence_node_panel_instance.instantiate()
 		"NodeChoice":
 			new_panel = choice_node_panel_instance.instantiate()
+		"NodeDiceRoll":
+			new_panel = dice_roll_node_panel_instance.instantiate()
 	
 	new_panel.graph_node = node
 	
