@@ -58,4 +58,3 @@ func update_speakers():
 		updated_speakers.append(child._to_dict())
 		
 	graph_node.get_parent().speakers = updated_speakers
-	print(graph_node.get_parent().speakers)

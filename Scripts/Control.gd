@@ -13,6 +13,7 @@ var dialog_for_localisation = []
 @onready var option_panel = preload("res://Objects/SubComponents/OptionNode.tscn")
 
 @onready var graph_edit: GraphEdit = $VBoxContainer/Control/GraphEdit
+@onready var saved_notification = $VBoxContainer/HBoxContainer/SavedNotification
 
 var live_dict: Dictionary
 
@@ -92,6 +93,10 @@ func save():
 	var data = JSON.stringify(_to_dict(), "\t", false, true)
 	file.store_string(data)
 	file.close()
+	
+	saved_notification.show()
+	await get_tree().create_timer(1.5).timeout
+	saved_notification.hide()
 
 
 func load_project(path):

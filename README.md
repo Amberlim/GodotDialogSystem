@@ -26,14 +26,17 @@ The app this application allows you to modify a single dialog file, not projects
     - **Enable by default**: the first time the user is confronted with the Choice Node.
     - **One Shot**: this option is valid only once
 
+- **End Path Node**<br>
+    This node represents the end of a path. It can be interpreted as an exit of the file
+
 
 ### How it's interpreted
 You can write your own script or use [this one]() (not yet written).
 
-
+This how the end of a branch is interpreted.
+If there is no EndPathNode, the next node is the last NodeChoice
+![end_path_system](end_path.png)
 
 
 ### More Support
-1. For a runthrough (of the original version), watch my video on youtube: https://www.youtube.com/watch?v=QCySgbADhEA&ab_channel=AmberLimShin%F0%9F%8D%A0
-
-2. Hop into Discord to share your project: https://discord.gg/AAcKmJz7Na 
+Hop into the Amberlim's Discord to share your project: https://discord.gg/AAcKmJz7Na
