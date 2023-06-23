@@ -13,21 +13,21 @@ The app this application allows you to modify a single dialog file, not projects
 
 ### Types of nodes
  - **Root Node**<br>
-    There is only one in each file, and it cannot be deleted. The Root Node is the starting point of your story
+	There is only one in each file, and it cannot be deleted. The Root Node is the starting point of your story
 
 - **Sentence Node**<br>
-    Sentence nodes represent a character's dialogue sentence.
+	Sentence nodes represent a character's dialogue sentence.
 
 - **Choice Node**<br>
-    It's a node that allows the user to make choices and then select a specific branch. A Choice Node has several Option Nodes.
+	It's a node that allows the user to make choices and then select a specific branch. A Choice Node has several Option Nodes.
 
 - **Option Node**<br>
-    An Option Node has several parameters:<br>
-    - **Enable by default**: the first time the user is confronted with the Choice Node.
-    - **One Shot**: this option is valid only once
+	An Option Node has several parameters:<br>
+	- **Enable by default**: the first time the user is confronted with the Choice Node.
+	- **One Shot**: this option is valid only once
 
 - **End Path Node**<br>
-    This node represents the end of a path. It can be interpreted as an exit of the file
+	This node represents the end of a path. It can be interpreted as an exit of the file
 
 
 ### How it's interpreted
@@ -35,7 +35,7 @@ You can write your own script or use [this one]() (not yet written).
 
 This how the end of a branch is interpreted.
 If there is no EndPathNode, the next node is the last NodeChoice
-![end_path_system](end_path.png)
+![end_path_system](./doc/end_path.png)
 
 
 ### More Support
