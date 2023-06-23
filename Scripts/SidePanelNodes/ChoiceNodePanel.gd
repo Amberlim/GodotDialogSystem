@@ -26,7 +26,7 @@ func new_option(dict = null, init: bool = false):
 	
 	if not init:
 		update_all_options()
-		graph_node.new_option_reference(option.id, option.sentence)
+		graph_node.new_option_reference(dict)
 	
 	graph_node.set_slot(get_child_count()-1, false, 0, Color("ff2865"), true, 0, Color("097168"))
 

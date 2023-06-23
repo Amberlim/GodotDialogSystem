@@ -265,6 +265,7 @@ always_on_top = true
 ok_button_text = "Ouvrir"
 file_mode = 0
 access = 2
+filters = PackedStringArray("*.json")
 script = ExtResource("6_lrnkg")
 
 [node name="HelpWindow" type="Window" parent="."]

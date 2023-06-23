@@ -10,10 +10,12 @@ func _on_control_resized():
 
 
 func _on_new_file_btn_pressed():
+	file_mode = FileDialog.FILE_MODE_SAVE_FILE
 	show()
 	open_mode = enum_mode.NEW
 
 
 func _on_open_file_btn_pressed():
+	file_mode = FileDialog.FILE_MODE_OPEN_FILE
 	show()
 	open_mode = enum_mode.OPEN
