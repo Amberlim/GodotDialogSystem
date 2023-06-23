@@ -26,8 +26,28 @@ The app this application allows you to modify a single dialog file, not projects
 	- **Enable by default**: the first time the user is confronted with the Choice Node.
 	- **One Shot**: this option is valid only once
 
+- **DiceRoll Node**<br>
+	To have a bit of random stuff.
+
 - **End Path Node**<br>
 	This node represents the end of a path. It can be interpreted as an exit of the file
+
+
+### The JSON file format
+```json
+{
+	"RootNodeId": "", # The id of the root node (where all start)
+	"ListNodes": [ # Where all the nodes are stored
+		...
+	],
+	"Characters": [ # All the characters
+		...
+	],
+	"Variables": [ # All the variables
+		...
+	]
+}
+```
 
 
 ### How it's interpreted
