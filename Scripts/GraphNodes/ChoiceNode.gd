@@ -34,6 +34,11 @@ func _from_dict(dict):
 	_node_dict = dict
 	
 	id = dict.get("ID")
+	
+
+func _on_created():
+	new_option_reference()
+	new_option_reference()
 
 
 func _options_from_dict(dict, global_dict):

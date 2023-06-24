@@ -211,6 +211,7 @@ func _on_new_sentence_pressed():
 func _on_NewOption_pressed():
 	var node = choice_node.instantiate()
 	graph_edit.add_child(node)
+	node._on_created()
 	center_node_in_graph_edit(node)
 
 func _on_NewRoll_pressed():
