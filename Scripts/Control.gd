@@ -84,7 +84,7 @@ func get_root_dict(nodes):
 
 func get_root_node_ref():
 	for node in graph_edit.get_children():
-		if node.id == root_dict.get("ID"):
+		if !node.is_queued_for_deletion() and node.id == root_dict.get("ID"):
 			return node
 
 
@@ -100,8 +100,6 @@ func save():
 
 
 func load_project(path):
-	for node in graph_edit.get_children():
-		node.queue_free()
 	assert(FileAccess.file_exists(path))
 	
 	var file = FileAccess.get_file_as_string(path)
@@ -213,6 +211,7 @@ func _on_new_sentence_pressed():
 func _on_NewOption_pressed():
 	var node = choice_node.instantiate()
 	graph_edit.add_child(node)
+	node._on_created()
 	center_node_in_graph_edit(node)
 
 func _on_NewRoll_pressed():
