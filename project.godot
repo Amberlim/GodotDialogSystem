@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="Dialog Editor System"
+config/name="Monologue"
 run/main_scene="res://Scenes/App.tscn"
 config/features=PackedStringArray("4.0")
 boot_splash/fullsize=false
