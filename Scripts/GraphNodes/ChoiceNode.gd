@@ -11,7 +11,7 @@ var options = []
 
 
 func _ready():
-	title = node_type + " (" + id + ")"
+	title = node_type
 
 
 func _to_dict() -> Dictionary:

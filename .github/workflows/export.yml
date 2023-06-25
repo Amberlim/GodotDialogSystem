@@ -1,14 +1,16 @@
+name: build
+
 on:
   pull_request:
     types:
-      - opened
+      - closed
     branches:
       - main
 
 jobs:
   export_game:
     runs-on: ubuntu-latest
-    name: Dialog System Editor
+    name: Monologue
     steps:
       - name: checkout
         uses: actions/checkout@v3.3.0
@@ -26,7 +28,6 @@ jobs:
           godot_export_templates_download_url: https://downloads.tuxfamily.org/godotengine/4.0/Godot_v4.0-stable_export_templates.tpz
           relative_project_path: ./ # build the standard project
           relative_export_path: ./build/ # move export output to this directory relative to git root
-          archive_output: true
           wine_path: ${{ steps.wine_install.outputs.WINE_PATH }}
       - name: create release
         uses: ncipollo/release-action@v1.11.2

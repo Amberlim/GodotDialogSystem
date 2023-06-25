@@ -10,7 +10,7 @@ var variables = []
 
 
 func _ready():
-	title = node_type + " (" + id + ")"
+	title = node_type
 
 
 func _to_dict() -> Dictionary:
