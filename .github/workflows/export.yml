@@ -36,4 +36,4 @@ jobs:
           generateReleaseNotes: true
           tag: ${{ github.event.pull_request.title }}
           name: ${{ github.event.pull_request.title }}
-          artifacts: ${{ steps.export.outputs.archive_directory }}/* # Added "/*" at the end is glob pattern match for this action
+          artifacts: ${{ steps.export.outputs.build_directory }}/* # Added "/*" at the end is glob pattern match for this action
