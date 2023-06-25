@@ -13,7 +13,7 @@ var actions: Array
 
 
 func _ready():
-	title = node_type + " (" + id + ")"
+	title = node_type
 	update_preview()
 
 
