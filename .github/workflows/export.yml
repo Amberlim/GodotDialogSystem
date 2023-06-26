@@ -30,10 +30,8 @@ jobs:
           relative_export_path: ./build/ # move export output to this directory relative to git root
           wine_path: ${{ steps.wine_install.outputs.WINE_PATH }}
       - name: create release
-        uses: ncipollo/release-action@v1.11.2
+        uses: actions/upload-artifact@v3
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          generateReleaseNotes: true
-          tag: ${{ github.event.pull_request.title }}
-          name: ${{ github.event.pull_request.title }}
-          artifacts: ${{ steps.export.outputs.build_directory }} # Added "/*" at the end is glob pattern match for this action
+          name: Monologue ${{ github.event.pull_request.title }}
+          path: ${{ steps.export.outputs.build_directory }}
+          if-no-files-found: error
