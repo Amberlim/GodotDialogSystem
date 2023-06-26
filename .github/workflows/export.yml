@@ -43,6 +43,6 @@ jobs:
           generateReleaseNotes: true
           name: Monologue ${{ github.ref_tag }}
           tag: ${{ github.ref_tag }}
-          path: ${{ steps.export.outputs.build_directory }}/*
+          artifacts: ${{ steps.export.outputs.build_directory }}/*
           replacesArtifacts: true
           
