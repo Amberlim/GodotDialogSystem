@@ -6,6 +6,8 @@ on:
       - closed
     branches:
       - main
+    tags:
+      - v*
 
 jobs:
   export_game:
