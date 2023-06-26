@@ -33,5 +33,6 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: Monologue ${{ github.event.pull_request.title }}
-          path: ${{ steps.export.outputs.build_directory }}
-          if-no-files-found: error
+          path: ${{ steps.export.outputs.build_directory }}/*.exe
+          token: ${{ secrets.GITHUB_TOKEN }}
+          
