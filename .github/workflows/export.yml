@@ -6,8 +6,6 @@ on:
       - closed
     branches:
       - main
-    tags:
-      - "v*"
   push:
     branches:
       - main
@@ -19,15 +17,15 @@ jobs:
     runs-on: ubuntu-latest
     name: Monologue
     steps:
-      - name: checkout
+      - name: Checkout
         uses: actions/checkout@v3.3.0
-      - name: install wine
+      - name: Install wine
         id: wine_install
         run: |
           sudo apt-get update
           sudo apt install wine64
           echo "WINE_PATH=$(which wine64)" >> $GITHUB_OUTPUT
-      - name: export game
+      - name: Export game
         id: export
         uses: firebelley/godot-export@v5.1.0
         with:
@@ -36,13 +34,19 @@ jobs:
           relative_project_path: ./
           relative_export_path: ./builds/
           wine_path: ${{ steps.wine_install.outputs.WINE_PATH }}
-      - name: create release
+      - name: Create release
         uses: ncipollo/release-action@v1.12.0
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           generateReleaseNotes: true
+<<<<<<< Updated upstream
           name: Monologue ${{ github.ref_name }}
           tag: ${{ github.ref_name }}
           artifacts: ${{ steps.export.outputs.build_directory }}/*
+=======
+          name: Monologue ${{ github.event.pull_request.title || github.event.push }}
+          tag: ${{ github.event.pull_request.title || github.event.push }}
+          artifacts: ${{ steps.export.outputs.build_directory }}/**/*
+>>>>>>> Stashed changes
           replacesArtifacts: true
           
