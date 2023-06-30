@@ -41,8 +41,8 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           generateReleaseNotes: true
-          name: Monologue ${{ github.event.pull_request.title || github.event.push.title }}
-          tag: ${{ github.event.pull_request.title || github.event.push.title }}
+          name: Monologue ${{ github.event.pull_request.title || github.event.push.head_commit.title }}
+          tag: ${{ github.event.pull_request.title || github.event.push.head_commit.title }}
           artifacts: ${{ steps.export.outputs.build_directory }}/**/*
           replacesArtifacts: true
           
