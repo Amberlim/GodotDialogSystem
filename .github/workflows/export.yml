@@ -6,28 +6,25 @@ on:
       - closed
     branches:
       - main
-    tags:
-      - "v*"
   push:
     branches:
       - main
-    tags:
-      - "v*"
 
 jobs:
   export_game:
+    if: github.event_name == 'pull_request' || (github.event_name == 'push' && startsWith(github.event.head_commit.message, 'v'))
     runs-on: ubuntu-latest
     name: Monologue
     steps:
-      - name: checkout
+      - name: Checkout
         uses: actions/checkout@v3.3.0
-      - name: install wine
+      - name: Install wine
         id: wine_install
         run: |
           sudo apt-get update
           sudo apt install wine64
           echo "WINE_PATH=$(which wine64)" >> $GITHUB_OUTPUT
-      - name: export game
+      - name: Export game
         id: export
         uses: firebelley/godot-export@v5.1.0
         with:
@@ -36,13 +33,25 @@ jobs:
           relative_project_path: ./
           relative_export_path: ./builds/
           wine_path: ${{ steps.wine_install.outputs.WINE_PATH }}
-      - name: create release
+      - name: Create release (on push)
+        if: github.event_name == 'push'
         uses: ncipollo/release-action@v1.12.0
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           generateReleaseNotes: true
-          name: Monologue ${{ github.event.pull_request.title || github.event.push.head_commit.title }}
-          tag: ${{ github.event.pull_request.title || github.event.push.head_commit.title }}
+          name: Monologue ${{ github.event.head_commit.message }}
+          tag: ${{ github.event.head_commit.message }}
           artifacts: ${{ steps.export.outputs.build_directory }}/**/*
           replacesArtifacts: true
+      - name: Create release (on pull_request)
+        if: github.event_name == 'pull_request'
+        uses: ncipollo/release-action@v1.12.0
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          generateReleaseNotes: true
+          name: Monologue ${{ github.event.head_commit.message }}
+          tag: ${{ github.event.head_commit.message }}
+          artifacts: ${{ steps.export.outputs.build_directory }}/**/*
+          replacesArtifacts: true
+            
           
