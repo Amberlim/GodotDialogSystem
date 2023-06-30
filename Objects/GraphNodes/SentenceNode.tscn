@@ -5,9 +5,9 @@
 [sub_resource type="Theme" id="Theme_llmqa"]
 
 [node name="SentenceNode" type="GraphNode" groups=["graph_nodes"]]
-custom_minimum_size = Vector2(200, 100)
-offset_right = 200.0
-offset_bottom = 65.0
+custom_minimum_size = Vector2(400, 100)
+offset_right = 400.0
+offset_bottom = 100.0
 size_flags_vertical = 0
 theme = SubResource("Theme_llmqa")
 title = "NodeSentence"
