@@ -15,14 +15,12 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3.3.0
-
       - name: Install wine
         id: wine_install
         run: |
           sudo apt-get update
           sudo apt install wine64
           echo "WINE_PATH=$(which wine64)" >> $GITHUB_OUTPUT
-
       - name: Export game
         id: export
         uses: firebelley/godot-export@v5.1.0

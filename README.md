@@ -1,5 +1,5 @@
-# GodotDialogSystem 🦖
-A fork of an untitled godot dialog system waiting to be named a cool name. (for Godot 4.x)
+# Monologue 🦖
+A fork of an untitled godot dialog system by Amberlim. (using Godot 4.x)
 
 This system converts your story/dialog into a JSON file which you can then use to create your dialog in game.
 The app this application allows you to modify a single dialog file, not projects with several files.
