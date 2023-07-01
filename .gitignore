@@ -14,3 +14,8 @@ export.cfg
 data_*/
 mono_crash.*.json
 addons/editor_icon_previewer/
+
+# Exports
+*.pck
+*.exe
+*.x86_*
