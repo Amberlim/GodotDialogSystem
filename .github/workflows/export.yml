@@ -6,25 +6,23 @@ on:
       - closed
     branches:
       - main
-  push:
-    branches:
-      - main
-    tags:
-      - "v*"
 
 jobs:
   export_game:
+    if: startsWith(github.event.pull_request.title, 'v')
     runs-on: ubuntu-latest
     name: Monologue
     steps:
       - name: Checkout
         uses: actions/checkout@v3.3.0
+
       - name: Install wine
         id: wine_install
         run: |
           sudo apt-get update
           sudo apt install wine64
           echo "WINE_PATH=$(which wine64)" >> $GITHUB_OUTPUT
+
       - name: Export game
         id: export
         uses: firebelley/godot-export@v5.1.0
@@ -39,14 +37,7 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           generateReleaseNotes: true
-<<<<<<< Updated upstream
-          name: Monologue ${{ github.ref_name }}
-          tag: ${{ github.ref_name }}
-          artifacts: ${{ steps.export.outputs.build_directory }}/*
-=======
-          name: Monologue ${{ github.event.pull_request.title || github.event.push }}
-          tag: ${{ github.event.pull_request.title || github.event.push }}
+          name: Monologue ${{ github.event.pull_request.title }}
+          tag: ${{ github.event.pull_request.title }}
           artifacts: ${{ steps.export.outputs.build_directory }}/**/*
->>>>>>> Stashed changes
           replacesArtifacts: true
-          
