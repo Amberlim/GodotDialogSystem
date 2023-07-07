@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://bqjfdabrxujp7"]
+[gd_scene load_steps=16 format=3 uid="uid://bqjfdabrxujp7"]
 
 [ext_resource type="Script" path="res://Scripts/Control.gd" id="2_1tprk"]
 [ext_resource type="Texture2D" uid="uid://baiy1kygdapj1" path="res://Assets/Icons/config_icon.png" id="2_47s6l"]
@@ -6,7 +6,6 @@
 [ext_resource type="Script" path="res://Scripts/Windows/WelcomeWindow.gd" id="3_bs36t"]
 [ext_resource type="Texture2D" uid="uid://cx2kpptyyju8l" path="res://Assets/Icons/close_icon.png" id="5_f42wd"]
 [ext_resource type="Texture2D" uid="uid://cwql5qpl4e4v0" path="res://Assets/Icons/new_file_icon.png" id="5_vkhra"]
-[ext_resource type="Script" path="res://Scripts/Windows/NewFileDialog.gd" id="6_lrnkg"]
 [ext_resource type="Texture2D" uid="uid://cqqihpieogmyx" path="res://Assets/Icons/folder_icon.png" id="6_vjwwg"]
 [ext_resource type="Texture2D" uid="uid://108wgm8dsxbr" path="res://Assets/Icons/help_icon.png" id="7_nc85w"]
 [ext_resource type="Script" path="res://Scripts/SidePanelNodes/SidePanelNodeDetails.gd" id="9_cxmnj"]
@@ -254,20 +253,6 @@ size_flags_horizontal = 8
 size_flags_vertical = 8
 label_settings = SubResource("LabelSettings_7mcdy")
 
-[node name="ProjectFinderDialog" type="FileDialog" parent="."]
-title = "Open a File"
-initial_position = 1
-size = Vector2i(600, 350)
-transient = false
-exclusive = false
-borderless = true
-always_on_top = true
-ok_button_text = "Ouvrir"
-file_mode = 0
-access = 2
-filters = PackedStringArray("*.json")
-script = ExtResource("6_lrnkg")
-
 [node name="HelpWindow" type="Window" parent="."]
 size = Vector2i(650, 400)
 visible = false
@@ -331,7 +316,6 @@ text = "Ok"
 script = SubResource("GDScript_so3r8")
 
 [connection signal="resized" from="." to="WelcomeWindow" method="_on_control_resized"]
-[connection signal="resized" from="." to="ProjectFinderDialog" method="_on_control_resized"]
 [connection signal="resized" from="." to="HelpWindow" method="_on_control_resized"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/Config" to="VBoxContainer/Control/MarginContainer/SidePanelNodeDetails" method="_on_config_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/NewSentence" to="." method="_on_new_sentence_pressed"]
@@ -344,8 +328,7 @@ script = SubResource("GDScript_so3r8")
 [connection signal="disconnection_request" from="VBoxContainer/Control/GraphEdit" to="." method="_on_GraphEdit_disconnection_request"]
 [connection signal="node_selected" from="VBoxContainer/Control/GraphEdit" to="VBoxContainer/Control/MarginContainer/SidePanelNodeDetails" method="_on_graph_edit_node_selected"]
 [connection signal="pressed" from="VBoxContainer/Control/MarginContainer/SidePanelNodeDetails/MarginContainer/ScrollContainer/PanelContainer/HBoxContainer/TextureButton" to="VBoxContainer/Control/MarginContainer/SidePanelNodeDetails" method="_on_texture_button_pressed"]
-[connection signal="pressed" from="WelcomeWindow/PanelContainer/CenterContainer/VBoxContainer2/HBoxContainer/NewFileBtn" to="ProjectFinderDialog" method="_on_new_file_btn_pressed"]
-[connection signal="pressed" from="WelcomeWindow/PanelContainer/CenterContainer/VBoxContainer2/HBoxContainer/OpenFileBtn" to="ProjectFinderDialog" method="_on_open_file_btn_pressed"]
+[connection signal="pressed" from="WelcomeWindow/PanelContainer/CenterContainer/VBoxContainer2/HBoxContainer/NewFileBtn" to="." method="_on_new_file_btn_pressed"]
+[connection signal="pressed" from="WelcomeWindow/PanelContainer/CenterContainer/VBoxContainer2/HBoxContainer/OpenFileBtn" to="." method="_on_open_file_btn_pressed"]
 [connection signal="pressed" from="WelcomeWindow/PanelContainer/CenterContainer/VBoxContainer2/CenterContainer/HelpBtn" to="HelpWindow" method="_on_help_btn_pressed"]
-[connection signal="file_selected" from="ProjectFinderDialog" to="." method="_on_file_selected"]
 [connection signal="pressed" from="HelpWindow/PanelContainer/MarginContainer/VBoxContainer/CenterContainer/Continue" to="HelpWindow/PanelContainer/MarginContainer/VBoxContainer/CenterContainer/Continue" method="_on_pressed"]

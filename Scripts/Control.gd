@@ -65,12 +65,12 @@ func _to_dict() -> Dictionary:
 	}
 
 
-func _on_file_selected(path):
+func file_selected(path, open_mode):
 	$NoInteractions.hide()
 	
 	file_path = path
 	$WelcomeWindow.hide()
-	if $ProjectFinderDialog.open_mode == 0: #NEW
+	if open_mode == 0: #NEW
 		save()
 		
 	load_project(path)
@@ -238,3 +238,33 @@ func _on_GraphEdit_connection_request(from, from_slot, to, to_slot):
 
 func _on_GraphEdit_disconnection_request(from, from_slot, to, to_slot):
 	graph_edit.disconnect_node(from, from_slot, to, to_slot)
+
+
+####################
+#  File selection  #
+####################
+
+func _on_new_file_btn_pressed():
+	var output = []
+	OS.execute(
+		"Powershell.exe",
+		["\"Add-Type -AssemblyName System.Windows.Forms ; $SaveFileBrowser = New-Object System.Windows.Forms.SaveFileDialog -Property @{ InitialDirectory = [Environment]::GetFolderPath('Desktop') ; Filter = 'JSON file|*.json' } ; $null = $SaveFileBrowser.ShowDialog() ; return $SaveFileBrowser.FileName\""],
+		output
+	)
+	
+	var file_path = output[0].trim_suffix("\r\n")
+	if file_path != "":
+		return file_selected(file_path, 0)
+
+
+func _on_open_file_btn_pressed():
+	var output = []
+	OS.execute(
+		"Powershell.exe",
+		["\"Add-Type -AssemblyName System.Windows.Forms ; $FileBrowser = New-Object System.Windows.Forms.OpenFileDialog -Property @{ InitialDirectory = [Environment]::GetFolderPath('Desktop') ; Filter = 'JSON file|*.json' } ; $null = $FileBrowser.ShowDialog() ; return $FileBrowser.FileName\""],
+		output
+	)
+	
+	var file_path = output[0].trim_suffix("\r\n")
+	if file_path != "":
+		return file_selected(file_path, 1)

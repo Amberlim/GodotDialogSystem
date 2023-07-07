@@ -19,3 +19,4 @@ addons/editor_icon_previewer/
 *.pck
 *.exe
 *.x86_*
+*.tmp
