@@ -1,15 +1,12 @@
 name: build
 
 on:
-  pull_request:
-    types:
-      - closed
-    branches:
-      - main
+  push:
+    tags:
+      - 'v[0-9]+.[0-9]+.[0-9]+*'
 
 jobs:
   export_game:
-    if: startsWith(github.event.pull_request.title, 'v')
     runs-on: ubuntu-latest
     name: Monologue
     steps:
@@ -35,7 +32,7 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           generateReleaseNotes: true
-          name: Monologue ${{ github.event.pull_request.title }}
-          tag: ${{ github.event.pull_request.title }}
+          name: Monologue ${{ github.ref_name }}
+          tag: ${{ github.ref_name }}
           artifacts: ${{ steps.export.outputs.build_directory }}/**/*
           replacesArtifacts: true
