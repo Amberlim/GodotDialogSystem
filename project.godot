@@ -13,6 +13,7 @@ config_version=5
 config/name="Monologue"
 run/main_scene="res://Scenes/App.tscn"
 config/features=PackedStringArray("4.1")
+run/low_processor_mode=true
 boot_splash/bg_color=Color(0.117647, 0.133333, 0.164706, 1)
 boot_splash/image="res://icon.png"
 boot_splash/fullsize=false
