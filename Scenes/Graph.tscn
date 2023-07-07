@@ -255,8 +255,8 @@ size_flags_vertical = 8
 label_settings = SubResource("LabelSettings_7mcdy")
 
 [node name="ProjectFinderDialog" type="FileDialog" parent="."]
-initial_position = 1
 title = "Open a File"
+initial_position = 1
 size = Vector2i(600, 350)
 transient = false
 exclusive = false
