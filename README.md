@@ -3,6 +3,7 @@ An untitled godot dialog system waiting to be named a cool name.
 
 This system converts your story/dialog into a JSON file which you can then use to create your dialog in game.
 
+CURRENTLY ONLY SUPPORTING GODOT 3++
 
 ### Brief Steps to Start Your Story
 1. Open the project.gd file in the DialogSystem2 folder.
